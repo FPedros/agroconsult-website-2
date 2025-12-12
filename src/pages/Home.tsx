@@ -55,18 +55,21 @@ function Hero() {
           muted
           loop
           playsInline
+          aria-label="Vídeo institucional Agroconsult"
+          poster="/images/video-banner-mobile.jpg"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/80 via-brand-navy/70 to-brand-green/70" />
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/85 via-brand-navy/75 to-brand-green/70" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.08),transparent_40%),radial-gradient(circle_at_80%_10%,rgba(255,255,255,0.06),transparent_35%)]" />
       </div>
 
-      <div className="page-container relative z-10 flex min-h-screen flex-col items-center justify-center gap-8 pb-24 pt-32 text-center lg:pb-28 lg:pt-36">
-        <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white">
+      <div className="page-container relative z-10 flex min-h-screen flex-col items-center justify-center gap-8 pb-20 pt-28 text-center sm:pb-24 sm:pt-32 lg:pb-28 lg:pt-36">
+        <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white sm:text-xs">
           Agroconsult • Dados + Campo
         </div>
-        <h1 className="max-w-3xl text-4xl font-bold leading-tight text-white md:text-5xl">
+        <h1 className="max-w-3xl text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl">
           Inteligência para quem decide o futuro do agronegócio brasileiro.
         </h1>
-        <p className="max-w-3xl text-lg text-white/85">
+        <p className="max-w-3xl text-base text-white/85 sm:text-lg">
           Somos a Agroconsult: 80+ serviços especializados, 30 anos de séries proprietárias e a única expedição que cruza
           o Brasil inteiro para auditar safras em tempo real.
         </p>
