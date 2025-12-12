@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
 
 const navItems = [
   { label: "Home", to: "/" },
@@ -12,6 +13,13 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const desktopPrimaryHover = usePrimaryGradientHover();
+  const mobilePrimaryHover = usePrimaryGradientHover();
+
+  const scrollToHero = () => {
+    const hero = document.getElementById("hero");
+    if (hero) hero.scrollIntoView({ behavior: "smooth" });
+  };
 
   const close = () => setOpen(false);
 
@@ -36,7 +44,17 @@ export function Navbar() {
   return (
     <header className={headerClasses}>
       <div className="page-container flex items-center justify-between py-3 md:py-4">
-        <Link to="/" className="flex items-center gap-2" onClick={close}>
+        <Link
+          to="/"
+          className="flex items-center gap-2"
+          onClick={(e) => {
+            if (location.pathname === "/") {
+              e.preventDefault();
+              scrollToHero();
+            }
+            close();
+          }}
+        >
           <div className="relative">
             <img src={logoSrc} alt="Agroconsult" className="h-10 w-auto transition duration-300" />
           </div>
@@ -62,7 +80,7 @@ export function Navbar() {
             </NavLink>
           ))}
           </nav>
-          <Link to="/produtos" className="btn-primary">
+          <Link to="/produtos" className="btn-primary" {...desktopPrimaryHover}>
             Fale com um especialista
           </Link>
         </div>
@@ -108,7 +126,7 @@ export function Navbar() {
             >
               Contato
             </a>
-            <Link to="/produtos" onClick={close} className="btn-primary justify-center">
+            <Link to="/produtos" onClick={close} className="btn-primary justify-center" {...mobilePrimaryHover}>
               Fale com um especialista
             </Link>
           </div>
