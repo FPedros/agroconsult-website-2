@@ -9,6 +9,7 @@ export const stats = [
   { value: "1.2k", label: "municípios visitados", detail: "Time em campo do Norte ao Sul com metodologia própria." }
 ];
 
+
 export const services = [
   {
     title: "Inteligência de Mercado",
