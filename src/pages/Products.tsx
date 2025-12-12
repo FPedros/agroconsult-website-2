@@ -1,5 +1,6 @@
 import { ArrowRight, BarChart3, Map, ShieldCheck, Sparkles } from "lucide-react";
 import InteractiveCard from "../components/InteractiveCard";
+import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
 
 const productDetails = [
   {
@@ -50,6 +51,8 @@ const accelerators = [
 ];
 
 export default function Products() {
+  const productsPrimaryHover = usePrimaryGradientHover();
+
   return (
     <div className="bg-white/80">
       <section className="relative overflow-hidden bg-brand-gradient text-white">
@@ -173,7 +176,7 @@ export default function Products() {
                 valoração.
               </p>
             </div>
-            <a href="mailto:contato@agroconsult.com.br" className="btn-primary">
+            <a href="mailto:contato@agroconsult.com.br" className="btn-primary" {...productsPrimaryHover}>
               Montar combinação ideal
             </a>
           </div>

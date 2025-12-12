@@ -1,5 +1,6 @@
 import { ArrowRight, ChevronDown, Layers, Network, Sparkles, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
+import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
 import { highlights, productCards, services } from "../content";
 import InteractiveCard from "../components/InteractiveCard";
 
@@ -45,11 +46,18 @@ const clientLogoLines = [
 ];
 
 function Hero() {
+  const heroPrimaryHover = usePrimaryGradientHover();
+
   return (
-    <section className="relative overflow-hidden">
+    <section
+      id="hero"
+      className="relative flex h-screen flex-col items-center justify-center overflow-hidden"
+      style={{ minHeight: "100svh", height: "100svh" }}
+    >
       <div className="absolute inset-0">
         <video
-          className="h-full w-full object-cover"
+          className="h-full min-h-full w-full object-cover"
+          style={{ minHeight: "100svh" }}
           src="/images/video-banner.mp4"
           autoPlay
           muted
@@ -62,26 +70,18 @@ function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.08),transparent_40%),radial-gradient(circle_at_80%_10%,rgba(255,255,255,0.06),transparent_35%)]" />
       </div>
 
-      <div className="page-container relative z-10 flex min-h-screen flex-col items-center justify-center gap-8 pb-20 pt-28 text-center sm:pb-24 sm:pt-32 lg:pb-28 lg:pt-36">
-        <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white sm:text-xs">
-          Agroconsult • Dados + Campo
-        </div>
-        <h1 className="max-w-3xl text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl">
-          Inteligência para quem decide o futuro do agronegócio brasileiro.
+      <div className="page-container relative z-10 flex min-h-full flex-col items-center justify-center gap-8 py-20 text-center sm:py-24 lg:py-28">
+        
+        <h1 className="max-w-3xl text-5xl font-black leading-tight text-white sm:text-6xl md:text-[68px] md:leading-[1.08] tracking-tight drop-shadow-[0_14px_44px_rgba(0,23,71,0.5)]">
+          Inteligência que{" "}
+          <span className="bg-gradient-to-r from-brand-green via-emerald-300 to-brand-green bg-clip-text text-transparent drop-shadow-[0_10px_32px_rgba(47,197,111,0.55)]">
+            Transforma o Campo
+          </span>
         </h1>
         <p className="max-w-3xl text-base text-white/85 sm:text-lg">
-          Somos a Agroconsult: 80+ serviços especializados, 30 anos de séries proprietárias e a única expedição que cruza
-          o Brasil inteiro para auditar safras em tempo real.
+          Dados precisos e visão estratégica para impulsionar o agronegócio brasileiro no cenário global.
         </p>
         <div className="flex flex-wrap justify-center gap-3">
-          <div className={tagClass}>
-            <Sparkles size={16} />
-            Dados proprietários
-          </div>
-          <div className={tagClass}>
-            <Network size={16} />
-            IA + satélite + campo
-          </div>
           <div className={tagClass}>
             <Layers size={16} />
             Estratégia sob medida
@@ -89,12 +89,16 @@ function Hero() {
         </div>
 
         <div className="flex flex-wrap justify-center gap-3 pt-2">
-          <Link to="/produtos" className="btn-primary">
-            Conhecer produtos
+          <Link
+            to="/produtos"
+            className="btn-primary"
+            {...heroPrimaryHover}
+          >
+            Conheça Nossas Soluções
             <ArrowRight size={16} />
           </Link>
           <a href="mailto:contato@agroconsult.com.br" className="btn-ghost">
-            Falar com a equipe
+            Falar com Especialista
           </a>
         </div>
       </div>
@@ -120,7 +124,7 @@ function HeroHighlights() {
   ];
 
   return (
-    <section className="relative -mt-10 section-padding bg-gradient-to-b from-white via-brand-light/30 to-white">
+    <section className="relative section-padding bg-gradient-to-b from-white via-brand-light/30 to-white">
       <div className={styles.sectionContainer}>
         <div className="space-y-3 text-left md:text-center">
           <p className={styles.eyebrow}>Dados que geram confiança</p>
@@ -180,7 +184,7 @@ function ClientsSection() {
           </p>
         </div>
 
-        <div className="space-y-3">
+        <div className="relative left-1/2 w-screen -translate-x-1/2 space-y-3 px-3 sm:px-6 lg:px-10">
           {nonEmptyLines.map((line, idxLine) => {
             const doubled = [...line, ...line];
             const direction = idxLine % 2 === 0 ? "marquee-left" : "marquee-right";
@@ -262,6 +266,8 @@ function Stats() {
 }
 
 function ProductsSpotlight() {
+  const spotlightHover = usePrimaryGradientHover();
+
   return (
     <section className="section-padding bg-gradient-to-b from-white to-brand-light/25">
       <div className={styles.sectionContainer}>
@@ -274,7 +280,7 @@ function ProductsSpotlight() {
               governança para toda a cadeia do agronegócio.
             </p>
           </div>
-          <Link to="/produtos" className="btn-primary">
+          <Link to="/produtos" className="btn-primary" {...spotlightHover}>
             Ver detalhes
           </Link>
         </div>
@@ -410,6 +416,8 @@ function Methodology() {
 }
 
 function Highlights() {
+  const highlightsPrimaryHover = usePrimaryGradientHover();
+
   return (
     <section className="section-padding bg-white">
       <div className={styles.sectionContainer}>
@@ -422,7 +430,7 @@ function Highlights() {
               movimentos de mercado e destravar margens.
             </p>
           </div>
-          <Link to="/produtos" className="btn-primary">
+          <Link to="/produtos" className="btn-primary" {...highlightsPrimaryHover}>
             Quero ver na prática
           </Link>
         </div>
@@ -449,6 +457,8 @@ function Highlights() {
 }
 
 function CTA() {
+  const ctaPrimaryHover = usePrimaryGradientHover();
+
   return (
     <section className="section-padding bg-gradient-to-b from-white to-brand-light/25">
       <div className="page-container">
@@ -465,7 +475,7 @@ function CTA() {
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
-                <a href="mailto:contato@agroconsult.com.br" className="btn-primary">
+                <a href="mailto:contato@agroconsult.com.br" className="btn-primary" {...ctaPrimaryHover}>
                   Agendar conversa
                 </a>
                 <Link to="/produtos" className="btn-secondary">

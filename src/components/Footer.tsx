@@ -1,7 +1,10 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
+import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
 
 export function Footer() {
+  const footerPrimaryHover = usePrimaryGradientHover();
+
   return (
     <footer className="border-t border-brand-gray/20 bg-white/90 backdrop-blur">
       <div className="page-container flex flex-col gap-8 py-10 lg:flex-row lg:items-start lg:justify-between">
@@ -18,7 +21,7 @@ export function Footer() {
             <Link to="/historia" className="btn-secondary">
               Nossa história
             </Link>
-            <Link to="/produtos" className="btn-primary">
+            <Link to="/produtos" className="btn-primary" {...footerPrimaryHover}>
               Produtos
             </Link>
           </div>
