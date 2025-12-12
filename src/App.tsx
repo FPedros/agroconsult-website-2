@@ -1,0 +1,24 @@
+import { Route, Routes } from "react-router-dom";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import History from "./pages/History";
+import Home from "./pages/Home";
+import Products from "./pages/Products";
+
+function App() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-white via-white to-brand-light text-brand-navy">
+      <Navbar />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/produtos" element={<Products />} />
+          <Route path="/historia" element={<History />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
