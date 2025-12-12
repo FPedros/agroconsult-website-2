@@ -1,10 +1,48 @@
 import { ArrowRight, ChevronDown, Layers, Network, Sparkles, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
-import { highlights, productCards, services, stats } from "../content";
+import { highlights, productCards, services } from "../content";
 import InteractiveCard from "../components/InteractiveCard";
 
 const tagClass =
   "inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-brand-navy shadow-sm";
+
+const styles = {
+  eyebrow: "text-xs font-semibold uppercase tracking-[0.24em] text-brand-gray",
+  title: "text-3xl font-semibold leading-tight text-brand-navy md:text-[34px]",
+  body: "text-base text-slate-700 md:text-lg",
+  sectionContainer: "page-container space-y-8",
+  cardShell:
+    "rounded-3xl bg-gradient-to-br from-white via-neutral-50 to-white p-[1px] shadow-sm transition hover:-translate-y-1 hover:shadow-md",
+  cardInner: "rounded-[26px] bg-white p-5 lg:p-6"
+};
+
+// @ts-ignore - Vite allows glob imports; public folder logos are collected eagerly as URLs
+const clientLogoLines = [
+  Object.values(
+    import.meta.glob<string>("/public/clientes/linha1/*.{png,jpg,jpeg,svg,webp}", {
+      eager: true,
+      import: "default"
+    })
+  ) as string[],
+  Object.values(
+    import.meta.glob<string>("/public/clientes/linha2/*.{png,jpg,jpeg,svg,webp}", {
+      eager: true,
+      import: "default"
+    })
+  ) as string[],
+  Object.values(
+    import.meta.glob<string>("/public/clientes/linha3/*.{png,jpg,jpeg,svg,webp}", {
+      eager: true,
+      import: "default"
+    })
+  ) as string[],
+  Object.values(
+    import.meta.glob<string>("/public/clientes/linha4/*.{png,jpg,jpeg,svg,webp}", {
+      eager: true,
+      import: "default"
+    })
+  ) as string[]
+];
 
 function Hero() {
   return (
@@ -65,42 +103,56 @@ function Hero() {
 }
 
 function HeroHighlights() {
-  const items = [
-    {
-      title: "Cobertura nacional",
-      value: "60.000 km",
-      detail: "Percorridos anualmente pelo Rally da Safra"
-    },
-    {
-      title: "Séries",
-      value: "30+ anos",
-      detail: "Dados proprietários e auditados"
-    },
-    {
-      title: "BD Online",
-      value: "Dados + previsões",
-      detail: "Curvas de produção, custos, clima e preço em um só painel."
-    },
-    {
-      title: "AgroValora",
-      value: "Valoração líder",
-      detail: "Avaliação para crédito, M&A e gestão patrimonial."
-    }
+  const trustMetrics = [
+    { value: "500+", label: "clientes atendidos", detail: "Trading, fundos, indústrias, cooperativas e produtores." },
+    { value: "15k+", label: "relatórios emitidos", detail: "Entregas auditadas, comparáveis e acionáveis." },
+    { value: "10M+", label: "hectares analisados", detail: "Monitoramento nas principais fronteiras agrícolas do Brasil." },
+    { value: "Cobertura", label: "nacional", detail: "Presença contínua nas regiões produtoras, safra após safra." }
+  ];
+
+  const pillars = [
+    { title: "BD Online", detail: "Curvas de produção, custos, clima e preço em um só painel." },
+    { title: "Séries proprietárias", detail: "Dados auditados e comparáveis por microrregião." },
+    { title: "Agrovalora", detail: "Valoração para crédito, M&A e gestão patrimonial." }
   ];
 
   return (
-    <section className="relative -mt-10 section-padding">
-      <div className="page-container">
+    <section className="relative -mt-10 section-padding bg-gradient-to-b from-white via-brand-light/30 to-white">
+      <div className={styles.sectionContainer}>
+        <div className="space-y-3 text-left md:text-center">
+          <p className={styles.eyebrow}>Dados que geram confiança</p>
+          <h2 className={`${styles.title} md:text-[36px]`}>
+            Dados que geram <span className="text-brand-green">confiança e resultado</span>
+          </h2>
+          <p className={`${styles.body} max-w-4xl md:mx-auto`}>
+            Combinamos tecnologia e presença em campo para entregar insights que aceleram decisões e reduzem risco.
+            Nossas análises são referência no mercado nacional e internacional.
+          </p>
+        </div>
+
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {items.map((item) => (
+          {trustMetrics.map((item) => (
+            <div key={item.label} className={`${styles.cardShell} hover:ring-1 hover:ring-brand-green/10`}>
+              <div className={`${styles.cardInner} flex flex-col gap-2`}>
+                <p className="text-3xl font-extrabold text-brand-navy">{item.value}</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-gray">{item.label}</p>
+                <p className="text-sm text-slate-700">{item.detail}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-3">
+          {pillars.map((pillar, idx) => (
             <div
-              key={item.title}
-              className="rounded-3xl bg-white/90 p-[1px] shadow-panel transition hover:-translate-y-1 hover:shadow-glow"
+              key={pillar.title}
+              className={`rounded-3xl transition hover:-translate-y-1 ${
+                idx === 1 ? "bg-white shadow-panel" : "bg-white/90 shadow-sm"
+              } border border-slate-100/80`}
             >
-              <div className="rounded-[28px] bg-white p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-gray">{item.title}</p>
-                <p className="mt-2 text-2xl font-extrabold text-brand-navy">{item.value}</p>
-                <p className="mt-2 text-sm text-slate-700">{item.detail}</p>
+              <div className="rounded-[26px] bg-white p-5 lg:p-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-gray">{pillar.title}</p>
+                <p className="mt-2 text-sm text-slate-700">{pillar.detail}</p>
               </div>
             </div>
           ))}
@@ -110,16 +162,71 @@ function HeroHighlights() {
   );
 }
 
-function Stats() {
+function ClientsSection() {
+  const nonEmptyLines = clientLogoLines.filter((line) => line.length);
+  if (!nonEmptyLines.length) return null;
+
   return (
-    <section className="section-padding">
-      <div className="page-container">
+    <section className="section-padding bg-white">
+      <div className={styles.sectionContainer}>
+        <div className="space-y-2 text-left md:text-center">
+          <p className={styles.eyebrow}>Clientes que confiam</p>
+          <h2 className={styles.title}>Marcas que já aceleram decisões com a Agroconsult</h2>
+          <p className={`${styles.body} max-w-3xl md:mx-auto`}>
+            Relações de longo prazo com líderes do agronegócio.
+          </p>
+        </div>
+
+        <div className="space-y-3">
+          {nonEmptyLines.map((line, idxLine) => {
+            const doubled = [...line, ...line];
+            const direction = idxLine % 2 === 0 ? "marquee-left" : "marquee-right";
+            const duration = `${24 + idxLine * 3}s`;
+            return (
+              <div
+                key={`linha-${idxLine}`}
+                className="overflow-hidden rounded-2xl border border-slate-100 bg-gradient-to-r from-white via-neutral-50 to-white/80 p-3 shadow-sm"
+              >
+                <div
+                  className={`flex min-w-[200%] items-center gap-8 ${direction}`}
+                  style={{ animationDuration: duration }}
+                >
+                  {doubled.map((src, idx) => (
+                    <div
+                      key={`${idxLine}-${idx}-${src}`}
+                      className="flex h-14 min-w-[120px] items-center justify-center px-4"
+                    >
+                      <img src={src} alt="Cliente Agroconsult" className="max-h-10 w-auto object-contain opacity-90" loading="lazy" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Stats() {
+  const methodMetrics = [
+    { value: "30+", label: "anos de séries históricas", detail: "Consistência por safra, região e metodologia padronizada." },
+    { value: "1.2k", label: "municípios visitados", detail: "Time em campo com coleta estruturada e protocolos definidos." },
+    { value: "80+", label: "frentes e serviços especializados", detail: "Projetos sob medida para diferentes perfis e objetivos." },
+    { value: "Auditoria", label: "e governança de dados", detail: "Validação, cruzamentos e padronização para máxima comparabilidade." }
+  ];
+
+  return (
+    <section className="section-padding bg-white">
+      <div className={styles.sectionContainer}>
         <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gray">Dados que contam histórias</p>
-            <h2 className="text-3xl font-bold text-brand-navy">O agro com precisão de quem está em campo e na nuvem</h2>
-            <p className="mt-2 text-slate-700">
-              Série histórica proprietária, modelos avançados e especialistas em todas as regiões produtoras.
+            <p className={styles.eyebrow}>Dados que contam histórias</p>
+            <h2 className={styles.title}>O agro com precisão: do campo à nuvem</h2>
+            <p className={`${styles.body} mt-2 max-w-3xl`}>
+              Metodologia própria, séries históricas e um processo de validação que transforma observação em dado
+              confiável — com especialistas em todas as regiões produtoras.
             </p>
           </div>
           <Link to="/historia" className="btn-secondary">
@@ -128,15 +235,15 @@ function Stats() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {stats.map((item) => (
+          {methodMetrics.map((item) => (
             <div
               key={item.label}
-              className="group rounded-3xl bg-white/90 p-[1px] shadow-panel transition hover:-translate-y-1 hover:shadow-glow"
+              className="group rounded-3xl bg-white p-[1px] shadow-sm transition hover:-translate-y-1 hover:shadow-md hover:ring-1 hover:ring-brand-green/10"
             >
-              <div className="relative h-full rounded-[28px] bg-gradient-to-br from-white to-white/70 p-6">
+              <div className="relative h-full rounded-[28px] bg-gradient-to-br from-white via-neutral-50 to-white p-6">
                 <div className="absolute inset-0 rounded-[28px] bg-brand-radial opacity-40" />
                 <div className="relative">
-                  <p className="text-4xl font-extrabold text-brand-navy group-hover:text-brand-green transition">
+                  <p className="text-3xl font-extrabold text-brand-navy transition group-hover:text-brand-green">
                     {item.value}
                   </p>
                   <p className="text-sm font-semibold text-brand-gray">{item.label}</p>
@@ -153,15 +260,13 @@ function Stats() {
 
 function ProductsSpotlight() {
   return (
-    <section className="section-padding bg-white/70">
-      <div className="page-container">
+    <section className="section-padding bg-gradient-to-b from-white to-brand-light/25">
+      <div className={styles.sectionContainer}>
         <div className="mb-10 flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gray">
-              Produtos assinatura Agroconsult
-            </p>
-            <h2 className="text-3xl font-bold text-brand-navy">Dados, expedição e valoração em um ecossistema único</h2>
-            <p className="mt-2 max-w-3xl text-slate-700">
+          <div className="space-y-2">
+            <p className={styles.eyebrow}>Produtos assinatura Agroconsult</p>
+            <h2 className={styles.title}>Dados, expedição e valoração em um ecossistema único</h2>
+            <p className={`${styles.body} max-w-3xl`}>
               BD Online, Rally da Safra e AgroValora se conectam para entregar previsões assertivas, plano de ação e
               governança para toda a cadeia do agronegócio.
             </p>
@@ -170,7 +275,7 @@ function ProductsSpotlight() {
             Ver detalhes
           </Link>
         </div>
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {productCards.map((product, index) => (
             <InteractiveCard
               key={product.name}
@@ -188,7 +293,7 @@ function ProductsSpotlight() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-green">
+              <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-green transition hover:translate-x-0.5">
                 {product.cta}
                 <ArrowRight size={14} />
               </div>
@@ -199,16 +304,15 @@ function ProductsSpotlight() {
     </section>
   );
 }
-
 function Services() {
   return (
-    <section className="section-padding">
-      <div className="page-container">
+    <section className="section-padding bg-white">
+      <div className={styles.sectionContainer}>
         <div className="mb-10 flex flex-wrap items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gray">80+ serviços</p>
-            <h2 className="text-3xl font-bold text-brand-navy">Soluções criadas sob medida para cada desafio</h2>
-            <p className="mt-2 max-w-3xl text-slate-700">
+            <p className={styles.eyebrow}>80+ serviços</p>
+            <h2 className={styles.title}>Soluções criadas sob medida para cada desafio</h2>
+            <p className={`${styles.body} mt-2 max-w-3xl`}>
               Consultoria especializada com squads dedicados, combinando dados proprietários, modelos avançados e times
               de campo para entregar impacto rápido.
             </p>
@@ -266,13 +370,13 @@ function Methodology() {
   ];
 
   return (
-    <section className="section-padding bg-brand-navy text-white">
+    <section className="section-padding bg-gradient-to-br from-brand-navy via-brand-navy/95 to-brand-green/20 text-white">
       <div className="page-container">
         <div className="mb-10 flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Dados em ação</p>
-            <h2 className="text-3xl font-bold">Metodologia que conecta satélite, IA e presença em campo</h2>
-            <p className="mt-2 max-w-3xl text-white/80">
+            <h2 className="text-3xl font-semibold leading-tight md:text-[34px]">Metodologia que conecta satélite, IA e presença em campo</h2>
+            <p className="mt-2 max-w-3xl text-white/85">
               Abordagem proprietária para transformar dados em decisões assertivas, mitigando riscos e acelerando
               resultados.
             </p>
@@ -304,13 +408,13 @@ function Methodology() {
 
 function Highlights() {
   return (
-    <section className="section-padding">
-      <div className="page-container">
+    <section className="section-padding bg-white">
+      <div className={styles.sectionContainer}>
         <div className="mb-10 flex flex-wrap items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gray">Como entregamos valor</p>
-            <h2 className="text-3xl font-bold text-brand-navy">Agronegócio e tecnologia integrados</h2>
-            <p className="mt-2 max-w-3xl text-slate-700">
+            <p className={styles.eyebrow}>Como entregamos valor</p>
+            <h2 className={styles.title}>Agronegócio e tecnologia integrados</h2>
+            <p className={`${styles.body} mt-2 max-w-3xl`}>
               Camada de dados, analytics e especialistas de campo trabalham juntos para reduzir incerteza, antecipar
               movimentos de mercado e destravar margens.
             </p>
@@ -320,7 +424,7 @@ function Highlights() {
           </Link>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {highlights.map((item) => (
             <InteractiveCard
               key={item.title}
@@ -343,7 +447,7 @@ function Highlights() {
 
 function CTA() {
   return (
-    <section className="section-padding">
+    <section className="section-padding bg-gradient-to-b from-white to-brand-light/25">
       <div className="page-container">
         <div className="gradient-border rounded-3xl">
           <div className="relative overflow-hidden rounded-[22px] bg-white px-6 py-10 md:px-12">
@@ -383,6 +487,7 @@ export default function Home() {
       <Services />
       <Methodology />
       <Highlights />
+      <ClientsSection />
       <CTA />
     </div>
   );
