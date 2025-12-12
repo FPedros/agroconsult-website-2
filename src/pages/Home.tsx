@@ -17,32 +17,74 @@ const styles = {
   cardInner: "rounded-[26px] bg-white p-5 lg:p-6"
 };
 
-// @ts-ignore - Vite allows glob imports; public folder logos are collected eagerly as URLs
 const clientLogoLines = [
-  Object.values(
-    import.meta.glob<string>("/public/clientes/linha1/*.{png,jpg,jpeg,svg,webp}", {
-      eager: true,
-      import: "default"
-    })
-  ) as string[],
-  Object.values(
-    import.meta.glob<string>("/public/clientes/linha2/*.{png,jpg,jpeg,svg,webp}", {
-      eager: true,
-      import: "default"
-    })
-  ) as string[],
-  Object.values(
-    import.meta.glob<string>("/public/clientes/linha3/*.{png,jpg,jpeg,svg,webp}", {
-      eager: true,
-      import: "default"
-    })
-  ) as string[],
-  Object.values(
-    import.meta.glob<string>("/public/clientes/linha4/*.{png,jpg,jpeg,svg,webp}", {
-      eager: true,
-      import: "default"
-    })
-  ) as string[]
+  [
+    "/clientes/linha1/Imagem48.png",
+    "/clientes/linha1/Imagem51.png",
+    "/clientes/linha1/Imagem52.png",
+    "/clientes/linha1/Imagem53.png",
+    "/clientes/linha1/Imagem54.png",
+    "/clientes/linha1/Imagem55.png",
+    "/clientes/linha1/Imagem56.jpg",
+    "/clientes/linha1/Imagem57.png",
+    "/clientes/linha1/Imagem58.png",
+    "/clientes/linha1/Imagem59.png",
+    "/clientes/linha1/Imagem60.png",
+    "/clientes/linha1/Imagem61.png"
+  ],
+  [
+    "/clientes/linha2/Imagem34.png",
+    "/clientes/linha2/Imagem35.png",
+    "/clientes/linha2/Imagem36.png",
+    "/clientes/linha2/Imagem37.jpg",
+    "/clientes/linha2/Imagem38.png",
+    "/clientes/linha2/Imagem39.png",
+    "/clientes/linha2/Imagem40.png",
+    "/clientes/linha2/Imagem41.jpg",
+    "/clientes/linha2/Imagem42.png",
+    "/clientes/linha2/Imagem43.png",
+    "/clientes/linha2/Imagem44.png",
+    "/clientes/linha2/Imagem46.png",
+    "/clientes/linha2/Imagem47.png"
+  ],
+  [
+    "/clientes/linha3/Imagem15.png",
+    "/clientes/linha3/Imagem16.png",
+    "/clientes/linha3/Imagem17.png",
+    "/clientes/linha3/Imagem18.jpg",
+    "/clientes/linha3/Imagem19.png",
+    "/clientes/linha3/Imagem20.jpg",
+    "/clientes/linha3/Imagem21.jpg",
+    "/clientes/linha3/Imagem22.png",
+    "/clientes/linha3/Imagem23.png",
+    "/clientes/linha3/Imagem28.png",
+    "/clientes/linha3/Imagem29.png",
+    "/clientes/linha3/Imagem30.png",
+    "/clientes/linha3/Imagem31.png",
+    "/clientes/linha3/Imagem32.png",
+    "/clientes/linha3/Imagem33.png"
+  ],
+  [
+    "/clientes/linha4/Imagem2.png",
+    "/clientes/linha4/Imagem4.png",
+    "/clientes/linha4/Imagem5.png",
+    "/clientes/linha4/Imagem6.png",
+    "/clientes/linha4/Imagem7.png",
+    "/clientes/linha4/Imagem8.png",
+    "/clientes/linha4/Imagem9.png",
+    "/clientes/linha4/Imagem10.png",
+    "/clientes/linha4/Imagem11.png",
+    "/clientes/linha4/Imagem12.png",
+    "/clientes/linha4/Imagem13.png",
+    "/clientes/linha4/Imagem14.png",
+    "/clientes/linha4/Imagem24.jpg",
+    "/clientes/linha4/Imagem25.png",
+    "/clientes/linha4/Imagem26.png",
+    "/clientes/linha4/Imagem27.png",
+    "/clientes/linha4/Imagem28.png",
+    "/clientes/linha4/Imagem29.png",
+    "/clientes/linha4/Imagem30.png"
+  ]
 ];
 
 function Hero() {
