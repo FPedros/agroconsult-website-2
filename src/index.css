@@ -129,7 +129,16 @@ a {
 
 @media (max-width: 640px) {
   .hero-video {
-    transform: scale(0.9);
+    transform: none;
+    min-height: 100vh;
+  }
+}
+
+@supports (min-height: 100dvh) {
+  @media (max-width: 640px) {
+    .hero-video {
+      min-height: 100dvh;
+    }
   }
 }
 

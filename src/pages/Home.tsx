@@ -89,7 +89,7 @@ function Hero() {
     <section
       id="hero"
       className="relative flex h-screen flex-col items-center justify-center overflow-hidden"
-      style={{ minHeight: "100svh", height: "100svh" }}
+      style={{ minHeight: "100dvh", height: "100dvh" }}
     >
       <div className="absolute inset-0">
         <video
@@ -255,25 +255,71 @@ function Expertise() {
 
 function ProductsPreview() {
   const spotlightHover = usePrimaryGradientHover();
+  const highlightCards = [
+    {
+      title: "80+ solucoes prontas",
+      description: "Combinacoes para credito, ESG, safra e estrategia comercial.",
+      icon: <Layers size={18} />
+    },
+    {
+      title: "Decisao guiada",
+      description: "Dashboards, war rooms e relatorios com time dedicado.",
+      icon: <BarChart3 size={18} />
+    },
+    {
+      title: "Dados auditados",
+      description: "Series proprietarias com validacao em campo e satelite.",
+      icon: <Database size={18} />
+    },
+  ];
+
   return (
     <section className="section-padding bg-brand-gradient">
-      <div className={`${styles.sectionContainer}`}>
-        <div className="flex flex-wrap items-center justify-between gap-4 text-white">
-          <div className="space-y-2">
+      <div className={`${styles.sectionContainer} space-y-8`}>
+        <div className="grid gap-8 text-white lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="space-y-4">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">Produtos assinatura Agroconsult</p>
-            <h2 className="text-3xl font-semibold leading-tight md:text-[34px]">Um portfólio completo para decisões rápidas e seguras</h2>
-            <p className="max-w-3xl text-sm text-white/85 md:text-base">
-              Reunimos 80+ produtos prontos para acelerar análises e reduzir incertezas no agro. Você define o objetivo,
-              mercado, safra, crédito, ESG ou estratégia comercial e nós entregamos a combinação ideal de dados e
-              inteligência, com customização por cultura, região, cadeia e perfil de decisão.
-            </p>
-            <p className="max-w-3xl text-sm text-white/85 md:text-base">
-              A seguir, conheça nossas principais plataformas, que organizam essas soluções em experiências completas,
-              do insight à tomada de decisão.
-            </p>
+            <h2 className="text-3xl font-semibold leading-tight md:text-[34px]">Um portfolio completo para decisoes rapidas e seguras</h2>
+            <div className="space-y-3 text-white/85">
+              <p className="max-w-3xl text-sm md:text-base">
+                Conheca as plataformas que organizam essas solucoes em experiencias completas, do insight a decisao.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {["BD Online", "Rally da Safra", "Agrovalora", "Palestras"].map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full bg-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-white"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {highlightCards.map((card) => (
+              <div
+                key={card.title}
+                className="group h-full rounded-2xl border border-white/10 bg-white/5 p-4 shadow-lg backdrop-blur-md transition hover:-translate-y-1 hover:bg-white/10 hover:shadow-xl"
+              >
+                <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-white">
+                  {card.icon}
+                  {card.title}
+                </div>
+                <p className="mt-3 text-sm text-white/85">{card.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-between gap-3 text-white/85">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em]">
+            <ChevronDown size={16} className="animate-bounce text-white" />
+            Continue descendo para ver as plataformas
           </div>
           <Link to="/produtos" className="btn-primary" {...spotlightHover}>
-            Ver portfólio completo
+            Ver portfolio completo
           </Link>
         </div>
       </div>
@@ -403,7 +449,7 @@ function RallyEmbed() {
   );
 }
 
-function AgroValoraEmbed() {
+function AgrovaloraEmbed() {
   const terraHover = usePrimaryGradientHover();
 
   return (
@@ -411,7 +457,7 @@ function AgroValoraEmbed() {
       <div className={styles.sectionContainer}>
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="space-y-2">
-            <p className={styles.eyebrow}>AgroValora</p>
+          <p className={styles.eyebrow}>Agrovalora</p>
             <h2 className={styles.title}>Valoração e inteligência patrimonial</h2>
             <p className={`${styles.body} max-w-3xl`}>
               Conheça a plataforma líder em avaliação de ativos rurais, comparáveis robustos e inteligência para crédito,
@@ -432,7 +478,7 @@ function AgroValoraEmbed() {
         <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
           <div className="relative h-[480px] w-full">
             <iframe
-              title="AgroValora"
+            title="Agrovalora"
               src="https://terra-inteligente.vercel.app/"
               className="absolute inset-0 h-full w-full border-0"
               loading="lazy"
@@ -495,7 +541,7 @@ export default function Home() {
       <Pillars />
       <ProductsPreview />
       <RallyEmbed />
-      <AgroValoraEmbed />
+      <AgrovaloraEmbed />
       <BDOnlineEmbed />
       <ClientsSection />
       <CTA />

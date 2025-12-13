@@ -25,7 +25,7 @@ export const services = [
   },
   {
     title: "Valoração & ESG",
-    items: ["AgroValora com laudos", "Due diligence territorial", "Avaliação de ativo biológico", "Rastreabilidade"]
+    items: ["Agrovalora com laudos", "Due diligence territorial", "Avaliação de ativo biológico", "Rastreabilidade"]
   }
 ];
 
@@ -53,14 +53,14 @@ export const productCards = [
     link: "/produtos#rally"
   },
   {
-    name: "AgroValora",
+    name: "Agrovalora",
     slogan: "Valoração e inteligência patrimonial líder no Brasil.",
     features: [
       "Avaliação de propriedades com metodologia proprietária",
       "Base comparável por bioma, produtividade e infra",
       "Aplicável a crédito, M&A, seguros e governança"
     ],
-    cta: "Conhecer AgroValora",
+    cta: "Conhecer Agrovalora",
     link: "/produtos#agrovalora"
   }
 ];

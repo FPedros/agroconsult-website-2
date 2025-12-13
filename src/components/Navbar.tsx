@@ -6,7 +6,8 @@ import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
 const navItems = [
   { label: "Home", to: "/" },
   { label: "Produtos", to: "/produtos" },
-  { label: "História", to: "/historia" }
+  { label: "Palestras", to: "/palestras" },
+  { label: "Quem somos", to: "/quem-somos" }
 ];
 
 export function Navbar() {
