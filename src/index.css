@@ -116,6 +116,13 @@ a {
   @apply py-14 md:py-16 lg:py-24;
 }
 
+.brand-underline {
+  height: 4px;
+  width: 88px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #202956 0%, #1a445f 40%, #008747 100%);
+}
+
 @keyframes marquee-left {
   0% {
     transform: translateX(0);
