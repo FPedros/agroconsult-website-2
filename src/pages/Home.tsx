@@ -249,7 +249,7 @@ function Expertise() {
               Combinamos tecnologia de ponta com conhecimento profundo do setor para entregar insights que definem o
               futuro do seu negócio. Nossas análises são referência no mercado nacional e internacional.
             </p>
-            <div className="h-1 w-20 rounded-full bg-brand-green" />
+            <div className="brand-underline" />
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
@@ -708,6 +708,131 @@ function CTA() {
   );
 }
 
+function RallyEmbed() {
+  const rallyHover = usePrimaryGradientHover();
+
+  return (
+    <section className="section-padding bg-white">
+      <div className={styles.sectionContainer}>
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+          <div className="space-y-2">
+            <p className={styles.eyebrow}>Rally da Safra</p>
+            <h2 className={styles.title}>Veja o Rally em detalhes</h2>
+            <p className={`${styles.body} max-w-3xl`}>
+              Acesse o site oficial do Rally da Safra para acompanhar etapas, metodologia e resultados em tempo real.
+            </p>
+          </div>
+          <a
+            href="https://www.rallydasafra.com.br/"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-secondary !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
+            {...rallyHover}
+          >
+            Abrir site do Rally
+          </a>
+        </div>
+
+        <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
+          <div className="relative h-[480px] w-full">
+            <iframe
+              title="Rally da Safra"
+              src="https://www.rallydasafra.com.br/"
+              className="absolute inset-0 h-full w-full border-0"
+              loading="lazy"
+              scrolling="no"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AgroValoraEmbed() {
+  const terraHover = usePrimaryGradientHover();
+
+  return (
+    <section className="section-padding bg-white">
+      <div className={styles.sectionContainer}>
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+          <div className="space-y-2">
+            <p className={styles.eyebrow}>AgroValora</p>
+            <h2 className={styles.title}>Valoração e inteligência patrimonial</h2>
+            <p className={`${styles.body} max-w-3xl`}>
+              Conheça a plataforma líder em avaliação de ativos rurais, comparáveis robustos e inteligência para crédito,
+              M&A, seguros e governança.
+            </p>
+          </div>
+          <a
+            href="https://terra-inteligente.vercel.app/"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-secondary !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
+            {...terraHover}
+          >
+            Abrir Agrovalora
+          </a>
+        </div>
+
+        <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
+          <div className="relative h-[480px] w-full">
+            <iframe
+              title="AgroValora"
+              src="https://terra-inteligente.vercel.app/"
+              className="absolute inset-0 h-full w-full border-0"
+              loading="lazy"
+              scrolling="no"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function BDOnlineEmbed() {
+  const bdHover = usePrimaryGradientHover();
+
+  return (
+    <section className="section-padding bg-white">
+      <div className={styles.sectionContainer}>
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+          <div className="space-y-2">
+            <p className={styles.eyebrow}>BD Online</p>
+            <h2 className={styles.title}>Dados proprietários para decisões em tempo real</h2>
+            <p className={`${styles.body} max-w-3xl`}>
+              Explore dashboards, análises e relatórios exclusivos do BD Online: curva de produção, rentabilidade,
+              preços, oferta e demanda para todo o agro brasileiro.
+            </p>
+          </div>
+          <a
+            href="https://bd.agroconsult.com.br/"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-secondary !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
+            {...bdHover}
+          >
+            Acessar BD Online
+          </a>
+        </div>
+
+        <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
+          <div className="relative h-[480px] w-full">
+            <img
+              src="/images/bd-online-previaw.png"
+              alt="Prévia do BD Online Agroconsult"
+              className="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/40 via-brand-navy/10 to-transparent" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <div className="bg-white/60">
@@ -715,6 +840,9 @@ export default function Home() {
       <Expertise />
       <Pillars />
       <ProductsPreview />
+      <RallyEmbed />
+      <AgroValoraEmbed />
+      <BDOnlineEmbed />
       <ClientsSection />
       <CTA />
     </div>

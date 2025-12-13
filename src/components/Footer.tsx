@@ -11,7 +11,7 @@ export function Footer() {
         <div className="flex max-w-md flex-col gap-3">
           <div className="flex items-center gap-3">
             <img src="/images/logo-colorida.png" alt="Agroconsult" className="h-10 w-auto" />
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-gray">Agroconsult</div>
+           
           </div>
           <p className="text-sm text-slate-700">
             Inteligência de dados, estratégia e presença em campo para proteger margens e destravar valor no
@@ -72,7 +72,7 @@ export function Footer() {
       </div>
       <div className="bg-brand-navy text-center text-xs text-white/80">
         <div className="page-container py-3">
-          © {new Date().getFullYear()} Agroconsult. Inteligência de dados e campo para o agro.
+          © {new Date().getFullYear()} Inteligência de dados e campo para o agro.
         </div>
       </div>
     </footer>
