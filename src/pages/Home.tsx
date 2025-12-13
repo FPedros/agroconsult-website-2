@@ -1,4 +1,17 @@
-import { ArrowRight, ChevronDown, Layers, Network, Sparkles, TrendingUp } from "lucide-react";
+import {
+  ArrowRight,
+  BarChart3,
+  BookOpen,
+  ChevronDown,
+  Database,
+  Globe2,
+  Layers,
+  Network,
+  ShieldCheck,
+  Sparkles,
+  TrendingUp,
+  Users
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
 import { highlights, productCards, services } from "../content";
@@ -146,6 +159,169 @@ function Hero() {
       </div>
       <div className="pointer-events-none absolute bottom-6 left-1/2 z-10 -translate-x-1/2 flex items-center justify-center">
         <ChevronDown size={20} className="animate-bounce text-white drop-shadow" />
+      </div>
+    </section>
+  );
+}
+
+function Pillars() {
+  const pillars = [
+    {
+      title: "Séries proprietárias",
+      description: "Dados auditados, comparáveis por microrregião e históricos que fundamentam cada decisão."
+    },
+    {
+      title: "Presença em campo",
+      description: "Protocolos de coleta, entrevistas e medições em todas as fronteiras agrícolas brasileiras."
+    },
+    {
+      title: "Estratégia acionável",
+      description: "Planejamento comercial, originação e hedge com cenários construídos junto aos times do cliente."
+    }
+  ];
+
+  return (
+    <section className="section-padding bg-gradient-to-b from-white via-brand-light/30 to-white">
+      <div className={styles.sectionContainer}>
+        <div className="space-y-3">
+          <p className={styles.eyebrow}>Como entregamos confiança</p>
+          <h2 className={styles.title}>Metodologia própria do satélite ao campo</h2>
+          <p className={`${styles.body} max-w-4xl`}>
+            Tecnologia, análises e validação presencial convergem para entregar velocidade, precisão e governança.
+          </p>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {pillars.map((item) => (
+            <div
+              key={item.title}
+              className="group space-y-2 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1 hover:bg-gradient-to-r hover:from-brand-navy hover:via-brand-navy hover:to-brand-green hover:shadow-md hover:ring-brand-green/40"
+            >
+              <h3 className="text-lg font-bold text-brand-navy transition group-hover:text-white">{item.title}</h3>
+              <p className="text-sm text-slate-700 transition group-hover:text-white/90">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Expertise() {
+  const metrics = [
+    {
+      value: "25+",
+      label: "Anos de Experiência",
+      detail: "Tecnologia e conhecimento profundo do setor para decisões seguras.",
+      icon: <TrendingUp size={28} className="text-brand-green" />
+    },
+    {
+      value: "500+",
+      label: "Clientes Atendidos",
+      detail: "Trading, fundos, indústrias, cooperativas e produtores.",
+      icon: <Users size={28} className="text-brand-green" />
+    },
+    {
+      value: "10M+",
+      label: "Hectares Analisados",
+      detail: "Monitoramento das principais fronteiras agrícolas do Brasil.",
+      icon: <Database size={28} className="text-brand-green" />
+    },
+    {
+      value: "15k+",
+      label: "Relatórios Emitidos",
+      detail: "Entregas auditadas, comparáveis e acionáveis.",
+      icon: <BarChart3 size={28} className="text-brand-green" />
+    }
+  ];
+
+  return (
+    <section className="section-padding bg-white">
+      <div className={styles.sectionContainer}>
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+          <div className="space-y-4">
+            <p className={styles.eyebrow}>Dados que geram confiança</p>
+            <h2 className="text-3xl font-semibold leading-tight text-brand-navy sm:text-4xl">
+              Dados que geram <br />
+              <span className="text-brand-green">Confiança e Resultado</span>
+            </h2>
+            <p className={`${styles.body} max-w-3xl`}>
+              Combinamos tecnologia de ponta com conhecimento profundo do setor para entregar insights que definem o
+              futuro do seu negócio. Nossas análises são referência no mercado nacional e internacional.
+            </p>
+            <div className="h-1 w-20 rounded-full bg-brand-green" />
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {metrics.map((item) => (
+              <div
+                key={item.label}
+                className="group space-y-2 rounded-2xl bg-slate-50 p-5 text-left shadow-sm ring-1 ring-slate-100 transition hover:-translate-y-1 hover:bg-gradient-to-r hover:from-brand-navy hover:via-brand-navy hover:to-brand-green hover:shadow-md hover:ring-brand-green/40"
+              >
+                <div className="mb-2 text-brand-green transition group-hover:text-white">{item.icon}</div>
+                <p className="text-2xl font-bold text-brand-navy transition group-hover:text-white">{item.value}</p>
+                <p className="text-sm font-semibold text-brand-navy transition group-hover:text-white/90">{item.label}</p>
+                <p className="text-sm text-slate-700 transition group-hover:text-white/85">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProductsPreview() {
+  const spotlightHover = usePrimaryGradientHover();
+  const featured = productCards.slice(0, 3);
+  const productIcon = (name: string) => {
+    if (name.includes("BD")) return <BookOpen size={24} className="text-brand-green" />;
+    if (name.includes("Rally")) return <Globe2 size={24} className="text-brand-green" />;
+    return <ShieldCheck size={24} className="text-brand-green" />;
+  };
+
+  return (
+    <section className="section-padding bg-brand-gradient">
+      <div className={styles.sectionContainer}>
+        <div className="mb-8 flex flex-wrap items-start justify-between gap-4 text-white">
+          <div className="space-y-2">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">Produtos assinatura Agroconsult</p>
+            <h2 className="text-3xl font-semibold leading-tight md:text-[34px]">Dados, expedição e valoração em um ecossistema único</h2>
+            <p className="max-w-3xl text-sm text-white/85 md:text-base">
+              BD Online, Rally da Safra e AgroValora conectam dados proprietários, validação em campo e análises para
+              decisões rápidas e seguras.
+            </p>
+          </div>
+          <Link to="/produtos" className="btn-primary" {...spotlightHover}>
+            Ver portfólio completo
+          </Link>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {featured.map((product) => (
+            <div
+              key={product.name}
+              className="space-y-3 rounded-2xl bg-white/95 p-5 shadow-sm ring-1 ring-slate-100 transition hover:-translate-y-1 hover:shadow-md hover:ring-brand-green/30"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-green/10">
+                {productIcon(product.name)}
+              </div>
+              <div className="space-y-1">
+                <h3 className="text-lg font-bold text-brand-navy">{product.name}</h3>
+                <p className="text-sm text-slate-700">{product.slogan}</p>
+              </div>
+              <div className="text-sm font-semibold text-brand-green">Exclusivo</div>
+              <ul className="space-y-2 text-sm text-slate-700">
+                {product.features.slice(0, 3).map((feature) => (
+                  <li key={feature} className="flex items-start gap-2">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-brand-green" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -536,12 +712,9 @@ export default function Home() {
   return (
     <div className="bg-white/60">
       <Hero />
-      <HeroHighlights />
-      <Stats />
-      <ProductsSpotlight />
-      <Services />
-      <Methodology />
-      <Highlights />
+      <Expertise />
+      <Pillars />
+      <ProductsPreview />
       <ClientsSection />
       <CTA />
     </div>
