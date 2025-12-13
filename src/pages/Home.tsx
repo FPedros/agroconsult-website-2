@@ -1,21 +1,6 @@
-import {
-  ArrowRight,
-  BarChart3,
-  BookOpen,
-  ChevronDown,
-  Database,
-  Globe2,
-  Layers,
-  Network,
-  ShieldCheck,
-  Sparkles,
-  TrendingUp,
-  Users
-} from "lucide-react";
+import { ArrowRight, BarChart3, ChevronDown, Database, Layers, TrendingUp, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
-import { highlights, productCards, services } from "../content";
-import InteractiveCard from "../components/InteractiveCard";
 
 const tagClass =
   "inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-brand-navy shadow-sm";
@@ -24,10 +9,7 @@ const styles = {
   eyebrow: "text-xs font-semibold uppercase tracking-[0.24em] text-brand-gray",
   title: "text-3xl font-semibold leading-tight text-brand-navy md:text-[34px]",
   body: "text-base text-slate-700 md:text-lg",
-  sectionContainer: "page-container space-y-8",
-  cardShell:
-    "rounded-3xl bg-gradient-to-br from-white via-neutral-50 to-white p-[1px] shadow-sm transition hover:-translate-y-1 hover:shadow-md",
-  cardInner: "rounded-[26px] bg-white p-5 lg:p-6"
+  sectionContainer: "page-container space-y-8"
 };
 
 const clientLogoLines = [
@@ -111,7 +93,7 @@ function Hero() {
     >
       <div className="absolute inset-0">
         <video
-          className="h-full min-h-full w-full object-cover"
+          className="hero-video h-full min-h-full w-full object-cover object-center"
           style={{ minHeight: "100svh" }}
           src="/images/video-banner.mp4"
           autoPlay
@@ -273,114 +255,26 @@ function Expertise() {
 
 function ProductsPreview() {
   const spotlightHover = usePrimaryGradientHover();
-  const featured = productCards.slice(0, 3);
-  const productIcon = (name: string) => {
-    if (name.includes("BD")) return <BookOpen size={24} className="text-brand-green" />;
-    if (name.includes("Rally")) return <Globe2 size={24} className="text-brand-green" />;
-    return <ShieldCheck size={24} className="text-brand-green" />;
-  };
-
   return (
     <section className="section-padding bg-brand-gradient">
-      <div className={styles.sectionContainer}>
-        <div className="mb-8 flex flex-wrap items-start justify-between gap-4 text-white">
+      <div className={`${styles.sectionContainer}`}>
+        <div className="flex flex-wrap items-center justify-between gap-4 text-white">
           <div className="space-y-2">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">Produtos assinatura Agroconsult</p>
-            <h2 className="text-3xl font-semibold leading-tight md:text-[34px]">Dados, expedição e valoração em um ecossistema único</h2>
+            <h2 className="text-3xl font-semibold leading-tight md:text-[34px]">Um portfólio completo para decisões rápidas e seguras</h2>
             <p className="max-w-3xl text-sm text-white/85 md:text-base">
-              BD Online, Rally da Safra e AgroValora conectam dados proprietários, validação em campo e análises para
-              decisões rápidas e seguras.
+              Reunimos 80+ produtos prontos para acelerar análises e reduzir incertezas no agro. Você define o objetivo,
+              mercado, safra, crédito, ESG ou estratégia comercial e nós entregamos a combinação ideal de dados e
+              inteligência, com customização por cultura, região, cadeia e perfil de decisão.
+            </p>
+            <p className="max-w-3xl text-sm text-white/85 md:text-base">
+              A seguir, conheça nossas principais plataformas, que organizam essas soluções em experiências completas,
+              do insight à tomada de decisão.
             </p>
           </div>
           <Link to="/produtos" className="btn-primary" {...spotlightHover}>
             Ver portfólio completo
           </Link>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-3">
-          {featured.map((product) => (
-            <div
-              key={product.name}
-              className="space-y-3 rounded-2xl bg-white/95 p-5 shadow-sm ring-1 ring-slate-100 transition hover:-translate-y-1 hover:shadow-md hover:ring-brand-green/30"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-green/10">
-                {productIcon(product.name)}
-              </div>
-              <div className="space-y-1">
-                <h3 className="text-lg font-bold text-brand-navy">{product.name}</h3>
-                <p className="text-sm text-slate-700">{product.slogan}</p>
-              </div>
-              <div className="text-sm font-semibold text-brand-green">Exclusivo</div>
-              <ul className="space-y-2 text-sm text-slate-700">
-                {product.features.slice(0, 3).map((feature) => (
-                  <li key={feature} className="flex items-start gap-2">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-brand-green" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function HeroHighlights() {
-  const trustMetrics = [
-    { value: "500+", label: "clientes atendidos", detail: "Trading, fundos, indústrias, cooperativas e produtores." },
-    { value: "15k+", label: "relatórios emitidos", detail: "Entregas auditadas, comparáveis e acionáveis." },
-    { value: "10M+", label: "hectares analisados", detail: "Monitoramento nas principais fronteiras agrícolas do Brasil." },
-    { value: "Cobertura", label: "nacional", detail: "Presença contínua nas regiões produtoras, safra após safra." }
-  ];
-
-  const pillars = [
-    { title: "BD Online", detail: "Curvas de produção, custos, clima e preço em um só painel." },
-    { title: "Séries proprietárias", detail: "Dados auditados e comparáveis por microrregião." },
-    { title: "Agrovalora", detail: "Valoração para crédito, M&A e gestão patrimonial." }
-  ];
-
-  return (
-    <section className="relative section-padding bg-gradient-to-b from-white via-brand-light/30 to-white">
-      <div className={styles.sectionContainer}>
-        <div className="space-y-3 text-left md:text-center">
-          <p className={styles.eyebrow}>Dados que geram confiança</p>
-          <h2 className={`${styles.title} md:text-[36px]`}>
-            Dados que geram <span className="text-brand-green">confiança e resultado</span>
-          </h2>
-          <p className={`${styles.body} max-w-4xl md:mx-auto`}>
-            Combinamos tecnologia e presença em campo para entregar insights que aceleram decisões e reduzem risco.
-            Nossas análises são referência no mercado nacional e internacional.
-          </p>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {trustMetrics.map((item) => (
-            <div key={item.label} className={`${styles.cardShell} hover:ring-1 hover:ring-brand-green/10`}>
-              <div className={`${styles.cardInner} flex flex-col gap-2`}>
-                <p className="text-3xl font-extrabold text-brand-navy">{item.value}</p>
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-gray">{item.label}</p>
-                <p className="text-sm text-slate-700">{item.detail}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-3">
-          {pillars.map((pillar, idx) => (
-            <div
-              key={pillar.title}
-              className={`rounded-3xl transition hover:-translate-y-1 ${
-                idx === 1 ? "bg-white shadow-panel" : "bg-white/90 shadow-sm"
-              } border border-slate-100/80`}
-            >
-              <div className="rounded-[26px] bg-white p-5 lg:p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-gray">{pillar.title}</p>
-                <p className="mt-2 text-sm text-slate-700">{pillar.detail}</p>
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </section>
@@ -406,7 +300,7 @@ function ClientsSection() {
           {nonEmptyLines.map((line, idxLine) => {
             const doubled = [...line, ...line];
             const direction = idxLine % 2 === 0 ? "marquee-left" : "marquee-right";
-            const duration = `${24 + idxLine * 3}s`;
+            const duration = `${48 + idxLine * 12}s`;
             return (
               <div
                 key={`linha-${idxLine}`}
@@ -414,7 +308,7 @@ function ClientsSection() {
               >
                 <div
                   className={`flex min-w-[200%] items-center gap-8 ${direction}`}
-                  style={{ animationDuration: duration }}
+                  style={{ animationDuration: duration, animationTimingFunction: "linear" }}
                 >
                   {doubled.map((src, idx) => (
                     <div
@@ -428,246 +322,6 @@ function ClientsSection() {
               </div>
             );
           })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Stats() {
-  const methodMetrics = [
-    { value: "30+", label: "anos de séries históricas", detail: "Consistência por safra, região e metodologia padronizada." },
-    { value: "1.2k", label: "municípios visitados", detail: "Time em campo com coleta estruturada e protocolos definidos." },
-    { value: "80+", label: "frentes e serviços especializados", detail: "Projetos sob medida para diferentes perfis e objetivos." },
-    { value: "Auditoria", label: "e governança de dados", detail: "Validação, cruzamentos e padronização para máxima comparabilidade." }
-  ];
-
-  return (
-    <section className="section-padding bg-white">
-      <div className={styles.sectionContainer}>
-        <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className={styles.eyebrow}>Dados que contam histórias</p>
-            <h2 className={styles.title}>O agro com precisão: do campo à nuvem</h2>
-            <p className={`${styles.body} mt-2 max-w-3xl`}>
-              Metodologia própria, séries históricas e um processo de validação que transforma observação em dado
-              confiável — com especialistas em todas as regiões produtoras.
-            </p>
-          </div>
-          <Link to="/historia" className="btn-secondary">
-            Nossa trajetória
-          </Link>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {methodMetrics.map((item) => (
-            <div
-              key={item.label}
-              className="group rounded-3xl bg-white p-[1px] shadow-sm transition hover:-translate-y-1 hover:shadow-md hover:ring-1 hover:ring-brand-green/10"
-            >
-              <div className="relative h-full rounded-[28px] bg-gradient-to-br from-white via-neutral-50 to-white p-6">
-                <div className="absolute inset-0 rounded-[28px] bg-brand-radial opacity-40" />
-                <div className="relative">
-                  <p className="text-3xl font-extrabold text-brand-navy transition group-hover:text-brand-green">
-                    {item.value}
-                  </p>
-                  <p className="text-sm font-semibold text-brand-gray">{item.label}</p>
-                  <p className="mt-2 text-sm text-slate-700">{item.detail}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ProductsSpotlight() {
-  const spotlightHover = usePrimaryGradientHover();
-
-  return (
-    <section className="section-padding bg-gradient-to-b from-white to-brand-light/25">
-      <div className={styles.sectionContainer}>
-        <div className="mb-10 flex flex-wrap items-start justify-between gap-4">
-          <div className="space-y-2">
-            <p className={styles.eyebrow}>Produtos assinatura Agroconsult</p>
-            <h2 className={styles.title}>Dados, expedição e valoração em um ecossistema único</h2>
-            <p className={`${styles.body} max-w-3xl`}>
-              BD Online, Rally da Safra e AgroValora se conectam para entregar previsões assertivas, plano de ação e
-              governança para toda a cadeia do agronegócio.
-            </p>
-          </div>
-          <Link to="/produtos" className="btn-primary" {...spotlightHover}>
-            Ver detalhes
-          </Link>
-        </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {productCards.map((product, index) => (
-            <InteractiveCard
-              key={product.name}
-              title={product.name}
-              description={product.slogan}
-              accent={index === 1 ? "green" : "navy"}
-              highlight="Exclusivo"
-              href={product.link}
-            >
-              <ul className="mt-3 space-y-2 text-sm text-slate-700">
-                {product.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-brand-green" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-green transition hover:translate-x-0.5">
-                {product.cta}
-                <ArrowRight size={14} />
-              </div>
-            </InteractiveCard>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-function Services() {
-  return (
-    <section className="section-padding bg-white">
-      <div className={styles.sectionContainer}>
-        <div className="mb-10 flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p className={styles.eyebrow}>80+ serviços</p>
-            <h2 className={styles.title}>Soluções criadas sob medida para cada desafio</h2>
-            <p className={`${styles.body} mt-2 max-w-3xl`}>
-              Consultoria especializada com squads dedicados, combinando dados proprietários, modelos avançados e times
-              de campo para entregar impacto rápido.
-            </p>
-          </div>
-          <a href="mailto:contato@agroconsult.com.br" className="btn-secondary">
-            Montar um projeto
-          </a>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-2">
-          {services.map((service) => (
-            <InteractiveCard
-              key={service.title}
-              title={service.title}
-              description="Consultoria com dados, especialistas setoriais e execução full stack."
-              accent="gray"
-            >
-              <div className="mt-2 grid grid-cols-2 gap-2 text-sm text-slate-700">
-                {service.items.map((item) => (
-                  <span key={item} className="rounded-full bg-brand-green/10 px-3 py-2 text-brand-navy">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </InteractiveCard>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Methodology() {
-  const steps = [
-    {
-      title: "Explorar",
-      detail: "Diagnóstico rápido com dados históricos e satélite para priorizar riscos e oportunidades.",
-      icon: <Sparkles size={18} />
-    },
-    {
-      title: "Medir",
-      detail: "Rally da Safra, sensoriamento remoto e protocolos de campo para validar hipóteses.",
-      icon: <Layers size={18} />
-    },
-    {
-      title: "Decidir",
-      detail: "Modelos preditivos, cenários de preço e planos comerciais acionáveis.",
-      icon: <TrendingUp size={18} />
-    },
-    {
-      title: "Escalar",
-      detail: "Entrega via APIs, dashboards ou war rooms com squads dedicados.",
-      icon: <Network size={18} />
-    }
-  ];
-
-  return (
-    <section className="section-padding bg-gradient-to-br from-brand-navy via-brand-navy/95 to-brand-green/20 text-white">
-      <div className="page-container">
-        <div className="mb-10 flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Dados em ação</p>
-            <h2 className="text-3xl font-semibold leading-tight md:text-[34px]">Metodologia que conecta satélite, IA e presença em campo</h2>
-            <p className="mt-2 max-w-3xl text-white/85">
-              Abordagem proprietária para transformar dados em decisões assertivas, mitigando riscos e acelerando
-              resultados.
-            </p>
-          </div>
-          <Link to="/historia" className="btn-secondary border-white text-white">
-            Ver legado
-          </Link>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {steps.map((step) => (
-            <div
-              key={step.title}
-              className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 shadow-lg transition hover:-translate-y-1 hover:bg-white/10"
-            >
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide">
-                {step.icon}
-                {step.title}
-              </div>
-              <p className="text-sm text-white/85">{step.detail}</p>
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-brand-green/10" />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Highlights() {
-  const highlightsPrimaryHover = usePrimaryGradientHover();
-
-  return (
-    <section className="section-padding bg-white">
-      <div className={styles.sectionContainer}>
-        <div className="mb-10 flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p className={styles.eyebrow}>Como entregamos valor</p>
-            <h2 className={styles.title}>Agronegócio e tecnologia integrados</h2>
-            <p className={`${styles.body} mt-2 max-w-3xl`}>
-              Camada de dados, analytics e especialistas de campo trabalham juntos para reduzir incerteza, antecipar
-              movimentos de mercado e destravar margens.
-            </p>
-          </div>
-          <Link to="/produtos" className="btn-primary" {...highlightsPrimaryHover}>
-            Quero ver na prática
-          </Link>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {highlights.map((item) => (
-            <InteractiveCard
-              key={item.title}
-              title={item.title}
-              description={item.description}
-              highlight={item.tag}
-              accent="navy"
-            >
-              <div className="mt-3 text-sm font-semibold text-brand-green">Impacto imediato</div>
-              <p className="text-sm text-slate-700">
-                Protocolos de onboarding rápidos, segurança de dados, entregas em dashboards, relatórios ou integrações.
-              </p>
-            </InteractiveCard>
-          ))}
         </div>
       </div>
     </section>
@@ -714,7 +368,7 @@ function RallyEmbed() {
   return (
     <section className="section-padding bg-white">
       <div className={styles.sectionContainer}>
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="space-y-2">
             <p className={styles.eyebrow}>Rally da Safra</p>
             <h2 className={styles.title}>Veja o Rally em detalhes</h2>
@@ -755,7 +409,7 @@ function AgroValoraEmbed() {
   return (
     <section className="section-padding bg-white">
       <div className={styles.sectionContainer}>
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="space-y-2">
             <p className={styles.eyebrow}>AgroValora</p>
             <h2 className={styles.title}>Valoração e inteligência patrimonial</h2>
@@ -797,7 +451,7 @@ function BDOnlineEmbed() {
   return (
     <section className="section-padding bg-white">
       <div className={styles.sectionContainer}>
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="space-y-2">
             <p className={styles.eyebrow}>BD Online</p>
             <h2 className={styles.title}>Dados proprietários para decisões em tempo real</h2>

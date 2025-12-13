@@ -123,6 +123,16 @@ a {
   background: linear-gradient(90deg, #202956 0%, #1a445f 40%, #008747 100%);
 }
 
+.hero-video {
+  transform-origin: center;
+}
+
+@media (max-width: 640px) {
+  .hero-video {
+    transform: scale(0.9);
+  }
+}
+
 @keyframes marquee-left {
   0% {
     transform: translateX(0);
