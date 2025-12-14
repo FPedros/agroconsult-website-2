@@ -22,6 +22,11 @@ export function Navbar() {
     if (hero) hero.scrollIntoView({ behavior: "smooth" });
   };
 
+  const scrollToFooter = () => {
+    const footer = document.getElementById("site-footer");
+    if (footer) footer.scrollIntoView({ behavior: "smooth" });
+  };
+
   const close = () => setOpen(false);
 
   useEffect(() => {
@@ -80,6 +85,13 @@ export function Navbar() {
               {item.label}
             </NavLink>
           ))}
+            <button
+              type="button"
+              onClick={scrollToFooter}
+              className={`text-sm font-semibold transition-colors ${linkBase}`}
+            >
+              Contato
+            </button>
           </nav>
           <Link to="/produtos" className="btn-primary" {...desktopPrimaryHover}>
             Fale com um especialista
@@ -120,13 +132,17 @@ export function Navbar() {
             ))}
           </nav>
           <div className="mt-4 flex flex-col gap-2">
-            <a
-              href="mailto:contato@agroconsult.com.br"
+            <button
+              type="button"
+              onClick={() => {
+                scrollToFooter();
+                close();
+              }}
               className="btn-secondary justify-center"
-              aria-label="Contato por e-mail"
+              aria-label="Ir para o contato"
             >
               Contato
-            </a>
+            </button>
             <Link to="/produtos" onClick={close} className="btn-primary justify-center" {...mobilePrimaryHover}>
               Fale com um especialista
             </Link>

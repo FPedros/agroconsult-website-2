@@ -110,9 +110,9 @@ function Hero() {
       <div className="page-container relative z-10 flex min-h-full flex-col items-center justify-center gap-8 py-20 text-center sm:py-24 lg:py-28">
         
         <h1 className="max-w-3xl text-5xl font-black leading-tight text-white sm:text-6xl md:text-[68px] md:leading-[1.08] tracking-tight drop-shadow-[0_14px_44px_rgba(0,23,71,0.5)]">
-          Inteligência que{" "}
+          Estratégia para quem{" "}
           <span className="bg-gradient-to-r from-brand-green via-emerald-300 to-brand-green bg-clip-text text-transparent drop-shadow-[0_10px_32px_rgba(47,197,111,0.55)]">
-            Transforma o Campo
+            decide no agro
           </span>
         </h1>
         <p className="max-w-3xl text-base text-white/85 sm:text-lg">
@@ -381,22 +381,22 @@ function CTA() {
     <section className="section-padding bg-gradient-to-b from-white to-brand-light/25">
       <div className="page-container">
         <div className="gradient-border rounded-3xl">
-          <div className="relative overflow-hidden rounded-[22px] bg-white px-6 py-10 md:px-12">
-            <div className="absolute right-10 top-0 h-48 w-48 rounded-full bg-brand-gradient opacity-30 blur-3xl" />
+          <div className="relative overflow-hidden rounded-[22px] bg-brand-gradient px-6 py-10 text-white shadow-xl md:px-12">
+            <div className="absolute right-10 top-0 h-48 w-48 rounded-full bg-white/10 opacity-60 blur-3xl" />
             <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gray">Próximo passo</p>
-                <h3 className="text-2xl font-bold text-brand-navy">Vamos desenhar seu próximo ciclo com mais precisão?</h3>
-                <p className="mt-2 max-w-2xl text-slate-700">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/80">Próximo passo</p>
+                <h3 className="text-2xl font-bold leading-tight">Vamos desenhar seu próximo ciclo com mais precisão?</h3>
+                <p className="mt-2 max-w-2xl text-white/85">
                   Conecte dados, expedição e estratégia em uma só frente. Squads dedicados para trading, insumos, fundos,
                   produtores e agroindústria.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
-                <a href="mailto:contato@agroconsult.com.br" className="btn-primary" {...ctaPrimaryHover}>
+                <a href="mailto:contato@agroconsult.com.br" className="btn-ghost bg-white/10 hover:bg-white/15" {...ctaPrimaryHover}>
                   Agendar conversa
                 </a>
-                <Link to="/produtos" className="btn-secondary">
+                <Link to="/produtos" className="btn-ghost border-white/80 text-white hover:bg-white/10 hover:text-white">
                   Ver soluções
                 </Link>
               </div>
@@ -491,6 +491,48 @@ function AgrovaloraEmbed() {
   );
 }
 
+function CropdataEmbed() {
+  const cropdataHover = usePrimaryGradientHover();
+
+  return (
+    <section className="section-padding bg-white">
+      <div className={styles.sectionContainer}>
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="space-y-2">
+            <p className={styles.eyebrow}>Cropdata</p>
+            <h2 className={styles.title}>Clima, safras e indicadores em um site leve</h2>
+            <p className={`${styles.body} max-w-3xl`}>
+              Navegue no Cropdata para acompanhar clima, produtividade e movimentos de mercado com visualizacoes rapidas e
+              acessiveis.
+            </p>
+          </div>
+          <a
+            href="https://website-cropdata.vercel.app/"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-secondary !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
+            {...cropdataHover}
+          >
+            Abrir Cropdata
+          </a>
+        </div>
+
+        <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
+          <div className="relative h-[480px] w-full">
+            <iframe
+              title="Cropdata"
+              src="https://website-cropdata.vercel.app/"
+              className="absolute inset-0 h-full w-full border-0"
+              loading="lazy"
+              scrolling="no"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function BDOnlineEmbed() {
   const bdHover = usePrimaryGradientHover();
 
@@ -542,6 +584,7 @@ export default function Home() {
       <ProductsPreview />
       <RallyEmbed />
       <AgrovaloraEmbed />
+      <CropdataEmbed />
       <BDOnlineEmbed />
       <ClientsSection />
       <CTA />

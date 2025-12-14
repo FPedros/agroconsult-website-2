@@ -1,4 +1,4 @@
-import { ArrowRight, BarChart3, Map, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, BarChart3, CloudSun, Map, ShieldCheck, Sparkles } from "lucide-react";
 import InteractiveCard from "../components/InteractiveCard";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
 
@@ -41,6 +41,19 @@ const productDetails = [
       "Aplicavel a credito, M&A, seguros e governanca ESG"
     ],
     deliverables: ["Laudo completo", "Dashboard patrimonial", "Simulacoes de cenario"],
+  },
+  {
+    id: "cropdata",
+    name: "Cropdata",
+    summary: "Clima, safras e indicadores em um site leve e rapido para consultas do dia a dia.",
+    icon: <CloudSun size={18} />,
+    link: "https://website-cropdata.vercel.app/",
+    highlights: [
+      "Mapas de clima, produtividade e comparativos por cultura",
+      "Filtros simples por estado, cultura e janela de tempo",
+      "Visualizacoes leves para compartilhar e decidir em minutos"
+    ],
+    deliverables: ["Painel aberto", "Comparativos rapidos", "Acesso web"],
   },
 ];
 

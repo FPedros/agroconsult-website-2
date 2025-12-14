@@ -5,6 +5,8 @@ import Palestras from "./pages/Palestras";
 import QuemSomos from "./pages/QuemSomos";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
+import ScrollTopButton from "./components/ScrollTopButton";
+import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
 
 function App() {
   return (
@@ -16,8 +18,10 @@ function App() {
           <Route path="/produtos" element={<Products />} />
           <Route path="/palestras" element={<Palestras />} />
           <Route path="/quem-somos" element={<QuemSomos />} />
+          <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
         </Routes>
       </main>
+      <ScrollTopButton />
       <Footer />
     </div>
   );
