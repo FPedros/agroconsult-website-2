@@ -1,10 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, BarChart3, ChevronDown, Database, Layers, TrendingUp, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
 
 const tagClass =
   "inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-brand-navy shadow-sm";
+
+const heroPosterFallback =
+  "data:image/svg+xml," +
+  encodeURIComponent(
+    `<svg xmlns='http://www.w3.org/2000/svg' width='1440' height='900'>
+      <defs>
+        <linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'>
+          <stop offset='0%' stop-color='#202956'/>
+          <stop offset='55%' stop-color='#1f5c6c'/>
+          <stop offset='100%' stop-color='#008747'/>
+        </linearGradient>
+      </defs>
+      <rect width='1440' height='900' fill='url(#g)'/>
+      <circle cx='220' cy='220' r='180' fill='rgba(255,255,255,0.1)'/>
+      <circle cx='1120' cy='160' r='190' fill='rgba(255,255,255,0.08)'/>
+    </svg>`
+  );
 
 const styles = {
   eyebrow: "text-xs font-semibold uppercase tracking-[0.24em] text-brand-gray",
@@ -87,6 +104,7 @@ function Hero() {
   const heroPrimaryHover = usePrimaryGradientHover();
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const [isVideoReady, setIsVideoReady] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     const idleCb = (window as { requestIdleCallback?: (cb: () => void) => number }).requestIdleCallback;
@@ -98,10 +116,51 @@ function Hero() {
     return () => window.clearTimeout(timeoutId);
   }, []);
 
+  useEffect(() => {
+    if (!shouldLoadVideo || !videoRef.current) return;
+
+    const video = videoRef.current;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+
+    const attemptPlay = () =>
+      video.play().catch(() => {
+        video.controls = true;
+      });
+
+    if (video.readyState >= 2) {
+      attemptPlay();
+    }
+
+    const onVisibilityChange = () => {
+      if (!document.hidden) attemptPlay();
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, [shouldLoadVideo, isVideoReady]);
+
+  const handleVideoReady = () => {
+    setIsVideoReady(true);
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = true;
+    video.defaultMuted = true;
+    const playPromise = video.play();
+    if (playPromise?.catch) {
+      playPromise.catch(() => {
+        video.controls = true;
+      });
+    }
+  };
+
   const heroStyle = {
     minHeight: "100dvh",
     height: "100dvh",
-    backgroundImage: !isVideoReady ? "url('/images/video-banner-mobile.jpg')" : undefined,
+    backgroundImage: !isVideoReady ? `url("${heroPosterFallback}")` : undefined,
     backgroundSize: "cover",
     backgroundPosition: "center"
   };
@@ -115,17 +174,19 @@ function Hero() {
       <div className="absolute inset-0">
         {shouldLoadVideo && (
           <video
+            ref={videoRef}
             className="hero-video h-full min-h-full w-full object-cover object-center"
             style={{ minHeight: "100svh" }}
             src="/images/video-banner.mp4"
-            preload="none"
+            preload="auto"
             autoPlay
             muted
             loop
             playsInline
-            aria-label="Vídeo institucional Agroconsult"
-            poster="/images/video-banner-mobile.jpg"
-            onLoadedData={() => setIsVideoReady(true)}
+            aria-label="Video institucional Agroconsult"
+            poster={heroPosterFallback}
+            onLoadedData={handleVideoReady}
+            onCanPlayThrough={handleVideoReady}
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/85 via-brand-navy/75 to-brand-green/70" />
