@@ -61,7 +61,7 @@ export function Footer() {
             <img src="/images/logo-colorida.png" alt="Logotipo" className="h-10 w-auto" />
           </div>
           <p className="text-sm text-slate-700">
-            Inteligencia de dados, estrategia e presenca em campo para proteger margens e destravar valor no agronegocio brasileiro.
+            Inteligência de dados, estratégia e presença em campo para proteger margens e destravar valor no agronegócio brasileiro.
           </p>
         </div>
 
@@ -98,16 +98,16 @@ export function Footer() {
             </div>
           </div>
           <div>
-            <h4 className="text-sm font-bold text-brand-navy">Endereco</h4>
+            <h4 className="text-sm font-bold text-brand-navy">Endereço</h4>
             <ul className="mt-3 space-y-2 text-sm text-slate-700">
               <li className="flex items-center gap-2">
                 <MapPin size={16} className="text-brand-green" />
-                <span>Florianopolis, SC</span>
+                <span>Florianópolis, SC</span>
               </li>
             </ul>
           </div>
           <div>
-            <h4 className="text-sm font-bold text-brand-navy">Navegacao</h4>
+            <h4 className="text-sm font-bold text-brand-navy">Navegação</h4>
             <div className="mt-3 flex flex-col gap-2 text-sm text-slate-700">
               <Link className="hover:text-brand-green" to="/">
                 Home
@@ -116,7 +116,7 @@ export function Footer() {
                 Produtos
               </Link>
               <Link className="hover:text-brand-green" to="/historia">
-                Historia
+                História
               </Link>
             </div>
           </div>
@@ -126,7 +126,7 @@ export function Footer() {
         <div className="page-container flex flex-wrap items-center justify-center gap-2 py-3">
           <span>Todos os direitos reservados.</span>
           <Link to="/politica-de-privacidade" className="underline underline-offset-4 hover:text-brand-green">
-            Politica de Privacidade
+            Política de Privacidade
           </Link>
         </div>
       </div>

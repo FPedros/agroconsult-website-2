@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { ArrowRight, BarChart3, ChevronDown, Database, Layers, TrendingUp, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
@@ -84,25 +85,49 @@ const clientLogoLines = [
 
 function Hero() {
   const heroPrimaryHover = usePrimaryGradientHover();
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const [isVideoReady, setIsVideoReady] = useState(false);
+
+  useEffect(() => {
+    const idleCb = (window as { requestIdleCallback?: (cb: () => void) => number }).requestIdleCallback;
+    if (idleCb) {
+      const id = idleCb(() => setShouldLoadVideo(true));
+      return () => (window as { cancelIdleCallback?: (id: number) => void }).cancelIdleCallback?.(id);
+    }
+    const timeoutId = window.setTimeout(() => setShouldLoadVideo(true), 800);
+    return () => window.clearTimeout(timeoutId);
+  }, []);
+
+  const heroStyle = {
+    minHeight: "100dvh",
+    height: "100dvh",
+    backgroundImage: !isVideoReady ? "url('/images/video-banner-mobile.jpg')" : undefined,
+    backgroundSize: "cover",
+    backgroundPosition: "center"
+  };
 
   return (
     <section
       id="hero"
       className="relative flex h-screen flex-col items-center justify-center overflow-hidden"
-      style={{ minHeight: "100dvh", height: "100dvh" }}
+      style={heroStyle}
     >
       <div className="absolute inset-0">
-        <video
-          className="hero-video h-full min-h-full w-full object-cover object-center"
-          style={{ minHeight: "100svh" }}
-          src="/images/video-banner.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          aria-label="Vídeo institucional Agroconsult"
-          poster="/images/video-banner-mobile.jpg"
-        />
+        {shouldLoadVideo && (
+          <video
+            className="hero-video h-full min-h-full w-full object-cover object-center"
+            style={{ minHeight: "100svh" }}
+            src="/images/video-banner.mp4"
+            preload="none"
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-label="Vídeo institucional Agroconsult"
+            poster="/images/video-banner-mobile.jpg"
+            onLoadedData={() => setIsVideoReady(true)}
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/85 via-brand-navy/75 to-brand-green/70" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.08),transparent_40%),radial-gradient(circle_at_80%_10%,rgba(255,255,255,0.06),transparent_35%)]" />
       </div>
@@ -257,18 +282,18 @@ function ProductsPreview() {
   const spotlightHover = usePrimaryGradientHover();
   const highlightCards = [
     {
-      title: "80+ solucoes prontas",
-      description: "Combinacoes para credito, ESG, safra e estrategia comercial.",
+      title: "80+ soluções prontas",
+      description: "Combinações para crédito, ESG, safra e estratégia comercial.",
       icon: <Layers size={18} />
     },
     {
-      title: "Decisao guiada",
-      description: "Dashboards, war rooms e relatorios com time dedicado.",
+      title: "Decisão guiada",
+      description: "Dashboards, war rooms e relatórios com time dedicado.",
       icon: <BarChart3 size={18} />
     },
     {
       title: "Dados auditados",
-      description: "Series proprietarias com validacao em campo e satelite.",
+      description: "Séries proprietárias com validação em campo e satélite.",
       icon: <Database size={18} />
     },
   ];
@@ -279,10 +304,10 @@ function ProductsPreview() {
         <div className="grid gap-8 text-white lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-4">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">Produtos assinatura Agroconsult</p>
-            <h2 className="text-3xl font-semibold leading-tight md:text-[34px]">Um portfolio completo para decisoes rapidas e seguras</h2>
+            <h2 className="text-3xl font-semibold leading-tight md:text-[34px]">Um portfólio completo para decisões rápidas e seguras</h2>
             <div className="space-y-3 text-white/85">
               <p className="max-w-3xl text-sm md:text-base">
-                Conheca as plataformas que organizam essas solucoes em experiencias completas, do insight a decisao.
+                Conheça as plataformas que organizam essas soluções em experiências completas, do insight à decisão.
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -319,7 +344,7 @@ function ProductsPreview() {
             Continue descendo para ver as plataformas
           </div>
           <Link to="/produtos" className="btn-primary" {...spotlightHover}>
-            Ver portfolio completo
+            Ver portfólio completo
           </Link>
         </div>
       </div>
@@ -502,8 +527,8 @@ function CropdataEmbed() {
             <p className={styles.eyebrow}>Cropdata</p>
             <h2 className={styles.title}>Clima, safras e indicadores em um site leve</h2>
             <p className={`${styles.body} max-w-3xl`}>
-              Navegue no Cropdata para acompanhar clima, produtividade e movimentos de mercado com visualizacoes rapidas e
-              acessiveis.
+              Navegue no Cropdata para acompanhar clima, produtividade e movimentos de mercado com visualizações rápidas e
+              acessíveis.
             </p>
           </div>
           <a

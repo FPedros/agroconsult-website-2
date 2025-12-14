@@ -6,63 +6,63 @@ const productDetails = [
   {
     id: "bdonline",
     name: "BD Online",
-    summary: "Data lake exclusivo com 30 anos de historico, modelos preditivos e dashboards customizados.",
+    summary: "Data lake exclusivo com 30 anos de histórico, modelos preditivos e dashboards customizados.",
     icon: <BarChart3 size={18} />,
     link: "https://bdonline.agroconsult.com.br/",
     highlights: [
-      "Series de producao, preco, custos e clima por microrregiao",
-      "Modelos de previsao com IA combinando clima, logistica e demanda",
-      "APIs e dashboards customizados para trading, originacao e credito"
+      "Séries de produção, preço, custos e clima por microrregião",
+      "Modelos de previsão com IA combinando clima, logística e demanda",
+      "APIs e dashboards customizados para trading, originação e crédito"
     ],
-    deliverables: ["Dashboards interativos", "Alertas e cenarios", "Integracao por API"],
+    deliverables: ["Dashboards interativos", "Alertas e cenários", "Integração por API"],
   },
   {
     id: "rally",
     name: "Rally da Safra",
-    summary: "A maior expedicao tecnica do agro brasileiro: audita safras, comprova produtividade e antecipa movimentos.",
+    summary: "A maior expedição técnica do agro brasileiro: audita safras, comprova produtividade e antecipa movimentos.",
     icon: <Map size={18} />,
     link: "https://www.rallydasafra.com.br/",
     highlights: [
-      "Cobertura de 60 mil km e mais de 1.200 municipios anualmente",
-      "Protocolos auditaveis, medicoes em campo e integracao com satelite",
-      "Relatorios estrategicos em tempo real para hedge e planos comerciais"
+      "Cobertura de 60 mil km e mais de 1.200 municípios anualmente",
+      "Protocolos auditáveis, medições em campo e integração com satélite",
+      "Relatórios estratégicos em tempo real para hedge e planos comerciais"
     ],
     deliverables: ["Laudos de campo", "Painel live de produtividade", "Workshops executivos"],
   },
   {
     id: "agrovalora",
     name: "Agrovalora",
-    summary: "Plataforma lider em avaliacao de propriedades rurais, com metodologia proprietaria e comparaveis solidos.",
+    summary: "Plataforma líder em avaliação de propriedades rurais, com metodologia proprietária e comparáveis sólidos.",
     icon: <ShieldCheck size={18} />,
     link: "https://www.agrovalora.com.br/",
     highlights: [
-      "Avaliacao de ativos agricolas, florestais e agroindustriais",
+      "Avaliação de ativos agrícolas, florestais e agroindustriais",
       "Metodologia comparativa por bioma, produtividade e infraestrutura",
-      "Aplicavel a credito, M&A, seguros e governanca ESG"
+      "Aplicável a crédito, M&A, seguros e governança ESG"
     ],
-    deliverables: ["Laudo completo", "Dashboard patrimonial", "Simulacoes de cenario"],
+    deliverables: ["Laudo completo", "Dashboard patrimonial", "Simulações de cenário"],
   },
   {
     id: "cropdata",
     name: "Cropdata",
-    summary: "Clima, safras e indicadores em um site leve e rapido para consultas do dia a dia.",
+    summary: "Clima, safras e indicadores em um site leve e rápido para consultas do dia a dia.",
     icon: <CloudSun size={18} />,
     link: "https://website-cropdata.vercel.app/",
     highlights: [
       "Mapas de clima, produtividade e comparativos por cultura",
       "Filtros simples por estado, cultura e janela de tempo",
-      "Visualizacoes leves para compartilhar e decidir em minutos"
+      "Visualizações leves para compartilhar e decidir em minutos"
     ],
-    deliverables: ["Painel aberto", "Comparativos rapidos", "Acesso web"],
+    deliverables: ["Painel aberto", "Comparativos rápidos", "Acesso web"],
   },
 ];
 
 const accelerators = [
-  "Estrategia de comercializacao e hedge",
-  "Planos de originacao e fidelizacao",
+  "Estratégia de comercialização e hedge",
+  "Planos de originação e fidelização",
   "Monitoramento de safra com sensoriamento remoto",
-  "Pricing dinamico para insumos e servicos",
-  "Rastreabilidade e governanca ESG",
+  "Pricing dinâmico para insumos e serviços",
+  "Rastreabilidade e governança ESG",
   "Due diligence territorial e socioambiental"
 ];
 
@@ -77,9 +77,9 @@ export default function Products() {
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="space-y-3 max-w-4xl">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/75">Aceleradores</p>
-              <h2 className="text-3xl font-bold leading-tight lg:text-4xl">Mais de 80 servicos para personalizar sua estrategia</h2>
+              <h2 className="text-3xl font-bold leading-tight lg:text-4xl">Mais de 80 serviços para personalizar sua estratégia</h2>
               <p className="text-sm text-white/85 lg:text-base">
-                Combine modulos para acelerar resultados: estrategia comercial, monitoramento, governanca, ESG e valoracao.
+                Combine módulos para acelerar resultados: estratégia comercial, monitoramento, governança, ESG e valoração.
               </p>
             </div>
           </div>
@@ -119,7 +119,7 @@ export default function Products() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Conheca a plataforma
+                  Conheça a plataforma
                   <ArrowRight size={16} />
                 </a>
               </div>

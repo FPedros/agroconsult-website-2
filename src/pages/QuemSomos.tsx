@@ -3,28 +3,28 @@ import { Award, Compass, Handshake, Users } from "lucide-react";
 
 const pillars = [
   {
-    label: "Nosso Proposito",
+    label: "Nosso Propósito",
     subtitle: "por que existimos?",
-    body: "Gerar conhecimento para promover e impactar positivamente o agronegocio.",
+    body: "Gerar conhecimento para promover e impactar positivamente o agronegócio.",
     icon: <Compass size={20} />
   },
   {
-    label: "Nossa Missao",
+    label: "Nossa Missão",
     subtitle: "o que fazemos bem?",
-    body: "Transformar conhecimento em solucoes de mercado para o agronegocio.",
+    body: "Transformar conhecimento em soluções de mercado para o agronegócio.",
     icon: <Handshake size={20} />
   },
   {
-    label: "Nossa Visao",
+    label: "Nossa Visão",
     subtitle: "onde queremos chegar?",
-    body: "Ser a empresa de inteligencia de mercado mais confiavel do agronegocio.",
+    body: "Ser a empresa de inteligência de mercado mais confiável do agronegócio.",
     icon: <Award size={20} />
   }
 ];
 
 const valores = [
   "Conhecimento",
-  "Evolucao Constante",
+  "Evolução Constante",
   "Comprometimento",
   "Somos um time",
   "Respeito",
@@ -40,7 +40,7 @@ export default function QuemSomos() {
     ...pillars.map((item) => ({ ...item, type: "pillar" as const })),
     {
       label: "Nossos Valores",
-      subtitle: "base de crencas e comportamentos eticos",
+      subtitle: "base de crenças e comportamentos éticos",
       values: valores,
       icon: <Users size={20} />,
       type: "valores" as const
@@ -138,7 +138,7 @@ export default function QuemSomos() {
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">Quem somos</p>
             <h1 className="text-3xl font-bold leading-tight text-white lg:text-4xl">Cultura Agroconsult</h1>
             <p className="text-base text-white/85">
-              Proposito, missao, visao e valores que guiam nossas decisoes e projetos no agro.
+              Propósito, missão, visão e valores que guiam nossas decisões e projetos no agro.
             </p>
           </div>
 
@@ -161,7 +161,7 @@ export default function QuemSomos() {
                     {item.label}
                   </div>
                   <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-white/70">
-                    {"subtitle" in item ? item.subtitle : "base de crencas e comportamentos eticos"}
+                    {"subtitle" in item ? item.subtitle : "base de crenças e comportamentos éticos"}
                   </p>
                   {"values" in item ? (
                     <ul className="mt-3 space-y-2 text-sm text-white">
