@@ -107,12 +107,20 @@ function Hero() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
+    // No delay on mobile to avoid the hero video appearing late
+    const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
+    if (isMobile) {
+      setShouldLoadVideo(true);
+      return;
+    }
+
     const idleCb = (window as { requestIdleCallback?: (cb: () => void) => number }).requestIdleCallback;
     if (idleCb) {
       const id = idleCb(() => setShouldLoadVideo(true));
       return () => (window as { cancelIdleCallback?: (id: number) => void }).cancelIdleCallback?.(id);
     }
-    const timeoutId = window.setTimeout(() => setShouldLoadVideo(true), 800);
+
+    const timeoutId = window.setTimeout(() => setShouldLoadVideo(true), 200);
     return () => window.clearTimeout(timeoutId);
   }, []);
 
