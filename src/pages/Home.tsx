@@ -1,7 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, BarChart3, ChevronDown, Database, Layers, TrendingUp, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
+import seloBranco from "/images/selo branco.png";
 
 const tagClass =
   "inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-brand-navy shadow-sm";
@@ -87,6 +88,7 @@ function Hero() {
   const heroPrimaryHover = usePrimaryGradientHover();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationRef = useRef<number>();
+  const [showSelo, setShowSelo] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -163,6 +165,7 @@ function Hero() {
 
     animationRef.current = requestAnimationFrame(render);
     window.addEventListener("resize", resize);
+    setShowSelo(true);
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
       window.removeEventListener("resize", resize);
@@ -175,9 +178,16 @@ function Hero() {
       className="relative flex h-screen flex-col items-center justify-center overflow-hidden bg-brand-gradient text-white"
     >
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden />
+      <div
+        className={`pointer-events-none absolute inset-0 bg-center bg-no-repeat bg-contain mix-blend-screen transform transition duration-1000 ease-out ${
+          showSelo ? "opacity-60 scale-100" : "opacity-0 scale-95"
+        }`}
+        style={{ backgroundImage: `url(${seloBranco})` }}
+        aria-hidden
+      />
+      <div className="pointer-events-none absolute inset-0 bg-slate-900/45" aria-hidden />
 
       <div className="page-container relative z-10 flex min-h-full flex-col items-center justify-center gap-8 py-20 text-center sm:py-24 lg:py-28">
-        
         <h1 className="max-w-3xl text-5xl font-black leading-tight text-white sm:text-6xl md:text-[68px] md:leading-[1.08] tracking-tight drop-shadow-[0_14px_44px_rgba(0,23,71,0.5)]">
           Estratégia para quem{" "}
           <span className="bg-gradient-to-r from-brand-green via-emerald-300 to-brand-green bg-clip-text text-transparent drop-shadow-[0_10px_32px_rgba(47,197,111,0.55)]">

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
+import logoBranca from "/images/logo-branca.png";
+import logoColorida from "/images/logo-colorida.png";
 
 const navItems = [
   { label: "Home", to: "/" },
@@ -41,7 +43,7 @@ export function Navbar() {
   const activeClass =
     (headerSolid ? "text-brand-green" : "text-white") +
     " md:border-none md:after:absolute md:after:left-0 md:after:bottom-0 md:after:h-[3px] md:after:w-full md:after:rounded-full md:after:bg-brand-gradient md:after:content-['']";
-  const logoSrc = headerSolid ? "/images/logo-colorida.png" : "/images/logo-branca.png";
+  const logoSrc = headerSolid ? logoColorida : logoBranca;
   const headerClasses = [
     "fixed left-0 top-0 z-50 w-full transition-all duration-300",
     headerSolid ? "bg-white/95 border-b border-brand-gray/15 shadow-sm backdrop-blur-md" : "bg-transparent border-transparent"
