@@ -1,27 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { ArrowRight, BarChart3, ChevronDown, Database, Layers, TrendingUp, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
 
 const tagClass =
   "inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-brand-navy shadow-sm";
-
-const heroPosterFallback =
-  "data:image/svg+xml," +
-  encodeURIComponent(
-    `<svg xmlns='http://www.w3.org/2000/svg' width='1440' height='900'>
-      <defs>
-        <linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'>
-          <stop offset='0%' stop-color='#202956'/>
-          <stop offset='55%' stop-color='#1f5c6c'/>
-          <stop offset='100%' stop-color='#008747'/>
-        </linearGradient>
-      </defs>
-      <rect width='1440' height='900' fill='url(#g)'/>
-      <circle cx='220' cy='220' r='180' fill='rgba(255,255,255,0.1)'/>
-      <circle cx='1120' cy='160' r='190' fill='rgba(255,255,255,0.08)'/>
-    </svg>`
-  );
 
 const styles = {
   eyebrow: "text-xs font-semibold uppercase tracking-[0.24em] text-brand-gray",
@@ -102,104 +85,96 @@ const clientLogoLines = [
 
 function Hero() {
   const heroPrimaryHover = usePrimaryGradientHover();
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
-  const [isVideoReady, setIsVideoReady] = useState(false);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const animationRef = useRef<number>();
 
   useEffect(() => {
-    // No delay on mobile to avoid the hero video appearing late
-    const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
-    if (isMobile) {
-      setShouldLoadVideo(true);
-      return;
-    }
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-    const idleCb = (window as { requestIdleCallback?: (cb: () => void) => number }).requestIdleCallback;
-    if (idleCb) {
-      const id = idleCb(() => setShouldLoadVideo(true));
-      return () => (window as { cancelIdleCallback?: (id: number) => void }).cancelIdleCallback?.(id);
-    }
+    const nodes = Array.from({ length: 70 }).map(() => ({
+      x: Math.random(),
+      y: Math.random(),
+      vx: (Math.random() - 0.5) * 0.0012,
+      vy: (Math.random() - 0.5) * 0.0012
+    }));
 
-    const timeoutId = window.setTimeout(() => setShouldLoadVideo(true), 200);
-    return () => window.clearTimeout(timeoutId);
-  }, []);
+    const resize = () => {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = canvas.clientWidth * dpr;
+      canvas.height = canvas.clientHeight * dpr;
+      ctx.resetTransform();
+      ctx.scale(dpr, dpr);
+    };
+    resize();
 
-  useEffect(() => {
-    if (!shouldLoadVideo || !videoRef.current) return;
+    const render = (t: number) => {
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+      ctx.globalCompositeOperation = "lighter";
 
-    const video = videoRef.current;
-    video.muted = true;
-    video.defaultMuted = true;
-    video.playsInline = true;
+      nodes.forEach((p, idx) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > 1) p.vx *= -1;
+        if (p.y < 0 || p.y > 1) p.vy *= -1;
 
-    const attemptPlay = () =>
-      video.play().catch(() => {
-        video.controls = true;
+        const px = p.x * w;
+        const py = p.y * h;
+        const pulse = 0.5 + 0.5 * Math.sin(t * 0.002 + idx);
+        const radius = 1.3 + pulse * 1.4;
+
+        const glow = ctx.createRadialGradient(px, py, 0, px, py, radius * 4);
+        glow.addColorStop(0, "rgba(120,255,210,0.55)");
+        glow.addColorStop(1, "rgba(120,255,210,0)");
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(px, py, radius, 0, Math.PI * 2);
+        ctx.fill();
       });
 
-    if (video.readyState >= 2) {
-      attemptPlay();
-    }
+      const maxDist = 0.22;
+      const maxDistSq = maxDist * maxDist;
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i];
+          const b = nodes[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const distSq = dx * dx + dy * dy;
+          if (distSq > maxDistSq) continue;
+          const dist = Math.sqrt(distSq);
+          const alpha = (1 - dist / maxDist) * 0.55;
+          ctx.strokeStyle = `rgba(120,255,210,${alpha.toFixed(3)})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.x * w, a.y * h);
+          ctx.lineTo(b.x * w, b.y * h);
+          ctx.stroke();
+        }
+      }
 
-    const onVisibilityChange = () => {
-      if (!document.hidden) attemptPlay();
+      ctx.globalCompositeOperation = "source-over";
+      animationRef.current = requestAnimationFrame(render);
     };
 
-    document.addEventListener("visibilitychange", onVisibilityChange);
+    animationRef.current = requestAnimationFrame(render);
+    window.addEventListener("resize", resize);
     return () => {
-      document.removeEventListener("visibilitychange", onVisibilityChange);
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      window.removeEventListener("resize", resize);
     };
-  }, [shouldLoadVideo, isVideoReady]);
-
-  const handleVideoReady = () => {
-    setIsVideoReady(true);
-    const video = videoRef.current;
-    if (!video) return;
-    video.muted = true;
-    video.defaultMuted = true;
-    const playPromise = video.play();
-    if (playPromise?.catch) {
-      playPromise.catch(() => {
-        video.controls = true;
-      });
-    }
-  };
-
-  const heroStyle = {
-    minHeight: "100dvh",
-    height: "100dvh",
-    backgroundImage: !isVideoReady ? `url("${heroPosterFallback}")` : undefined,
-    backgroundSize: "cover",
-    backgroundPosition: "center"
-  };
+  }, []);
 
   return (
     <section
       id="hero"
-      className="relative flex h-screen flex-col items-center justify-center overflow-hidden"
-      style={heroStyle}
+      className="relative flex h-screen flex-col items-center justify-center overflow-hidden bg-brand-gradient text-white"
     >
-      <div className="absolute inset-0">
-        {shouldLoadVideo && (
-          <video
-            ref={videoRef}
-            className="hero-video h-full min-h-full w-full object-cover object-center"
-            style={{ minHeight: "100svh" }}
-            src="/images/video-banner.mp4"
-            preload="auto"
-            autoPlay
-            muted
-            loop
-            playsInline
-            aria-label="Video institucional Agroconsult"
-            poster={heroPosterFallback}
-            onLoadedData={handleVideoReady}
-            onCanPlayThrough={handleVideoReady}
-          />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/85 via-brand-navy/75 to-brand-green/70" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.08),transparent_40%),radial-gradient(circle_at_80%_10%,rgba(255,255,255,0.06),transparent_35%)]" />
-      </div>
+      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden />
 
       <div className="page-container relative z-10 flex min-h-full flex-col items-center justify-center gap-8 py-20 text-center sm:py-24 lg:py-28">
         
