@@ -4,28 +4,28 @@ import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
 
 const speakers = [
   {
-    name: "André Debastiani",
-    role: "Mercados e safras",
-    bio: "Especialista em monitoramento de safra e tendências de mercado.",
-    photo: "/authors/andre_debastiani.jpg"
-  },
-  {
     name: "André Pessoa",
     role: "Estratégia e originação",
-    bio: "Fundador da Agroconsult, referência em estratégia comercial e hedge.",
-    photo: "/authors/andre_pessoa.jpg"
+    bio: "Fundador da Agroconsult, referência em estratégia comercial, hedge e decisões de alto impacto.",
+    photo: encodeURI("/authors/André Pessoa.png")
   },
   {
-    name: "Heloísa Melo",
+    name: "André Debastiani",
+    role: "Mercados e safras",
+    bio: "Especialista em monitoramento de safra, custos e tendências de mercado para originação.",
+    photo: encodeURI("/authors/André Debastiani.png")
+  },
+  {
+    name: "Heloisa Melo",
     role: "ESG e governança",
-    bio: "Conecta compliance, rastreabilidade e impacto para o agronegócio.",
-    photo: "/authors/heloisa_melo.jpg"
+    bio: "Conecta compliance, rastreabilidade e impacto para cadeias agro sustentáveis.",
+    photo: encodeURI("/authors/Heloisa Melo.png")
   },
   {
     name: "Rodrigo Cruz",
     role: "Clima e inteligência de dados",
     bio: "Traduz clima, dados e tecnologia em decisões rápidas no campo.",
-    photo: "/authors/rodrigo_cruz.jpg"
+    photo: encodeURI("/authors/Rodrigo Cruz.png")
   }
 ];
 
@@ -148,3 +148,4 @@ export default function Palestras() {
     </div>
   );
 }
+
