@@ -130,9 +130,9 @@ export default function QuemSomos() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-brand-gradient text-white relative overflow-hidden">
+    <div className="min-h-screen bg-brand-gradient text-white relative overflow-hidden pt-16 lg:pt-0">
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden />
-      <section className="section-padding w-full relative z-10 min-h-screen flex items-center">
+      <section className="section-padding w-full relative z-10 min-h-screen flex items-center pt-12 pb-16 sm:pt-20 sm:pb-20 lg:pt-0 lg:pb-0">
         <div className="page-container space-y-10">
           <div className="space-y-3">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">Quem somos</p>
