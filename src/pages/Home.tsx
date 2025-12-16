@@ -512,18 +512,6 @@ function RallyEmbed() {
           </a>
         </div>
 
-        <div className="lg:hidden">
-          <a
-            href="https://www.rallydasafra.com.br/"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-secondary mb-4 inline-flex w-full justify-center !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
-            {...rallyHover}
-          >
-            Abrir site do Rally
-          </a>
-        </div>
-
         <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
           <div className="relative h-[480px] w-full">
             <iframe
@@ -534,6 +522,17 @@ function RallyEmbed() {
               scrolling="no"
             />
           </div>
+        </div>
+        <div className="lg:hidden">
+          <a
+            href="https://www.rallydasafra.com.br/"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-secondary mt-4 inline-flex w-full justify-center !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
+            {...rallyHover}
+          >
+            Abrir site do Rally
+          </a>
         </div>
       </div>
     </section>
@@ -566,18 +565,6 @@ function AgrovaloraEmbed() {
           </a>
         </div>
 
-        <div className="lg:hidden">
-          <a
-            href="https://terra-inteligente.vercel.app/"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-secondary mb-4 inline-flex w-full justify-center !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
-            {...terraHover}
-          >
-            Abrir Agrovalora
-          </a>
-        </div>
-
         <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
           <div className="relative h-[480px] w-full">
             <iframe
@@ -585,9 +572,20 @@ function AgrovaloraEmbed() {
               src="https://terra-inteligente.vercel.app/"
               className="absolute inset-0 h-full w-full border-0"
               loading="lazy"
-              scrolling="no"
+            scrolling="no"
             />
           </div>
+        </div>
+        <div className="lg:hidden">
+          <a
+            href="https://terra-inteligente.vercel.app/"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-secondary mt-4 inline-flex w-full justify-center !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
+            {...terraHover}
+          >
+            Abrir Agrovalora
+          </a>
         </div>
       </div>
     </section>
@@ -620,18 +618,6 @@ function CropdataEmbed() {
           </a>
         </div>
 
-        <div className="lg:hidden">
-          <a
-            href="https://website-cropdata.vercel.app/"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-secondary mb-4 inline-flex w-full justify-center !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
-            {...cropdataHover}
-          >
-            Abrir Cropdata
-          </a>
-        </div>
-
         <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
           <div className="relative h-[480px] w-full">
             <iframe
@@ -642,6 +628,17 @@ function CropdataEmbed() {
               scrolling="no"
             />
           </div>
+        </div>
+        <div className="lg:hidden">
+          <a
+            href="https://website-cropdata.vercel.app/"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-secondary mt-4 inline-flex w-full justify-center !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
+            {...cropdataHover}
+          >
+            Abrir Cropdata
+          </a>
         </div>
       </div>
     </section>
@@ -674,18 +671,6 @@ function BDOnlineEmbed() {
           </a>
         </div>
 
-        <div className="lg:hidden">
-          <a
-            href="https://bd.agroconsult.com.br/"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-secondary mb-4 inline-flex w-full justify-center !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
-            {...bdHover}
-          >
-            Acessar BD Online
-          </a>
-        </div>
-
         <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
           <div className="relative h-[480px] w-full">
             <img
@@ -696,6 +681,17 @@ function BDOnlineEmbed() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/40 via-brand-navy/10 to-transparent" />
           </div>
+        </div>
+        <div className="lg:hidden">
+          <a
+            href="https://bd.agroconsult.com.br/"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-secondary mt-4 inline-flex w-full justify-center !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
+            {...bdHover}
+          >
+            Acessar BD Online
+          </a>
         </div>
       </div>
     </section>
