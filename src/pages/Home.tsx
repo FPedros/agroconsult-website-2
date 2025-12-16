@@ -501,15 +501,17 @@ function RallyEmbed() {
               Acesse o site oficial do Rally da Safra para acompanhar etapas, metodologia e resultados em tempo real.
             </p>
           </div>
-          <a
-            href="https://www.rallydasafra.com.br/"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-secondary hidden !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10 lg:inline-flex"
-            {...rallyHover}
-          >
-            Abrir site do Rally
-          </a>
+          <div className="hidden 2xl:block">
+            <a
+              href="https://www.rallydasafra.com.br/"
+              target="_blank"
+              rel="noreferrer"
+              className="btn-secondary !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
+              {...rallyHover}
+            >
+              Abrir site do Rally
+            </a>
+          </div>
         </div>
 
         <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
@@ -554,15 +556,17 @@ function AgrovaloraEmbed() {
               M&A, seguros e governança.
             </p>
           </div>
-          <a
-            href="https://terra-inteligente.vercel.app/"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-secondary hidden !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10 lg:inline-flex"
-            {...terraHover}
-          >
-            Abrir Agrovalora
-          </a>
+          <div className="hidden 2xl:block">
+            <a
+              href="https://terra-inteligente.vercel.app/"
+              target="_blank"
+              rel="noreferrer"
+              className="btn-secondary !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
+              {...terraHover}
+            >
+              Abrir Agrovalora
+            </a>
+          </div>
         </div>
 
         <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
@@ -607,15 +611,17 @@ function CropdataEmbed() {
               acessíveis.
             </p>
           </div>
-          <a
-            href="https://website-cropdata.vercel.app/"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-secondary hidden !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10 lg:inline-flex"
-            {...cropdataHover}
-          >
-            Abrir Cropdata
-          </a>
+          <div className="hidden 2xl:block">
+            <a
+              href="https://website-cropdata.vercel.app/"
+              target="_blank"
+              rel="noreferrer"
+              className="btn-secondary !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
+              {...cropdataHover}
+            >
+              Abrir Cropdata
+            </a>
+          </div>
         </div>
 
         <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
@@ -660,15 +666,17 @@ function BDOnlineEmbed() {
               precos, oferta e demanda para todo o agro brasileiro.
             </p>
           </div>
-          <a
-            href="https://bd.agroconsult.com.br/"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-secondary hidden !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10 lg:inline-flex"
-            {...bdHover}
-          >
-            Acessar BD Online
-          </a>
+          <div className="hidden 2xl:block">
+            <a
+              href="https://bd.agroconsult.com.br/"
+              target="_blank"
+              rel="noreferrer"
+              className="btn-secondary !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
+              {...bdHover}
+            >
+              Acessar BD Online
+            </a>
+          </div>
         </div>
 
         <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
