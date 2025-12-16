@@ -4,28 +4,34 @@ import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
 
 const speakers = [
   {
-    name: "André Pessoa",
+    name: "André Pessôa",
     role: "Estratégia e originação",
     bio: "Fundador da Agroconsult, referência em estratégia comercial, hedge e decisões de alto impacto.",
-    photo: encodeURI("/authors/André Pessoa.png")
+    photo: "/authors/andre-pessoa.jpg"
   },
   {
     name: "André Debastiani",
     role: "Mercados e safras",
     bio: "Especialista em monitoramento de safra, custos e tendências de mercado para originação.",
-    photo: encodeURI("/authors/André Debastiani.png")
+    photo: "/authors/andre-debastiani.jpg"
+  },
+  {
+    name: "Adriano Lo Turco",
+    role: "Gestão de risco e comercialização",
+    bio: "Combina precificação, risco e inteligência de mercado para suportar trading e originação.",
+    photo: "/authors/adriano-lo-turco.jpg"
+  },
+  {
+    name: "Débora Simões",
+    role: "ESG e governança",
+    bio: "Lidera agendas de ESG, rastreabilidade e compliance socioambiental em cadeias agrícolas.",
+    photo: "/authors/debora-simoes.jpg"
   },
   {
     name: "Heloisa Melo",
-    role: "ESG e governança",
+    role: "Clientes e sustentabilidade",
     bio: "Conecta compliance, rastreabilidade e impacto para cadeias agro sustentáveis.",
-    photo: encodeURI("/authors/Heloisa Melo.png")
-  },
-  {
-    name: "Rodrigo Cruz",
-    role: "Clima e inteligência de dados",
-    bio: "Traduz clima, dados e tecnologia em decisões rápidas no campo.",
-    photo: encodeURI("/authors/Rodrigo Cruz.png")
+    photo: "/authors/heloisa-melo.jpg"
   }
 ];
 
@@ -34,7 +40,7 @@ export default function Palestras() {
 
   return (
     <div className="bg-white">
-      <section className="relative overflow-hidden bg-brand-gradient text-white">
+      <section className="relative overflow-hidden bg-brand-gradient pt-24 text-white lg:pt-28">
         <div className="absolute inset-0 bg-brand-radial opacity-25" />
         <div className="page-container relative flex flex-col gap-6 py-16 lg:flex-row lg:items-center lg:py-20">
           <div className="space-y-4 lg:w-3/5">
@@ -94,7 +100,7 @@ export default function Palestras() {
             </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {speakers.map((speaker) => (
               <div
                 key={speaker.name}
@@ -104,8 +110,12 @@ export default function Palestras() {
                   <img
                     src={speaker.photo}
                     alt={speaker.name}
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                     loading="lazy"
+                    decoding="async"
+                    sizes="(min-width: 1280px) 20vw, (min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"
+                    width={400}
+                    height={320}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/15 to-transparent" />
                 </div>
@@ -119,33 +129,6 @@ export default function Palestras() {
           </div>
         </div>
       </section>
-
-      <section className="section-padding">
-        <div className="page-container grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-gray">Temas em destaque</p>
-            <h2 className="text-3xl font-semibold leading-tight text-brand-navy">Perspectivas que geram ação</h2>
-            <p className="text-base text-slate-700">
-              Levamos dados proprietários, validação em campo e cenários estratégicos para direcionar decisões de investimento,
-              comercialização e governança.
-            </p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {[
-              { title: "Safras e preços", detail: "Curva de oferta e demanda, logística e câmbio." },
-              { title: "ESG e governança", detail: "Rastreabilidade, compliance e gestão de risco." },
-              { title: "Valoração de ativos", detail: "Tese Agrovalora e comparáveis sólidos." },
-              { title: "Estratégia comercial", detail: "Originação, hedge e fidelização de clientes." }
-            ].map((item) => (
-              <div key={item.title} className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
-                <p className="text-sm font-semibold text-brand-navy">{item.title}</p>
-                <p className="text-sm text-slate-700">{item.detail}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
-

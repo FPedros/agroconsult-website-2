@@ -505,7 +505,19 @@ function RallyEmbed() {
             href="https://www.rallydasafra.com.br/"
             target="_blank"
             rel="noreferrer"
-            className="btn-secondary !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
+            className="btn-secondary hidden !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10 lg:inline-flex"
+            {...rallyHover}
+          >
+            Abrir site do Rally
+          </a>
+        </div>
+
+        <div className="lg:hidden">
+          <a
+            href="https://www.rallydasafra.com.br/"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-secondary mb-4 inline-flex w-full justify-center !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
             {...rallyHover}
           >
             Abrir site do Rally
@@ -547,7 +559,19 @@ function AgrovaloraEmbed() {
             href="https://terra-inteligente.vercel.app/"
             target="_blank"
             rel="noreferrer"
-            className="btn-secondary !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
+            className="btn-secondary hidden !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10 lg:inline-flex"
+            {...terraHover}
+          >
+            Abrir Agrovalora
+          </a>
+        </div>
+
+        <div className="lg:hidden">
+          <a
+            href="https://terra-inteligente.vercel.app/"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-secondary mb-4 inline-flex w-full justify-center !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
             {...terraHover}
           >
             Abrir Agrovalora
@@ -589,7 +613,19 @@ function CropdataEmbed() {
             href="https://website-cropdata.vercel.app/"
             target="_blank"
             rel="noreferrer"
-            className="btn-secondary !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
+            className="btn-secondary hidden !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10 lg:inline-flex"
+            {...cropdataHover}
+          >
+            Abrir Cropdata
+          </a>
+        </div>
+
+        <div className="lg:hidden">
+          <a
+            href="https://website-cropdata.vercel.app/"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-secondary mb-4 inline-flex w-full justify-center !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
             {...cropdataHover}
           >
             Abrir Cropdata
@@ -621,17 +657,29 @@ function BDOnlineEmbed() {
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="space-y-2">
             <p className={styles.eyebrow}>BD Online</p>
-            <h2 className={styles.title}>Dados proprietários para decisões em tempo real</h2>
+            <h2 className={styles.title}>Dados proprietarios para decisoes em tempo real</h2>
             <p className={`${styles.body} max-w-3xl`}>
-              Explore dashboards, análises e relatórios exclusivos do BD Online: curva de produção, rentabilidade,
-              preços, oferta e demanda para todo o agro brasileiro.
+              Explore dashboards, analises e relatorios exclusivos do BD Online: curva de producao, rentabilidade,
+              precos, oferta e demanda para todo o agro brasileiro.
             </p>
           </div>
           <a
             href="https://bd.agroconsult.com.br/"
             target="_blank"
             rel="noreferrer"
-            className="btn-secondary !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
+            className="btn-secondary hidden !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10 lg:inline-flex"
+            {...bdHover}
+          >
+            Acessar BD Online
+          </a>
+        </div>
+
+        <div className="lg:hidden">
+          <a
+            href="https://bd.agroconsult.com.br/"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-secondary mb-4 inline-flex w-full justify-center !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
             {...bdHover}
           >
             Acessar BD Online
@@ -642,7 +690,7 @@ function BDOnlineEmbed() {
           <div className="relative h-[480px] w-full">
             <img
               src="/images/bd-online-previaw.png"
-              alt="Prévia do BD Online Agroconsult"
+              alt="Previa do BD Online Agroconsult"
               className="absolute inset-0 h-full w-full object-cover"
               loading="lazy"
             />
@@ -653,7 +701,6 @@ function BDOnlineEmbed() {
     </section>
   );
 }
-
 export default function Home() {
   return (
     <div className="bg-white/60">
