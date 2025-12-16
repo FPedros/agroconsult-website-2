@@ -71,9 +71,9 @@ export default function Products() {
 
   return (
     <div className="bg-white/80">
-      <section className="relative overflow-hidden bg-brand-gradient text-white">
+      <section className="relative overflow-hidden bg-brand-gradient pt-24 text-white lg:pt-32">
         <div className="absolute inset-0 bg-brand-radial opacity-25" />
-        <div className="page-container relative space-y-8 py-20 pt-24 lg:py-24 lg:pt-28">
+        <div className="page-container relative space-y-8 py-20 pt-8 lg:py-24 lg:pt-12">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="space-y-3 max-w-4xl">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/75">Aceleradores</p>
