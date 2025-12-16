@@ -114,12 +114,12 @@ export default function Products() {
                 <h2 className="text-2xl font-bold text-brand-navy">{product.name}</h2>
                 <p className="text-sm text-slate-700">{product.summary}</p>
                 <a
-                  className="btn-primary inline-flex w-fit"
+                  className="btn-primary hidden w-fit lg:inline-flex"
                   href={product.link}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Conheça a plataforma
+                  Conheca a plataforma
                   <ArrowRight size={16} />
                 </a>
               </div>
@@ -156,6 +156,17 @@ export default function Products() {
                     </div>
                   </InteractiveCard>
                 </div>
+              </div>
+              <div className="lg:hidden">
+                <a
+                  className="btn-primary inline-flex w-full justify-center"
+                  href={product.link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Conheca a plataforma
+                  <ArrowRight size={16} />
+                </a>
               </div>
             </div>
           ))}
