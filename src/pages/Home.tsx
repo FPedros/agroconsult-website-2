@@ -407,7 +407,16 @@ function ProductsPreview() {
 }
 
 function ClientsSection() {
+  const [isMobile, setIsMobile] = useState(false);
   const nonEmptyLines = clientLogoLines.filter((line) => line.length);
+
+  useEffect(() => {
+    const updateViewport = () => setIsMobile(window.innerWidth < 768);
+    updateViewport();
+    window.addEventListener("resize", updateViewport);
+    return () => window.removeEventListener("resize", updateViewport);
+  }, []);
+
   if (!nonEmptyLines.length) return null;
 
   return (
@@ -425,7 +434,9 @@ function ClientsSection() {
           {nonEmptyLines.map((line, idxLine) => {
             const doubled = [...line, ...line];
             const direction = idxLine % 2 === 0 ? "marquee-left" : "marquee-right";
-            const duration = `${48 + idxLine * 12}s`;
+            const durationBase = isMobile ? 24 : 48;
+            const durationStep = isMobile ? 6 : 12;
+            const duration = `${durationBase + idxLine * durationStep}s`;
             return (
               <div
                 key={`linha-${idxLine}`}
