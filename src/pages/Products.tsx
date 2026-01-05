@@ -1,62 +1,4 @@
-import { ArrowRight, BarChart3, CloudSun, Map, ShieldCheck, Sparkles } from "lucide-react";
-import InteractiveCard from "../components/InteractiveCard";
-import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
-
-const productDetails = [
-  {
-    id: "bdonline",
-    name: "BD Online",
-    summary: "Data lake exclusivo com 30 anos de histórico, modelos preditivos e dashboards customizados.",
-    icon: <BarChart3 size={18} />,
-    link: "https://bdonline.agroconsult.com.br/",
-    highlights: [
-      "Séries de produção, preço, custos e clima por microrregião",
-      "Modelos de previsão com IA combinando clima, logística e demanda",
-      "APIs e dashboards customizados para trading, originação e crédito"
-    ],
-    deliverables: ["Dashboards interativos", "Alertas e cenários", "Integração por API"],
-  },
-  {
-    id: "rally",
-    name: "Rally da Safra",
-    summary: "A maior expedição técnica do agro brasileiro: audita safras, comprova produtividade e antecipa movimentos.",
-    icon: <Map size={18} />,
-    link: "https://www.rallydasafra.com.br/",
-    highlights: [
-      "Cobertura de 60 mil km e mais de 1.200 municípios anualmente",
-      "Protocolos auditáveis, medições em campo e integração com satélite",
-      "Relatórios estratégicos em tempo real para hedge e planos comerciais"
-    ],
-    deliverables: ["Laudos de campo", "Painel live de produtividade", "Workshops executivos"],
-  },
-  {
-    id: "agrovalora",
-    name: "Agrovalora",
-    summary: "Plataforma líder em avaliação de propriedades rurais, com metodologia proprietária e comparáveis sólidos.",
-    icon: <ShieldCheck size={18} />,
-    link: "https://www.agrovalora.com.br/",
-    highlights: [
-      "Avaliação de ativos agrícolas, florestais e agroindustriais",
-      "Metodologia comparativa por bioma, produtividade e infraestrutura",
-      "Aplicável a crédito, M&A, seguros e governança ESG"
-    ],
-    deliverables: ["Laudo completo", "Dashboard patrimonial", "Simulações de cenário"],
-  },
-  {
-    id: "cropdata",
-    name: "Cropdata",
-    summary: "Clima, safras e indicadores em um site leve e rápido para consultas do dia a dia.",
-    icon: <CloudSun size={18} />,
-    link: "https://website-cropdata.vercel.app/",
-    highlights: [
-      "Mapas de clima, produtividade e comparativos por cultura",
-      "Filtros simples por estado, cultura e janela de tempo",
-      "Visualizações leves para compartilhar e decidir em minutos"
-    ],
-    deliverables: ["Painel aberto", "Comparativos rápidos", "Acesso web"],
-  },
-];
-
+import { Sparkles } from "lucide-react";
 const accelerators = [
   "Estratégia de comercialização e hedge",
   "Planos de originação e fidelização",
@@ -67,8 +9,6 @@ const accelerators = [
 ];
 
 export default function Products() {
-  const productsPrimaryHover = usePrimaryGradientHover();
-
   return (
     <div className="bg-white/80">
       <section className="relative overflow-hidden bg-brand-gradient pt-24 text-white lg:pt-32">
@@ -97,82 +37,6 @@ export default function Products() {
           </div>
         </div>
       </section>
-
-      <section className="section-padding">
-        <div className="page-container space-y-10">
-          {productDetails.map((product) => (
-            <div
-              key={product.id}
-              id={product.id}
-              className="grid gap-6 rounded-3xl bg-white p-6 shadow-panel transition hover:-translate-y-1 hover:shadow-glow lg:grid-cols-3"
-            >
-              <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 rounded-full bg-brand-green/10 px-3 py-1 text-xs font-semibold text-brand-green">
-                  {product.icon}
-                  {product.name}
-                </div>
-                <h2 className="text-2xl font-bold text-brand-navy">{product.name}</h2>
-                <p className="text-sm text-slate-700">{product.summary}</p>
-                <a
-                  className="btn-primary hidden w-fit lg:inline-flex"
-                  href={product.link}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Conheca a plataforma
-                  <ArrowRight size={16} />
-                </a>
-              </div>
-              <div className="lg:col-span-2">
-                <div className="grid gap-4 md:grid-cols-2">
-                  <InteractiveCard
-                    title="Diferenciais"
-                    description="Por que líderes escolhem a Agroconsult?"
-                    accent="navy"
-                  >
-                    <ul className="mt-2 space-y-2 text-sm text-slate-700">
-                      {product.highlights.map((highlight) => (
-                        <li key={highlight} className="flex items-start gap-2">
-                          <span className="mt-1 h-2 w-2 rounded-full bg-brand-green" />
-                          <span>{highlight}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </InteractiveCard>
-                  <InteractiveCard
-                    title="Formatos de entrega"
-                    description="Conecte às suas rotinas com rapidez e governança."
-                    accent="green"
-                  >
-                    <div className="mt-2 flex flex-wrap gap-2">
-                      {product.deliverables.map((deliverable) => (
-                        <span
-                          key={deliverable}
-                          className="rounded-full bg-brand-navy/5 px-3 py-2 text-xs font-semibold text-brand-navy"
-                        >
-                          {deliverable}
-                        </span>
-                      ))}
-                    </div>
-                  </InteractiveCard>
-                </div>
-              </div>
-              <div className="lg:hidden">
-                <a
-                  className="btn-primary inline-flex w-full justify-center"
-                  href={product.link}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Conheca a plataforma
-                  <ArrowRight size={16} />
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
     </div>
   );
 }
