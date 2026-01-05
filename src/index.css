@@ -36,7 +36,7 @@ a {
 }
 
 .gradient-border::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: -1px;
   z-index: -1;
