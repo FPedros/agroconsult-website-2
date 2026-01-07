@@ -217,6 +217,11 @@ function Pillars() {
   const slideStep = 4;
   const slideDuration = talkImages.length * slideStep;
 
+  const scrollToContact = () => {
+    const contact = document.getElementById("contato");
+    if (contact) contact.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section className="section-padding bg-white mb-14 md:mb-16 lg:mb-24">
       <div className={styles.sectionContainer}>
@@ -257,11 +262,11 @@ function Pillars() {
                   decisoes de alto impacto.
                 </p>
               </div>
-              <div className="flex flex-wrap justify-center gap-2">
+              <div className="hidden grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center">
                 {talkTags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full bg-white/15 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-white backdrop-blur"
+                    className="w-full whitespace-nowrap rounded-full bg-white/15 px-2 py-2 text-center text-[10px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur sm:w-auto sm:px-3 sm:text-xs sm:tracking-wide"
                   >
                     {tag}
                   </span>
@@ -272,10 +277,10 @@ function Pillars() {
                   Ver palestras
                   <ArrowRight size={16} />
                 </Link>
-              <a href="#contato" className="btn-ghost">
+              <button type="button" onClick={scrollToContact} className="btn-ghost">
                 Agendar palestra
-              </a>
-              </div>
+              </button>
+            </div>
             </div>
           </div>
         </div>

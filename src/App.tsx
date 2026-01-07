@@ -10,22 +10,33 @@ import ScrollTopButton from "./components/ScrollTopButton";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
 
 function ScrollToHash() {
-  const { hash } = useLocation();
+  const { hash, pathname } = useLocation();
 
   useEffect(() => {
     if (!hash) return;
     const id = hash.replace("#", "");
-    const target = document.getElementById(id);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-      return;
-    }
-    const timeout = window.setTimeout(() => {
-      const retryTarget = document.getElementById(id);
-      if (retryTarget) retryTarget.scrollIntoView({ behavior: "smooth" });
-    }, 150);
-    return () => window.clearTimeout(timeout);
-  }, [hash]);
+    let attempts = 0;
+
+    const tryScroll = () => {
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+        return true;
+      }
+      return false;
+    };
+
+    if (tryScroll()) return;
+
+    const interval = window.setInterval(() => {
+      attempts += 1;
+      if (tryScroll() || attempts > 20) {
+        window.clearInterval(interval);
+      }
+    }, 100);
+
+    return () => window.clearInterval(interval);
+  }, [hash, pathname]);
 
   return null;
 }
