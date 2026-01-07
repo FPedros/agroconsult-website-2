@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
 import logoBranca from "/images/logo-branca.png";
@@ -16,6 +16,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const desktopPrimaryHover = usePrimaryGradientHover();
   const mobilePrimaryHover = usePrimaryGradientHover();
 
@@ -24,9 +25,19 @@ export function Navbar() {
     if (hero) hero.scrollIntoView({ behavior: "smooth" });
   };
 
-  const scrollToFooter = () => {
-    const footer = document.getElementById("site-footer");
-    if (footer) footer.scrollIntoView({ behavior: "smooth" });
+  const scrollToContact = () => {
+    const contact = document.getElementById("contato");
+    if (contact) {
+      contact.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        const target = document.getElementById("contato");
+        if (target) target.scrollIntoView({ behavior: "smooth" });
+      }, 150);
+    }
   };
 
   const close = () => setOpen(false);
@@ -89,15 +100,15 @@ export function Navbar() {
           ))}
             <button
               type="button"
-              onClick={scrollToFooter}
+              onClick={scrollToContact}
               className={`text-sm font-semibold transition-colors ${linkBase}`}
             >
               Contato
             </button>
           </nav>
-          <Link to="/produtos" className="btn-primary" {...desktopPrimaryHover}>
+          <button type="button" onClick={scrollToContact} className="btn-primary" {...desktopPrimaryHover}>
             Fale com um especialista
-          </Link>
+          </button>
         </div>
 
         <button
@@ -137,7 +148,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => {
-                scrollToFooter();
+                scrollToContact();
                 close();
               }}
               className="btn-secondary justify-center"
@@ -145,9 +156,17 @@ export function Navbar() {
             >
               Contato
             </button>
-            <Link to="/produtos" onClick={close} className="btn-primary justify-center" {...mobilePrimaryHover}>
+            <button
+              type="button"
+              onClick={() => {
+                scrollToContact();
+                close();
+              }}
+              className="btn-primary justify-center"
+              {...mobilePrimaryHover}
+            >
               Fale com um especialista
-            </Link>
+            </button>
           </div>
           <p className="mt-3 text-xs text-brand-gray">
             {location.pathname === "/" ? "Home" : location.pathname.replace("/", "")}
