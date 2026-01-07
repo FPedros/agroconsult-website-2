@@ -116,6 +116,10 @@ a {
   @apply py-14 md:py-16 lg:py-24;
 }
 
+.section-padding + .section-padding {
+  @apply -mt-14 md:-mt-16 lg:-mt-24;
+}
+
 .brand-underline {
   height: 4px;
   width: 88px;

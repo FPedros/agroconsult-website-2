@@ -108,8 +108,8 @@ const followLinks = [
   },
   {
     label: "LinkedIn",
-    detail: "/fernando-sousa-05b2a0258",
-    href: "https://www.linkedin.com/in/fernando-sousa-05b2a0258/",
+    detail: "/agroconsult",
+    href: "https://www.linkedin.com/company/agroconsult/posts/?feedView=all",
     icon: <Linkedin size={20} />
   },
   {
@@ -214,9 +214,11 @@ function Pillars() {
     "/palestras/palestra-5.webp",
     "/palestras/palestra-6.webp"
   ];
+  const slideStep = 4;
+  const slideDuration = talkImages.length * slideStep;
 
   return (
-    <section className="bg-white py-16 md:py-20 lg:py-28">
+    <section className="section-padding bg-white mb-14 md:mb-16 lg:mb-24">
       <div className={styles.sectionContainer}>
         <div className="relative min-h-[520px] overflow-hidden rounded-[32px] bg-brand-navy text-white shadow-panel md:min-h-[620px]">
           <div className="absolute inset-0">
@@ -227,7 +229,7 @@ function Pillars() {
                 alt=""
                 aria-hidden="true"
                 className="palestras-slide absolute inset-0 h-full w-full object-cover"
-                style={{ animationDelay: `${idx * 4}s` }}
+                style={{ animationDelay: `${idx * slideStep}s`, animationDuration: `${slideDuration}s` }}
                 loading={idx === 0 ? "eager" : "lazy"}
                 decoding="async"
               />
@@ -239,23 +241,23 @@ function Pillars() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/90 via-brand-navy/60 to-brand-navy/90" aria-hidden />
 
-          <div className="relative z-10 grid gap-8 px-6 py-14 md:px-10 md:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-20">
-            <div className="space-y-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">Palestras Agroconsult</p>
-              <h2 className="text-3xl font-bold leading-[1.05] text-white drop-shadow-[0_0_28px_rgba(120,255,210,0.6)] sm:text-4xl lg:text-5xl">
+          <div className="relative z-10 flex min-h-[520px] items-center justify-center px-6 py-14 md:min-h-[620px] md:px-10 md:py-16 lg:py-20">
+            <div className="max-w-4xl space-y-6 text-center">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/80">Palestras Agroconsult</p>
+              <h2 className="text-4xl font-bold leading-[1.03] text-white drop-shadow-[0_0_32px_rgba(120,255,210,0.75)] sm:text-5xl lg:text-6xl">
                 Conteudo que inspira decisoes no agro
               </h2>
               <div className="space-y-3">
-                <p className="text-base text-white/85 sm:text-lg">
+                <p className="text-lg text-white/90 sm:text-xl">
                   Apresentacoes executivas, paineis e workshops desenhados para conselhos, liderancas comerciais e
                   times operacionais.
                 </p>
-                <p className="text-sm text-white/75 sm:text-base">
+                <p className="text-base text-white/80 sm:text-lg">
                   Dados proprietarios, leitura de mercado e inteligencia de safra para acelerar resultados e apoiar
                   decisoes de alto impacto.
                 </p>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap justify-center gap-2">
                 {talkTags.map((tag) => (
                   <span
                     key={tag}
@@ -265,26 +267,15 @@ function Pillars() {
                   </span>
                 ))}
               </div>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap justify-center gap-3">
                 <Link to="/palestras" className="btn-primary" {...talksHover}>
                   Ver palestras
                   <ArrowRight size={16} />
                 </Link>
-                <a href="mailto:agroconsult@agroconsult.com.br" className="btn-ghost">
-                  Agendar palestra
-                </a>
+              <a href="#contato" className="btn-ghost">
+                Agendar palestra
+              </a>
               </div>
-            </div>
-
-            <div className="hidden lg:flex flex-col gap-3">
-              {["Keynotes estrategicos", "Workshops in-company", "Paineis moderados"].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-semibold text-white/90 backdrop-blur"
-                >
-                  {item}
-                </div>
-              ))}
             </div>
           </div>
         </div>
@@ -417,14 +408,16 @@ function ProductsPreview() {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 text-white/85">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em]">
-            <ChevronDown size={16} className="animate-bounce text-white" />
-            Continue descendo para ver as plataformas
+        <div className="relative py-6">
+          <div className="flex flex-wrap items-center justify-between gap-3 text-white/85 -translate-y-4">
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em]">
+              <ChevronDown size={16} className="animate-bounce text-white" />
+              Continue descendo para ver as plataformas
+            </div>
+            <Link to="/produtos" className="btn-primary" {...spotlightHover}>
+              Ver portfólio completo
+            </Link>
           </div>
-          <Link to="/produtos" className="btn-primary" {...spotlightHover}>
-            Ver portfólio completo
-          </Link>
         </div>
       </div>
     </section>
@@ -747,8 +740,8 @@ function ContactSocialSection() {
   const contactPrimaryHover = usePrimaryGradientHover();
 
   return (
-    <section id="contato" className="bg-brand-gradient">
-      <div className="page-container py-10">
+    <section id="contato" className="section-padding bg-brand-gradient">
+      <div className="page-container">
         <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <aside className="text-white" aria-labelledby="follow-title">
             <div className="space-y-4">
@@ -889,4 +882,8 @@ export default function Home() {
     </div>
   );
 }
+
+
+
+
 
