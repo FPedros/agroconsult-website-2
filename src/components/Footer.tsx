@@ -44,15 +44,14 @@ export function Footer() {
     <footer id="site-footer" className="border-t border-brand-gray/20 bg-white/95 backdrop-blur">
       <div className="bg-white/95">
         <div className="page-container grid gap-8 py-8 md:grid-cols-[1.1fr_1fr] md:items-start">
-          <div className="flex w-full flex-col items-start gap-4">
+          <div className="flex w-full flex-col items-center gap-4 text-center md:items-start md:text-left">
             <img
               src="/images/logo-colorida.png"
               alt="Logotipo"
               className="h-12 w-auto max-w-[240px] object-contain"
             />
             <div>
-              
-              <div className="mt-3 flex flex-wrap items-center gap-3 text-slate-700">
+              <div className="mt-3 flex flex-wrap items-center justify-center gap-3 text-slate-700 md:justify-start">
                 {socialLinks.map((item) => (
                   <a
                     key={item.label}
