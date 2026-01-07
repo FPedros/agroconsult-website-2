@@ -134,6 +134,16 @@ function Hero() {
     setShowSelo(true);
   }, []);
 
+  const scrollToContact = () => {
+    const contact = document.getElementById("contato");
+    if (contact) contact.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollToNext = () => {
+    const nextSection = document.getElementById("expertise");
+    if (nextSection) nextSection.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section
       id="hero"
@@ -174,55 +184,109 @@ function Hero() {
             Conheça Nossas Soluções
             <ArrowRight size={16} />
           </Link>
-          <a href="mailto:contato@agroconsult.com.br" className="btn-ghost">
+          <button type="button" onClick={scrollToContact} className="btn-ghost">
             Falar com Especialista
-          </a>
+          </button>
         </div>
       </div>
-      <div className="pointer-events-none absolute bottom-6 left-1/2 z-10 -translate-x-1/2 flex items-center justify-center">
-        <ChevronDown size={20} className="animate-bounce text-white drop-shadow" />
+      <div className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 flex items-center justify-center">
+        <button
+          type="button"
+          onClick={scrollToNext}
+          className="rounded-full border border-white/40 bg-white/10 p-2 text-white transition hover:-translate-y-0.5 hover:bg-white/20"
+          aria-label="Ir para a proxima secao"
+        >
+          <ChevronDown size={20} className="animate-bounce drop-shadow" />
+        </button>
       </div>
     </section>
   );
 }
 
 function Pillars() {
-  const pillars = [
-    {
-      title: "Séries proprietárias",
-      description: "Dados auditados, comparáveis por microrregião e históricos que fundamentam cada decisão."
-    },
-    {
-      title: "Presença em campo",
-      description: "Protocolos de coleta, entrevistas e medições em todas as fronteiras agrícolas brasileiras."
-    },
-    {
-      title: "Estratégia acionável",
-      description: "Planejamento comercial, originação e hedge com cenários construídos junto aos times do cliente."
-    }
+  const talksHover = usePrimaryGradientHover();
+  const talkTags = ["Safras e mercados", "Estrategia comercial", "ESG e governanca", "Tecnologia e dados"];
+  const talkImages = [
+    "/palestras/palestra-1.webp",
+    "/palestras/palestra-2.webp",
+    "/palestras/palestra-3.webp",
+    "/palestras/palestra-4.webp",
+    "/palestras/palestra-5.webp",
+    "/palestras/palestra-6.webp"
   ];
 
   return (
-    <section className="section-padding bg-gradient-to-b from-white via-brand-light/30 to-white">
+    <section className="bg-white py-16 md:py-20 lg:py-28">
       <div className={styles.sectionContainer}>
-        <div className="space-y-3">
-          <p className={styles.eyebrow}>Como entregamos confiança</p>
-          <h2 className={styles.title}>Metodologia própria do satélite ao campo</h2>
-          <p className={`${styles.body} max-w-4xl`}>
-            Tecnologia, análises e validação presencial convergem para entregar velocidade, precisão e governança.
-          </p>
-        </div>
+        <div className="relative min-h-[520px] overflow-hidden rounded-[32px] bg-brand-navy text-white shadow-panel md:min-h-[620px]">
+          <div className="absolute inset-0">
+            {talkImages.map((src, idx) => (
+              <img
+                key={src}
+                src={src}
+                alt=""
+                aria-hidden="true"
+                className="palestras-slide absolute inset-0 h-full w-full object-cover"
+                style={{ animationDelay: `${idx * 4}s` }}
+                loading={idx === 0 ? "eager" : "lazy"}
+                decoding="async"
+              />
+            ))}
+          </div>
+          <div
+            className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,135,71,0.45),_transparent_60%)]"
+            aria-hidden
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/90 via-brand-navy/60 to-brand-navy/90" aria-hidden />
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {pillars.map((item) => (
-            <div
-              key={item.title}
-              className="group space-y-2 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1 hover:bg-gradient-to-r hover:from-brand-navy hover:via-brand-navy hover:to-brand-green hover:shadow-md hover:ring-brand-green/40"
-            >
-              <h3 className="text-lg font-bold text-brand-navy transition group-hover:text-white">{item.title}</h3>
-              <p className="text-sm text-slate-700 transition group-hover:text-white/90">{item.description}</p>
+          <div className="relative z-10 grid gap-8 px-6 py-14 md:px-10 md:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-20">
+            <div className="space-y-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">Palestras Agroconsult</p>
+              <h2 className="text-3xl font-bold leading-[1.05] text-white drop-shadow-[0_0_28px_rgba(120,255,210,0.6)] sm:text-4xl lg:text-5xl">
+                Conteudo que inspira decisoes no agro
+              </h2>
+              <div className="space-y-3">
+                <p className="text-base text-white/85 sm:text-lg">
+                  Apresentacoes executivas, paineis e workshops desenhados para conselhos, liderancas comerciais e
+                  times operacionais.
+                </p>
+                <p className="text-sm text-white/75 sm:text-base">
+                  Dados proprietarios, leitura de mercado e inteligencia de safra para acelerar resultados e apoiar
+                  decisoes de alto impacto.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {talkTags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-white/15 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-white backdrop-blur"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Link to="/palestras" className="btn-primary" {...talksHover}>
+                  Ver palestras
+                  <ArrowRight size={16} />
+                </Link>
+                <a href="mailto:agroconsult@agroconsult.com.br" className="btn-ghost">
+                  Agendar palestra
+                </a>
+              </div>
             </div>
-          ))}
+
+            <div className="hidden lg:flex flex-col gap-3">
+              {["Keynotes estrategicos", "Workshops in-company", "Paineis moderados"].map((item) => (
+                <div
+                  key={item}
+                  className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-semibold text-white/90 backdrop-blur"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -258,7 +322,7 @@ function Expertise() {
   ];
 
   return (
-    <section className="section-padding bg-white">
+    <section id="expertise" className="section-padding bg-white">
       <div className={styles.sectionContainer}>
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div className="space-y-4">
@@ -825,3 +889,4 @@ export default function Home() {
     </div>
   );
 }
+
