@@ -49,7 +49,7 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const headerSolid = scrolled || open;
+  const headerSolid = scrolled || open || location.pathname === "/politica-de-privacidade";
   const linkBase = headerSolid ? "text-brand-navy hover:text-brand-green" : "text-white hover:text-brand-green";
   const activeClass =
     (headerSolid ? "text-brand-green" : "text-white") +

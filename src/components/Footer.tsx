@@ -75,7 +75,6 @@ export function Footer() {
               <Link to="/produtos" className="transition hover:text-brand-green">Produtos</Link>
               <Link to="/palestras" className="transition hover:text-brand-green">Palestras</Link>
               <Link to="/quem-somos" className="transition hover:text-brand-green">Quem somos</Link>
-              <Link to="/politica-de-privacidade" className="transition hover:text-brand-green">Politica de Privacidade</Link>
             </nav>
           </div>
         </div>
