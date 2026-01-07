@@ -68,9 +68,6 @@ export default function Palestras() {
                 Agendar palestra
                 <ArrowRight size={16} />
               </a>
-              <Link to="/produtos" className="btn-secondary">
-                Conhecer solucoes
-              </Link>
             </div>
           </div>
           <div className="lg:w-2/5">
@@ -106,13 +103,13 @@ export default function Palestras() {
             </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 grid-cols-2 lg:grid-cols-3">
             {speakers.map((speaker) => (
               <div
                 key={speaker.name}
                 className="group rounded-3xl bg-white shadow-panel ring-1 ring-slate-100 transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className="relative mx-auto mt-4 h-48 w-48 overflow-hidden rounded-full">
+                <div className="relative mx-auto mt-4 w-2/3 max-w-[200px] aspect-square overflow-hidden rounded-full">
                   <img
                     src={speaker.photo}
                     alt={speaker.name}
@@ -125,9 +122,9 @@ export default function Palestras() {
                   />
                 </div>
                 <div className="space-y-1 p-4 text-center">
-                  <p className="text-sm font-semibold uppercase tracking-[0.12em] text-brand-green">{speaker.role}</p>
-                  <h3 className="text-lg font-bold text-brand-navy">{speaker.name}</h3>
-                  <p className="text-sm text-slate-700">{speaker.bio}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-green sm:text-sm">{speaker.role}</p>
+                  <h3 className="text-base font-bold text-brand-navy sm:text-lg">{speaker.name}</h3>
+                  <p className="text-xs text-slate-700 sm:text-sm">{speaker.bio}</p>
                 </div>
               </div>
             ))}
