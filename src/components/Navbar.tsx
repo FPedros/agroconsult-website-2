@@ -7,8 +7,8 @@ import logoColorida from "/images/logo-colorida.png";
 
 const navItems = [
   { label: "Home", to: "/" },
-  { label: "Produtos", to: "/produtos" },
   { label: "Palestras", to: "/palestras" },
+  { label: "Produtos", to: "/produtos" },
   { label: "Quem somos", to: "/quem-somos" }
 ];
 
@@ -98,13 +98,6 @@ export function Navbar() {
               {item.label}
             </NavLink>
           ))}
-            <button
-              type="button"
-              onClick={scrollToContact}
-              className={`text-sm font-semibold transition-colors ${linkBase}`}
-            >
-              Contato
-            </button>
           </nav>
           <button type="button" onClick={scrollToContact} className="btn-primary" {...desktopPrimaryHover}>
             Fale com um especialista
@@ -145,17 +138,6 @@ export function Navbar() {
             ))}
           </nav>
           <div className="mt-4 flex flex-col gap-2">
-            <button
-              type="button"
-              onClick={() => {
-                scrollToContact();
-                close();
-              }}
-              className="btn-secondary justify-center"
-              aria-label="Ir para o contato"
-            >
-              Contato
-            </button>
             <button
               type="button"
               onClick={() => {
