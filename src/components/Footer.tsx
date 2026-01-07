@@ -19,7 +19,7 @@ const XIcon = () => (
 const socialLinks = [
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/fernando-sousa-05b2a0258/",
+    href: "https://www.linkedin.com/company/agroconsult/posts/?feedView=all",
     icon: <Linkedin size={18} />
   },
   {

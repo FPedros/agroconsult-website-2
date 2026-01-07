@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ArrowRight, Mic } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
@@ -44,6 +45,10 @@ const speakers = [
 export default function Palestras() {
   const ctaHover = usePrimaryGradientHover();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="bg-white">
       <section className="relative overflow-hidden bg-brand-gradient pt-24 text-white lg:pt-28">
@@ -64,10 +69,10 @@ export default function Palestras() {
               ))}
             </div>
             <div className="flex flex-wrap gap-3">
-              <a href="mailto:agroconsult@agroconsult.com.br" className="btn-primary" {...ctaHover}>
+              <Link to="/#contato" className="btn-primary" {...ctaHover}>
                 Agendar palestra
                 <ArrowRight size={16} />
-              </a>
+              </Link>
             </div>
           </div>
           <div className="lg:w-2/5">
