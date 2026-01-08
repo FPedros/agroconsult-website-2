@@ -81,10 +81,10 @@ export function Footer() {
       </div>
       <div className="bg-brand-navy text-center text-xs text-white/80">
         <div className="page-container flex flex-wrap items-center justify-center gap-2 py-3">
-          <span>Todos os direitos reservados.</span>
           <Link to="/politica-de-privacidade" className="underline underline-offset-4 hover:text-brand-green">
             Política de Privacidade
           </Link>
+          <span>Todos os direitos reservados.</span>
         </div>
       </div>
     </footer>

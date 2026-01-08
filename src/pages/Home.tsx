@@ -135,8 +135,8 @@ function Hero() {
   }, []);
 
   const scrollToContact = () => {
-    const contact = document.getElementById("contato");
-    if (contact) contact.scrollIntoView({ behavior: "smooth" });
+    const target = document.getElementById("contato-form") || document.getElementById("contato");
+    if (target) target.scrollIntoView({ behavior: "smooth" });
   };
 
   const scrollToNext = () => {
@@ -218,8 +218,8 @@ function Pillars() {
   const slideDuration = talkImages.length * slideStep;
 
   const scrollToContact = () => {
-    const contact = document.getElementById("contato");
-    if (contact) contact.scrollIntoView({ behavior: "smooth" });
+    const target = document.getElementById("contato-form") || document.getElementById("contato");
+    if (target) target.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -414,7 +414,7 @@ function ProductsPreview() {
         </div>
 
         <div className="relative py-6">
-          <div className="flex flex-wrap items-center justify-between gap-3 text-white/85 -translate-y-4">
+          <div className="flex flex-col-reverse items-center gap-3 text-white/85 -translate-y-4 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em]">
               <ChevronDown size={16} className="animate-bounce text-white" />
               Continue descendo para ver as plataformas
@@ -800,7 +800,7 @@ function ContactSocialSection() {
             </div>
           </aside>
 
-          <div className="relative w-full overflow-hidden rounded-2xl bg-white/12 p-6 shadow-xl ring-1 ring-white/20 backdrop-blur">
+          <div id="contato-form" className="relative w-full overflow-hidden rounded-2xl bg-white/12 p-6 shadow-xl ring-1 ring-white/20 backdrop-blur">
             <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-brand-green/10 blur-3xl" aria-hidden />
             <div className="absolute -left-6 bottom-10 h-20 w-20 rounded-full bg-brand-navy/10 blur-3xl" aria-hidden />
 
@@ -887,7 +887,4 @@ export default function Home() {
     </div>
   );
 }
-
-
-
 
