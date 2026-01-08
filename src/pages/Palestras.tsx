@@ -69,7 +69,7 @@ export default function Palestras() {
               ))}
             </div>
             <div className="flex flex-wrap gap-3">
-              <Link to="/#contato" className="btn-primary" {...ctaHover}>
+              <Link to="/#contato-form" className="btn-primary" {...ctaHover}>
                 Agendar palestra
                 <ArrowRight size={16} />
               </Link>

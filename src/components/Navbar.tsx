@@ -37,15 +37,15 @@ export function Navbar() {
     };
 
   const scrollToContact = () => {
-    const contact = document.getElementById("contato");
-    if (contact) {
-      contact.scrollIntoView({ behavior: "smooth" });
+    const target = document.getElementById("contato-form") || document.getElementById("contato");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
       return;
     }
     if (location.pathname !== "/") {
       navigate("/");
       setTimeout(() => {
-        const target = document.getElementById("contato");
+        const target = document.getElementById("contato-form") || document.getElementById("contato");
         if (target) target.scrollIntoView({ behavior: "smooth" });
       }, 150);
     }

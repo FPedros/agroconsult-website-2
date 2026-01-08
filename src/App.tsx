@@ -22,7 +22,13 @@ function ScrollToHash() {
     const tryScroll = () => {
       const target = document.getElementById(id);
       if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
+        if (id === "contato-form" && window.innerWidth >= 1024) {
+          const rect = target.getBoundingClientRect();
+          const top = window.scrollY + rect.top - (window.innerHeight - rect.height) / 2;
+          window.scrollTo({ top: Math.max(top, 0), behavior: "smooth" });
+        } else {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
         return true;
       }
       return false;
