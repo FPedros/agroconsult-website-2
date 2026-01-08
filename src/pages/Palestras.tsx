@@ -51,9 +51,9 @@ export default function Palestras() {
 
   return (
     <div className="bg-white">
-      <section className="relative overflow-hidden bg-brand-gradient pt-24 text-white lg:pt-28">
+      <section className="relative overflow-hidden bg-brand-gradient pt-12 text-white md:pt-24 lg:pt-20">
         <div className="absolute inset-0 bg-brand-radial opacity-25" />
-        <div className="page-container relative flex flex-col gap-6 py-16 lg:flex-row lg:items-center lg:py-20">
+        <div className="page-container relative flex flex-col gap-6 pt-8 pb-16 md:py-16 lg:flex-row lg:items-center lg:pt-12 lg:pb-20">
           <div className="space-y-4 lg:w-3/5">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">Palestras</p>
             <h1 className="text-3xl font-bold leading-tight lg:text-4xl">Conteúdo que inspira decisões no agro</h1>

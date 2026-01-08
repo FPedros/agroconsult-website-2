@@ -235,7 +235,7 @@ const trainingCards: ProductCardData[] = [
 ];
 
 const sectionTitleClass =
-  "relative inline-block pb-3 text-3xl font-bold leading-tight tracking-tight text-brand-navy sm:text-4xl lg:text-5xl after:absolute after:bottom-0 after:left-0 after:h-1.5 after:w-16 after:rounded-full after:bg-brand-gradient after:content-['']";
+  "relative inline-block pb-2 text-[clamp(0.85rem,4.2vw,1.6rem)] font-bold leading-tight tracking-tight text-brand-navy whitespace-nowrap sm:pb-3 sm:text-4xl lg:text-5xl after:absolute after:bottom-0 after:left-0 after:h-1.5 after:w-16 after:rounded-full after:bg-brand-gradient after:content-['']";
 
 const cardGridClass = (count: number) => {
   if (count <= 1) return "grid gap-4";
@@ -298,17 +298,17 @@ function ProductSection({
   return (
     <section
       id={id}
-      className="section-padding bg-white scroll-mt-40 lg:scroll-mt-48"
+      className="section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
       aria-labelledby={`${id}-title`}
     >
-      <div className="page-container space-y-6">
-        <div className="sticky top-40 z-20 lg:top-48" data-section-title={id}>
+      <div className="page-container space-y-4 sm:space-y-6">
+        <div className="sticky top-32 z-20 md:top-40 lg:top-48" data-section-title={id}>
           <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
             <div
-              className="pointer-events-none absolute left-0 right-0 -top-12 h-12 bg-white lg:-top-20 lg:h-20"
+              className="pointer-events-none absolute left-0 right-0 -top-8 h-8 bg-white md:-top-12 md:h-12 lg:-top-20 lg:h-20"
               aria-hidden="true"
             />
-            <div className="page-container py-2">
+            <div className="page-container py-3 sm:py-2">
               <h2 id={`${id}-title`} className={titleClassName}>
                 {title}
               </h2>
@@ -335,11 +335,13 @@ export default function Products() {
   const ctaHover = usePrimaryGradientHover();
   const activeSectionRef = useRef<string | null>(null);
   const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
+  const navRef = useRef<HTMLDivElement | null>(null);
+  const navItemRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
   useEffect(() => {
     let frame = 0;
-    const getOffset = () => (window.innerWidth >= 1024 ? 192 : 160);
-    const getLead = () => (window.innerWidth >= 1024 ? 96 : 72);
+    const getOffset = () => (window.innerWidth >= 1024 ? 192 : 128);
+    const getLead = () => (window.innerWidth >= 1024 ? 96 : 64);
     const updateActive = () => {
       frame = 0;
       const offset = getOffset();
@@ -375,6 +377,27 @@ export default function Products() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!activeSectionId) return;
+    const nav = navRef.current;
+    const activeItem = navItemRefs.current[activeSectionId];
+    if (!nav || !activeItem) return;
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      nav.scrollTo({ left: Math.max(activeItem.offsetLeft - 24, 0), behavior: "smooth" });
+      return;
+    }
+    const navRect = nav.getBoundingClientRect();
+    const itemRect = activeItem.getBoundingClientRect();
+    const leftOverflow = itemRect.left - navRect.left;
+    const rightOverflow = itemRect.right - navRect.right;
+    if (leftOverflow < 0) {
+      nav.scrollBy({ left: leftOverflow - 12, behavior: "smooth" });
+    } else if (rightOverflow > 0) {
+      nav.scrollBy({ left: rightOverflow + 12, behavior: "smooth" });
+    }
+  }, [activeSectionId]);
+
   const scrollToCategories = () => {
     const target = document.getElementById("categorias");
     if (target) {
@@ -384,7 +407,7 @@ export default function Products() {
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (!section) return;
-    const offset = window.innerWidth >= 1024 ? 192 : 160;
+    const offset = window.innerWidth >= 1024 ? 192 : 128;
     let top = section.offsetTop - offset;
     const sectionIndex = sectionOrder.indexOf(sectionId);
     if (sectionIndex > 0) {
@@ -404,11 +427,12 @@ export default function Products() {
   return (
     <div className="relative bg-white">
       <div className="relative">
-        <section className="relative overflow-hidden bg-brand-gradient pt-24 text-white lg:pt-32">
+        <section className="relative overflow-hidden bg-brand-gradient pt-12 text-white md:pt-24 lg:pt-20">
         <div className="absolute inset-0 bg-brand-radial opacity-25" aria-hidden="true" />
-        <div className="page-container relative flex flex-col gap-6 pt-6 pb-16 lg:pt-10 lg:pb-20">
+        <div className="page-container relative flex flex-col gap-6 pt-8 pb-16 md:py-16 lg:flex-row lg:items-center lg:pt-12 lg:pb-20">
           <div className="space-y-4">
-            <h1 className="text-3xl font-bold leading-tight lg:text-4xl">Produtos e soluções</h1>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">Produtos</p>
+            <h1 className="text-3xl font-bold leading-tight lg:text-4xl">Soluções Agroconsult</h1>
             <p className="max-w-3xl text-base text-white/85 lg:text-lg">
               Inteligência e entregas para decisões estratégicas no agro - do dado ao projeto sob medida.
             </p>
@@ -433,11 +457,12 @@ export default function Products() {
 
       <section
         id="categorias"
-        className="border-y border-brand-gray/20 bg-white lg:sticky lg:top-20 lg:z-30"
+        className="border-y border-brand-gray/20 bg-white sticky top-16 z-30 md:top-20 lg:top-20"
       >
         <div className="page-container">
           <nav
-            className="flex gap-2 overflow-x-auto py-4 pr-2 lg:justify-center lg:overflow-visible"
+            ref={navRef}
+            className="flex gap-2 overflow-x-auto py-4 pr-2 pl-3 lg:justify-center lg:overflow-visible"
             aria-label="Categorias de produtos"
           >
               {anchorItems.map((item) => {
@@ -446,6 +471,9 @@ export default function Products() {
                   <a
                     key={item.id}
                     href={`#${item.id}`}
+                    ref={(node) => {
+                      navItemRefs.current[item.id] = node;
+                    }}
                     onClick={(event) => {
                       event.preventDefault();
                       scrollToSection(item.id);

@@ -191,7 +191,7 @@ const rights = [
 
 export default function PoliticaPrivacidade() {
   return (
-    <div className="min-h-screen bg-white/90 pb-16 pt-28">
+    <div className="min-h-screen bg-white/90 pb-16 pt-14 md:pt-28">
       <div className="page-container max-w-5xl space-y-10">
         <header className="space-y-2 text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gray">Privacidade</p>
