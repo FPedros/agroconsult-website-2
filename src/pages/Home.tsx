@@ -194,7 +194,7 @@ function Hero() {
           type="button"
           onClick={scrollToNext}
           className="rounded-full border border-white/40 bg-white/10 p-2 text-white transition hover:-translate-y-0.5 hover:bg-white/20"
-          aria-label="Ir para a proxima secao"
+          aria-label="Ir para a próxima seção"
         >
           <ChevronDown size={20} className="animate-bounce drop-shadow" />
         </button>
@@ -205,7 +205,7 @@ function Hero() {
 
 function Pillars() {
   const talksHover = usePrimaryGradientHover();
-  const talkTags = ["Safras e mercados", "Estrategia comercial", "ESG e governanca", "Tecnologia e dados"];
+  const talkTags = ["Safras e mercados", "Estratégia comercial", "ESG e governança", "Tecnologia e dados"];
   const talkImages = [
     "/palestras/palestra-1.webp",
     "/palestras/palestra-2.webp",
@@ -250,16 +250,16 @@ function Pillars() {
             <div className="max-w-4xl space-y-6 text-center">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/80">Palestras Agroconsult</p>
               <h2 className="text-4xl font-bold leading-[1.03] text-white drop-shadow-[0_0_32px_rgba(120,255,210,0.75)] sm:text-5xl lg:text-6xl">
-                Conteudo que inspira decisoes no agro
+                Conteúdo que inspira decisões no agro
               </h2>
               <div className="space-y-3">
                 <p className="text-lg text-white/90 sm:text-xl">
-                  Apresentacoes executivas, paineis e workshops desenhados para conselhos, liderancas comerciais e
+                  Apresentações executivas, painéis e workshops desenhados para conselhos, lideranças comerciais e
                   times operacionais.
                 </p>
                 <p className="text-base text-white/80 sm:text-lg">
-                  Dados proprietarios, leitura de mercado e inteligencia de safra para acelerar resultados e apoiar
-                  decisoes de alto impacto.
+                  Dados proprietários, leitura de mercado e inteligência de safra para acelerar resultados e apoiar
+                  decisões de alto impacto.
                 </p>
               </div>
               <div className="hidden grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center">
@@ -694,10 +694,10 @@ function BDOnlineEmbed() {
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="space-y-2">
             <p className={styles.eyebrow}>BD Online</p>
-            <h2 className={styles.title}>Dados proprietarios para decisoes em tempo real</h2>
+            <h2 className={styles.title}>Dados proprietários para decisões em tempo real</h2>
             <p className={`${styles.body} max-w-3xl`}>
-              Explore dashboards, analises e relatorios exclusivos do BD Online: curva de producao, rentabilidade,
-              precos, oferta e demanda para todo o agro brasileiro.
+              Explore dashboards, análises e relatórios exclusivos do BD Online: curva de produção, rentabilidade,
+              preços, oferta e demanda para todo o agro brasileiro.
             </p>
           </div>
           <div className="hidden 2xl:block">
@@ -717,7 +717,7 @@ function BDOnlineEmbed() {
           <div className="relative h-[480px] w-full">
             <img
               src="/images/bd-online-previaw.png"
-              alt="Previa do BD Online Agroconsult"
+              alt="Prévia do BD Online Agroconsult"
               className="absolute inset-0 h-full w-full object-cover"
               loading="lazy"
             />
@@ -754,7 +754,7 @@ function ContactSocialSection() {
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">Redes sociais</p>
                 <h4 id="follow-title" className="text-2xl font-semibold">Siga a Agroconsult</h4>
                 <p className="text-sm text-white/75">
-                  Conteudo oficial, bastidores dos projetos e novidades em tempo real. Escolha sua rede favorita e acompanhe a Agroconsult.
+                  Conteúdo oficial, bastidores dos projetos e novidades em tempo real. Escolha sua rede favorita e acompanhe a Agroconsult.
                 </p>
               </div>
 
@@ -827,7 +827,7 @@ function ContactSocialSection() {
                     <option value="imprensa">Imprensa</option>
                     <option value="projetos">Projetos</option>
                     <option value="consultoria">Consultoria</option>
-                    <option value="avaliacao-patrimonial">Avaliacao Patrimonial</option>
+                    <option value="avaliacao-patrimonial">Avaliação Patrimonial</option>
                     <option value="rally-da-safra">Rally da Safra</option>
                   </select>
                 </label>
@@ -850,7 +850,7 @@ function ContactSocialSection() {
                     name="mensagem"
                     rows={4}
                     required
-                    placeholder="Conte rapidamente o que voce precisa."
+                    placeholder="Conte rapidamente o que você precisa."
                     className="resize-none rounded-xl border border-white/30 bg-white/80 px-3 py-2 text-sm text-brand-navy outline-none transition focus:border-brand-green placeholder:text-slate-500"
                   />
                 </label>
@@ -887,7 +887,6 @@ export default function Home() {
     </div>
   );
 }
-
 
 
 

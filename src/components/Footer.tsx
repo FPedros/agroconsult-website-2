@@ -83,7 +83,7 @@ export function Footer() {
         <div className="page-container flex flex-wrap items-center justify-center gap-2 py-3">
           <span>Todos os direitos reservados.</span>
           <Link to="/politica-de-privacidade" className="underline underline-offset-4 hover:text-brand-green">
-            Politica de Privacidade
+            Política de Privacidade
           </Link>
         </div>
       </div>

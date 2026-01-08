@@ -16,8 +16,8 @@ const anchorItems = [
   { id: "dados-api", label: "Dados & API" },
   { id: "projetos", label: "Projetos" },
   { id: "rally", label: "Rally da Safra" },
-  { id: "agricontent", label: "Conteudo (AgriContent)" },
-  { id: "valoracao", label: "Valoracao (Agrovalora / Agroterra)" },
+  { id: "agricontent", label: "Conteúdo (AgriContent)" },
+  { id: "valoracao", label: "Valoração (Agrovalora / Agroterra)" },
   { id: "treinamentos", label: "Treinamentos & Palestras" }
 ];
 
@@ -25,124 +25,124 @@ const sectionOrder = anchorItems.map((item) => item.id);
 
 const whyItems = [
   "Imparcialidade",
-  "Fontes distintas + validacao cruzada",
-  "Metodologia clara (hipoteses -> premissas -> cenarios -> recomendacoes)",
+  "Fontes distintas + validação cruzada",
+  "Metodologia clara (hipóteses -> premissas -> cenários -> recomendações)",
   "Entregas adaptadas ao contexto do cliente"
 ];
 
 const consultoriaCards: ProductCardData[] = [
   {
     title: "AgroMarket (mensal)",
-    tagline: "Leitura do cenario e projecao D+1 das commodities para decisoes mais rapidas e seguras.",
+    tagline: "Leitura do cenário e projeção D+1 das commodities para decisões mais rápidas e seguras.",
     bullets: [
-      "Tendencia da proxima safra e fatos atuais das principais commodities",
-      "Rentabilidade e visao financeira do produtor",
-      "Relacao de troca e dinamica do mercado de insumos"
+      "Tendência da próxima safra e fatos atuais das principais commodities",
+      "Rentabilidade e visão financeira do produtor",
+      "Relação de troca e dinâmica do mercado de insumos"
     ],
-    audience: "Industrias, tradings, bancos, insumos e areas comerciais"
+    audience: "Indústrias, tradings, bancos, insumos e áreas comerciais"
   },
   {
-    title: "Cenarios de Longo Prazo (5 anos)",
-    tagline: "Planeje capacidade e investimento com projecoes traduzidas para o seu segmento.",
+    title: "Cenários de Longo Prazo (5 anos)",
+    tagline: "Planeje capacidade e investimento com projeções traduzidas para o seu segmento.",
     bullets: [
-      "Projecoes de area e producao (soja, milho, cana, cafe, algodao, trigo)",
-      "Consumo interno, exportacao e balancos (S&D global)",
-      "Base para plano plurianual, parcerias, logistica e capacidade instalada"
+      "Projeções de área e produção (soja, milho, cana, café, algodão, trigo)",
+      "Consumo interno, exportação e balanços (S&D global)",
+      "Base para plano plurianual, parcerias, logística e capacidade instalada"
     ],
-    audience: "Estrategia, investimento, logistica e credito"
+    audience: "Estratégia, investimento, logística e crédito"
   },
   {
-    title: "CRR - Custo, Rentabilidade e Relacao de Troca",
-    tagline: "Entenda margem e poder de compra para calibrar estrategia comercial.",
+    title: "CRR - Custo, Rentabilidade e Relação de Troca",
+    tagline: "Entenda margem e poder de compra para calibrar estratégia comercial.",
     bullets: [
-      "Rentabilidade por commodity e regiao",
-      "Relacao de troca e timing comercial",
+      "Rentabilidade por commodity e região",
+      "Relação de troca e timing comercial",
       "Direcionamento para ofertas e risco"
     ],
-    audience: "Comercial, inteligencia e financas"
+    audience: "Comercial, inteligência e finanças"
   },
   {
     title: "LATAM (Mercosul)",
-    tagline: "Visao Argentina e Paraguai para antecipar impactos no seu mercado.",
+    tagline: "Visão Argentina e Paraguai para antecipar impactos no seu mercado.",
     bullets: [
-      "Cenario atual e safra de graos no Mercosul",
-      "Fatos atuais e implicacoes competitivas",
-      "Apoio a leitura regional de oferta e demanda"
+      "Cenário atual e safra de grãos no Mercosul",
+      "Fatos atuais e implicações competitivas",
+      "Apoio à leitura regional de oferta e demanda"
     ],
-    audience: "Trading, industria, bancos e exportadores"
+    audience: "Trading, indústria, bancos e exportadores"
   },
   {
-    title: "Acompanhamento da Safra de Graos (quinzenal)",
-    tagline: "Plantio, desenvolvimento e colheita com leitura de risco e logistica.",
+    title: "Acompanhamento da Safra de Grãos (quinzenal)",
+    tagline: "Plantio, desenvolvimento e colheita com leitura de risco e logística.",
     bullets: [
-      "Consolidacao do plantio e riscos de producao",
-      "Tendencias de produtividade (clima, pragas e doencas)",
-      "Volume, sazonalidade e dinamica logistica da colheita"
+      "Consolidação do plantio e riscos de produção",
+      "Tendências de produtividade (clima, pragas e doenças)",
+      "Volume, sazonalidade e dinâmica logística da colheita"
     ],
-    audience: "Trading, logistica, industria e credito"
+    audience: "Trading, logística, indústria e crédito"
   },
   {
     title: "Acompanhamento da Safra de Cana (quinzenal)",
-    tagline: "Producao e competitividade (acucar/etanol) com visao operacional e de mercado.",
+    tagline: "Produção e competitividade (açúcar/etanol) com visão operacional e de mercado.",
     bullets: [
-      "Producao e exportacao de acucar",
-      "Producao e competitividade do etanol",
+      "Produção e exportação de açúcar",
+      "Produção e competitividade do etanol",
       "Colheita e esmagamento de cana"
     ],
-    audience: "Usinas, distribuidoras e credito"
+    audience: "Usinas, distribuidoras e crédito"
   },
   {
     title: "Consultoria - Fertilizantes",
-    tagline: "Dinamica por materia-prima para planejar suprimento e risco.",
+    tagline: "Dinâmica por matéria-prima para planejar suprimento e risco.",
     bullets: [
-      "Relacao de troca, estoques e sazonalidade",
-      "Dimensionamento do mercado por materia-prima",
+      "Relação de troca, estoques e sazonalidade",
+      "Dimensionamento do mercado por matéria-prima",
       "Mapeamento de riscos e oportunidades"
     ],
-    audience: "Industria, distribuicao, bancos e grandes produtores"
+    audience: "Indústria, distribuição, bancos e grandes produtores"
   },
   {
     title: "AgroSize Defensivos",
-    tagline: "Planejamento de portfolio e suprimento com leitura por cultura.",
+    tagline: "Planejamento de portfólio e suprimento com leitura por cultura.",
     bullets: [
       "Dimensionamento por classe de defensivos e por cultura",
-      "Acompanhamento quinzenal por cultura e possiveis movimentos de repique",
-      "Incidencia de pragas/doencas/insetos + sinais de resistencia"
+      "Acompanhamento quinzenal por cultura e possíveis movimentos de repique",
+      "Incidência de pragas/doenças/insetos + sinais de resistência"
     ],
-    audience: "Industria, distribuicao e inteligencia comercial"
+    audience: "Indústria, distribuição e inteligência comercial"
   }
 ];
 
 const dataCards: ProductCardData[] = [
   {
     title: "BD Online + API",
-    tagline: "Dados confiaveis, rapidos e integraveis para decisoes e ganho operacional.",
+    tagline: "Dados confiáveis, rápidos e integráveis para decisões e ganho operacional.",
     bullets: [
-      "Base historica + projecao D+1 (oferta x demanda, area, producao) por microrregiao",
-      "Acompanhamento regionalizado (graos e cana) + rentabilidade, projecoes e relacao de troca",
-      "API para integracao com sistemas internos e ganho operacional"
+      "Base histórica + projeção D+1 (oferta x demanda, área, produção) por microrregião",
+      "Acompanhamento regionalizado (grãos e cana) + rentabilidade, projeções e relação de troca",
+      "API para integração com sistemas internos e ganho operacional"
     ],
-    audience: "Inteligencia de mercado, BI, risco e times de dados"
+    audience: "Inteligência de mercado, BI, risco e times de dados"
   }
 ];
 
 const projectCases = [
-  "Dimensionamento de portos/terminais (area de influencia, demanda acessavel, capacidade)",
-  "Fertilizantes & infraestrutura (demanda, terminalizacao, importacao/distribuicao)",
-  "Benchmark de producao/rentabilidade (mix, timing compra/venda, gargalos de margem)",
-  "Abertura de novas areas (solo/clima, mercado proximo, escoamento)"
+  "Dimensionamento de portos/terminais (área de influência, demanda acessível, capacidade)",
+  "Fertilizantes & infraestrutura (demanda, terminalização, importação/distribuição)",
+  "Benchmark de produção/rentabilidade (mix, timing compra/venda, gargalos de margem)",
+  "Abertura de novas áreas (solo/clima, mercado próximo, escoamento)"
 ];
 
 const projectCards: ProductCardData[] = [
   {
     title: "Projetos (on-demand)",
-    tagline: "Estudos personalizados para decisoes estrategicas com criterio e validacao cruzada.",
+    tagline: "Estudos personalizados para decisões estratégicas com critério e validação cruzada.",
     bullets: [
-      "Escopo claro: objetivo -> hipoteses -> premissas -> cenarios -> recomendacoes",
-      "Varias fontes e analise cruzada para consistencia das premissas",
-      "Visao multidisciplinar dos elos da cadeia do agro"
+      "Escopo claro: objetivo -> hipóteses -> premissas -> cenários -> recomendações",
+      "Várias fontes e análise cruzada para consistência das premissas",
+      "Visão multidisciplinar dos elos da cadeia do agro"
     ],
-    audience: "Estrategia, investimento e expansao"
+    audience: "Estratégia, investimento e expansão"
   },
   {
     title: "Mini-casos",
@@ -156,11 +156,11 @@ const rallyCards: ProductCardData[] = [
     title: "Rally da Safra",
     tagline: "Dados de campo antecipados + relacionamento direto com produtores e stakeholders.",
     bullets: [
-      "Previsao mais assertiva e mais cedo (antes das origens oficiais)",
-      "Coleta de dados primarios na pratica (confiabilidade)",
+      "Previsão mais assertiva e mais cedo (antes das origens oficiais)",
+      "Coleta de dados primários na prática (confiabilidade)",
       "Visibilidade e relacionamento: eventos, imprensa, digital e campo"
     ],
-    audience: "Marcas que querem dados + posicionamento + geracao de demanda"
+    audience: "Marcas que querem dados + posicionamento + geração de demanda"
   }
 ];
 
@@ -168,69 +168,69 @@ const rallyCards: ProductCardData[] = [
 const agricontentCards: ProductCardData[] = [
   {
     title: "AgriContent",
-    tagline: "Conteudo tecnico com autoridade e lastro em dados, sem inflar o time interno.",
+    tagline: "Conteúdo técnico com autoridade e lastro em dados, sem inflar o time interno.",
     bullets: [
-      "Videos semanais com especialistas + producao completa (roteiro, gravacao, edicao, legendas)",
-      "Reels/shorts/posts/carrosseis educativos com cadencia",
-      "Conteudo ancorado em dados e analises de mercado"
+      "Vídeos semanais com especialistas + produção completa (roteiro, gravação, edição, legendas)",
+      "Reels/shorts/posts/carrosséis educativos com cadência",
+      "Conteúdo ancorado em dados e análises de mercado"
     ],
-    audience: "Marketing e comunicacao no agro"
+    audience: "Marketing e comunicação no agro"
   }
 ];
 
 const valoracaoCards: ProductCardData[] = [
   {
     title: "Agrovalora Premium/Plus",
-    tagline: "Laudo completo com analise critica para maxima confiabilidade.",
+    tagline: "Laudo completo com análise crítica para máxima confiabilidade.",
     bullets: [
-      "Analise documental (matriculas, CAR, SIGEF, sobreposicoes)",
-      "Risco climatico, potencial agronomico, declividade e solo por matricula",
+      "Análise documental (matrículas, CAR, SIGEF, sobreposições)",
+      "Risco climático, potencial agronômico, declividade e solo por matrícula",
       "Pesquisa de ofertas + mapas de apoio"
     ],
-    audience: "Credito, risco, compliance e investimento"
+    audience: "Crédito, risco, compliance e investimento"
   },
   {
     title: "Agrovalora Basic",
-    tagline: "Laudo automatizado para escala com padronizacao e agilidade.",
+    tagline: "Laudo automatizado para escala com padronização e agilidade.",
     bullets: [
-      "Uso e ocupacao da terra com algoritmo de analise",
-      "Analise socioambiental padrao",
+      "Uso e ocupação da terra com algoritmo de análise",
+      "Análise socioambiental padrão",
       "Clima/solo/declividade simplificados"
     ],
-    audience: "Operacoes que precisam padronizacao e velocidade"
+    audience: "Operações que precisam padronização e velocidade"
   },
   {
     title: "Agroterra",
-    tagline: "Dashboard do mercado de terras em nivel municipal com historico longo.",
+    tagline: "Dashboard do mercado de terras em nível municipal com histórico longo.",
     bullets: [
-      "Historico por classes de uso de terra",
-      "Base historica de 15 anos e ampla amostra de imoveis rurais",
-      "Potencial integracao com sistemas"
+      "Histórico por classes de uso de terra",
+      "Base histórica de 15 anos e ampla amostra de imóveis rurais",
+      "Potencial integração com sistemas"
     ],
-    audience: "Bancos, fundos, corretoras e estrategia de aquisicao"
+    audience: "Bancos, fundos, corretoras e estratégia de aquisição"
   }
 ];
 
 const trainingCards: ProductCardData[] = [
   {
     title: "Treinamentos Digitais (in-company)",
-    tagline: "Capacitacao em escala com padronizacao e flexibilidade.",
+    tagline: "Capacitação em escala com padronização e flexibilidade.",
     bullets: [
-      "Videos, quizzes e modulos organizados",
-      "Conteudo tecnico/estrategico (soja, milho, fertilizantes etc.)",
+      "Vídeos, quizzes e módulos organizados",
+      "Conteúdo técnico/estratégico (soja, milho, fertilizantes etc.)",
       "Qualifica discurso comercial e abordagem com o produtor"
     ],
-    audience: "Grandes equipes comerciais e tecnicas"
+    audience: "Grandes equipes comerciais e técnicas"
   },
   {
     title: "Palestras Avulsas",
-    tagline: "Alinhamento de cenario com especialistas e conteudo visual.",
+    tagline: "Alinhamento de cenário com especialistas e conteúdo visual.",
     bullets: [
-      "Curto e medio prazo com foco no negocio do cliente",
-      "Otimo para eventos e alinhamento interno",
-      "Reforco de confianca e autoridade tecnica"
+      "Curto e médio prazo com foco no negócio do cliente",
+      "Ótimo para eventos e alinhamento interno",
+      "Reforço de confiança e autoridade técnica"
     ],
-    audience: "Eventos, convencoes e lideranca"
+    audience: "Eventos, convenções e liderança"
   }
 ];
 
@@ -262,7 +262,7 @@ function ProductCard({ title, tagline, bullets, audience }: ProductCardData) {
       </ul>
       {audience && (
         <p className="text-sm text-brand-gray">
-          <span className="font-semibold uppercase tracking-[0.16em] text-brand-gray">Para quem e:</span>{" "}
+          <span className="font-semibold uppercase tracking-[0.16em] text-brand-gray">Para quem é:</span>{" "}
           <span className="font-semibold text-brand-navy">{audience}</span>
         </p>
       )}
@@ -406,11 +406,11 @@ export default function Products() {
       <div className="relative">
         <section className="relative overflow-hidden bg-brand-gradient pt-24 text-white lg:pt-32">
         <div className="absolute inset-0 bg-brand-radial opacity-25" aria-hidden="true" />
-        <div className="page-container relative flex flex-col gap-6 py-16 lg:py-20">
+        <div className="page-container relative flex flex-col gap-6 pt-6 pb-16 lg:pt-10 lg:pb-20">
           <div className="space-y-4">
-            <h1 className="text-3xl font-bold leading-tight lg:text-4xl">Produtos e solucoes</h1>
+            <h1 className="text-3xl font-bold leading-tight lg:text-4xl">Produtos e soluções</h1>
             <p className="max-w-3xl text-base text-white/85 lg:text-lg">
-              Inteligencia e entregas para decisoes estrategicas no agro - do dado ao projeto sob medida.
+              Inteligência e entregas para decisões estratégicas no agro - do dado ao projeto sob medida.
             </p>
             <div className="flex flex-wrap gap-2">
               {whyItems.map((item) => (
@@ -475,7 +475,7 @@ export default function Products() {
 
       <ProductSection
         id="dados-api"
-        title="Dados, Plataforma e Integracoes"
+        title="Dados, Plataforma e Integrações"
         cards={dataCards}
         isActive={activeSectionId === "dados-api"}
       />
@@ -496,14 +496,14 @@ export default function Products() {
 
       <ProductSection
         id="agricontent"
-        title="Conteudo e Comunicacao (AgriContent)"
+        title="Conteúdo e Comunicação (AgriContent)"
         cards={agricontentCards}
         isActive={activeSectionId === "agricontent"}
       />
 
       <ProductSection
         id="valoracao"
-        title="Valoracao e Mercado de Terras"
+        title="Valoração e Mercado de Terras"
         cards={valoracaoCards}
         isActive={activeSectionId === "valoracao"}
       />
@@ -524,7 +524,7 @@ export default function Products() {
                   <div className="space-y-2">
                     <h3 className="text-2xl font-bold leading-tight">Vamos escolher a entrega ideal para seu desafio?</h3>
                     <p className="text-sm text-white/85">
-                      Fale com o time Agroconsult e conecte inteligencia, dados e projetos sob medida.
+                      Fale com o time Agroconsult e conecte inteligência, dados e projetos sob medida.
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-3">

@@ -5,39 +5,39 @@ import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
 
 const speakers = [
   {
-    name: "Andre Pessoa",
-    role: "Estrategia e originacao",
-    bio: "Fundador da Agroconsult, referencia em estrategia comercial, hedge e decisoes de alto impacto.",
+    name: "André Pessôa",
+    role: "Estratégia e originação",
+    bio: "Fundador da Agroconsult, referência em estratégia comercial, hedge e decisões de alto impacto.",
     photo: "/authors/andre-pessoa.jpg"
   },
   {
-    name: "Andre Debastiani",
+    name: "André Debastiani",
     role: "Mercados e safras",
-    bio: "Especialista em monitoramento de safra, custos e tendencias de mercado para originacao.",
+    bio: "Especialista em monitoramento de safra, custos e tendências de mercado para originação.",
     photo: "/authors/andre-debastiani.jpg"
   },
   {
-    name: "Heloisa Melo",
+    name: "Heloísa Melo",
     role: "Clientes e sustentabilidade",
-    bio: "Conecta compliance, rastreabilidade e impacto para cadeias agro sustentaveis.",
+    bio: "Conecta compliance, rastreabilidade e impacto para cadeias agro sustentáveis.",
     photo: "/authors/heloisa-melo.jpg"
   },
   {
     name: "Adriano Lo Turco",
-    role: "Gestao de risco e comercializacao",
-    bio: "Combina precificacao, risco e inteligencia de mercado para suportar trading e originacao.",
+    role: "Gestão de risco e comercialização",
+    bio: "Combina precificação, risco e inteligência de mercado para suportar trading e originação.",
     photo: "/authors/adriano-lo-turco.jpg"
   },
   {
-    name: "Debora Simoes",
-    role: "ESG e governanca",
-    bio: "Lidera agendas de ESG, rastreabilidade e compliance socioambiental em cadeias agricolas.",
+    name: "Débora Simões",
+    role: "ESG e governança",
+    bio: "Lidera agendas de ESG, rastreabilidade e compliance socioambiental em cadeias agrícolas.",
     photo: "/authors/debora-simoes.jpg"
   },
   {
     name: "Cleber Vieira",
-    role: "Mercados e credito",
-    bio: "Estrutura estrategia financeira, risco e relacionamento com mercado de capitais.",
+    role: "Mercados e crédito",
+    bio: "Estrutura estratégia financeira, risco e relacionamento com mercado de capitais.",
     photo: "/authors/cleber-vieira.jpg"
   }
 ];
@@ -56,13 +56,13 @@ export default function Palestras() {
         <div className="page-container relative flex flex-col gap-6 py-16 lg:flex-row lg:items-center lg:py-20">
           <div className="space-y-4 lg:w-3/5">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">Palestras</p>
-            <h1 className="text-3xl font-bold leading-tight lg:text-4xl">Conteudo que inspira decisoes no agro</h1>
+            <h1 className="text-3xl font-bold leading-tight lg:text-4xl">Conteúdo que inspira decisões no agro</h1>
             <p className="text-base text-white/85">
-              Talks customizados com especialistas Agroconsult para conselhos, liderancas comerciais e times operacionais.
-              Tendencias de mercado, safras, ESG e estrategias para acelerar resultados.
+              Talks customizados com especialistas Agroconsult para conselhos, lideranças comerciais e times operacionais.
+              Tendências de mercado, safras, ESG e estratégias para acelerar resultados.
             </p>
             <div className="flex flex-wrap gap-2">
-              {["Safras e mercados", "Estrategia comercial", "ESG e governanca", "Tecnologia e dados"].map((tag) => (
+              {["Safras e mercados", "Estratégia comercial", "ESG e governança", "Tecnologia e dados"].map((tag) => (
                 <span key={tag} className="rounded-full bg-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-wide">
                   {tag}
                 </span>
@@ -83,8 +83,8 @@ export default function Palestras() {
               <div className="space-y-3 text-sm text-white/85">
                 {[
                   "Keynotes para eventos e conselhos",
-                  "Paineis moderados com especialistas",
-                  "Workshops in-company focados em acao",
+                  "Painéis moderados com especialistas",
+                  "Workshops in-company focados em ação",
                   "Talks executivos para clientes e parceiros"
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2">
@@ -104,7 +104,7 @@ export default function Palestras() {
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-gray">Especialistas</p>
             <h2 className="text-3xl font-semibold leading-tight text-brand-navy">Quem leva a Agroconsult ao palco</h2>
             <p className="text-base text-slate-700 md:text-lg">
-              Times que vivem campo, dados e estrategia para traduzir tendencias em acao.
+              Times que vivem campo, dados e estratégia para traduzir tendências em ação.
             </p>
           </div>
 
