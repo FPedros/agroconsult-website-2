@@ -16,8 +16,8 @@ const anchorItems = [
   { id: "dados-api", label: "Dados & API" },
   { id: "projetos", label: "Projetos" },
   { id: "rally", label: "Rally da Safra" },
-  { id: "agricontent", label: "Conteúdo (AgriContent)" },
-  { id: "valoracao", label: "Valoração (Agrovalora / Agroterra)" },
+  { id: "agricontent", label: "Comunicação" },
+  { id: "valoracao", label: "Avaliação de Ativos" },
   { id: "treinamentos", label: "Treinamentos & Palestras" }
 ];
 
@@ -40,6 +40,16 @@ const consultoriaCards: ProductCardData[] = [
       "Relação de troca e dinâmica do mercado de insumos"
     ],
     audience: "Indústrias, tradings, bancos, insumos e áreas comerciais"
+  },
+  {
+    title: "BD Online",
+    tagline: "Dados confiáveis, rápidos e integráveis para decisões e ganho operacional.",
+    bullets: [
+      "Base histórica + projeção D+1 (oferta x demanda, área, produção) por microrregião",
+      "Acompanhamento regionalizado (grãos e cana) + rentabilidade, projeções e relação de troca",
+      "API para integração com sistemas internos e ganho operacional"
+    ],
+    audience: "Inteligência de mercado, BI, risco e times de dados"
   },
   {
     title: "Cenários de Longo Prazo (5 anos)",
@@ -75,8 +85,8 @@ const consultoriaCards: ProductCardData[] = [
     title: "Acompanhamento da Safra de Grãos (quinzenal)",
     tagline: "Plantio, desenvolvimento e colheita com leitura de risco e logística.",
     bullets: [
-      "Consolidação do plantio e riscos de produção",
-      "Tendências de produtividade (clima, pragas e doenças)",
+      "Consolidação do plantio e riscos de produção (clima, pragas e doenças)",
+      "Tendências de produtividade ",
       "Volume, sazonalidade e dinâmica logística da colheita"
     ],
     audience: "Trading, logística, indústria e crédito"
@@ -107,7 +117,7 @@ const consultoriaCards: ProductCardData[] = [
     bullets: [
       "Dimensionamento por classe de defensivos e por cultura",
       "Acompanhamento quinzenal por cultura e possíveis movimentos de repique",
-      "Incidência de pragas/doenças/insetos + sinais de resistência"
+      "Incidência de pragas/doenças/insetos"
     ],
     audience: "Indústria, distribuição e inteligência comercial"
   }
@@ -115,20 +125,20 @@ const consultoriaCards: ProductCardData[] = [
 
 const dataCards: ProductCardData[] = [
   {
-    title: "BD Online + API",
-    tagline: "Dados confiáveis, rápidos e integráveis para decisões e ganho operacional.",
+    title: "Agroterra",
+    tagline: "Dashboard do mercado de terras em nível municipal com histórico longo.",
     bullets: [
-      "Base histórica + projeção D+1 (oferta x demanda, área, produção) por microrregião",
-      "Acompanhamento regionalizado (grãos e cana) + rentabilidade, projeções e relação de troca",
-      "API para integração com sistemas internos e ganho operacional"
+      "Histórico por classes de uso de terra",
+      "Base histórica de 15 anos e ampla amostra de imóveis rurais",
+      "Potencial integração com sistemas"
     ],
-    audience: "Inteligência de mercado, BI, risco e times de dados"
+    audience: "Bancos, fundos, corretoras e estratégia de aquisição"
   }
 ];
 
 const projectCases = [
   "Dimensionamento de portos/terminais (área de influência, demanda acessível, capacidade)",
-  "Fertilizantes & infraestrutura (demanda, terminalização, importação/distribuição)",
+  "Fertilizantes & infraestrutura (demanda, importação/distribuição)",
   "Benchmark de produção/rentabilidade (mix, timing compra/venda, gargalos de margem)",
   "Abertura de novas áreas (solo/clima, mercado próximo, escoamento)"
 ];
@@ -160,7 +170,7 @@ const rallyCards: ProductCardData[] = [
       "Coleta de dados primários na prática (confiabilidade)",
       "Visibilidade e relacionamento: eventos, imprensa, digital e campo"
     ],
-    audience: "Marcas que querem dados + posicionamento + geração de demanda"
+    audience: "Marcas que buscam posicionamento e engamento no Agronegócio"
   }
 ];
 
@@ -180,7 +190,7 @@ const agricontentCards: ProductCardData[] = [
 
 const valoracaoCards: ProductCardData[] = [
   {
-    title: "Agrovalora Premium/Plus",
+    title: "Avaliação de Ativos",
     tagline: "Laudo completo com análise crítica para máxima confiabilidade.",
     bullets: [
       "Análise documental (matrículas, CAR, SIGEF, sobreposições)",
@@ -198,16 +208,6 @@ const valoracaoCards: ProductCardData[] = [
       "Clima/solo/declividade simplificados"
     ],
     audience: "Operações que precisam padronização e velocidade"
-  },
-  {
-    title: "Agroterra",
-    tagline: "Dashboard do mercado de terras em nível municipal com histórico longo.",
-    bullets: [
-      "Histórico por classes de uso de terra",
-      "Base histórica de 15 anos e ampla amostra de imóveis rurais",
-      "Potencial integração com sistemas"
-    ],
-    audience: "Bancos, fundos, corretoras e estratégia de aquisição"
   }
 ];
 
@@ -496,14 +496,14 @@ export default function Products() {
 
       <ProductSection
         id="agricontent"
-        title="Conteúdo e Comunicação (AgriContent)"
+        title="Comunicação"
         cards={agricontentCards}
         isActive={activeSectionId === "agricontent"}
       />
 
       <ProductSection
         id="valoracao"
-        title="Valoração e Mercado de Terras"
+        title="Avaliação de Ativos e Mercado de Terras"
         cards={valoracaoCards}
         isActive={activeSectionId === "valoracao"}
       />
