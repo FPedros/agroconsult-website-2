@@ -126,6 +126,13 @@ const dataCards: ProductCardData[] = [
   }
 ];
 
+const projectCases = [
+  "Dimensionamento de portos/terminais (area de influencia, demanda acessavel, capacidade)",
+  "Fertilizantes & infraestrutura (demanda, terminalizacao, importacao/distribuicao)",
+  "Benchmark de producao/rentabilidade (mix, timing compra/venda, gargalos de margem)",
+  "Abertura de novas areas (solo/clima, mercado proximo, escoamento)"
+];
+
 const projectCards: ProductCardData[] = [
   {
     title: "Projetos (on-demand)",
@@ -136,14 +143,12 @@ const projectCards: ProductCardData[] = [
       "Visao multidisciplinar dos elos da cadeia do agro"
     ],
     audience: "Estrategia, investimento e expansao"
+  },
+  {
+    title: "Mini-casos",
+    tagline: "Exemplos reais de projetos sob medida.",
+    bullets: projectCases
   }
-];
-
-const projectCases = [
-  "Dimensionamento de portos/terminais (area de influencia, demanda acessavel, capacidade)",
-  "Fertilizantes & infraestrutura (demanda, terminalizacao, importacao/distribuicao)",
-  "Benchmark de producao/rentabilidade (mix, timing compra/venda, gargalos de margem)",
-  "Abertura de novas areas (solo/clima, mercado proximo, escoamento)"
 ];
 
 const rallyCards: ProductCardData[] = [
@@ -229,7 +234,8 @@ const trainingCards: ProductCardData[] = [
   }
 ];
 
-const sectionTitleClass = "text-3xl font-semibold leading-tight text-brand-navy";
+const sectionTitleClass =
+  "relative inline-block pb-3 text-3xl font-bold leading-tight tracking-tight text-brand-navy sm:text-4xl lg:text-5xl after:absolute after:bottom-0 after:left-0 after:h-1.5 after:w-16 after:rounded-full after:bg-brand-gradient after:content-['']";
 
 const cardGridClass = (count: number) => {
   if (count <= 1) return "grid gap-4";
@@ -372,20 +378,27 @@ export default function Products() {
   const scrollToCategories = () => {
     const target = document.getElementById("categorias");
     if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
+      target.scrollIntoView({ behavior: "auto" });
     }
   };
   const scrollToSection = (sectionId: string) => {
-    const target =
-      document.querySelector<HTMLElement>(`[data-section-title="${sectionId}"]`) ??
-      document.getElementById(sectionId);
-    if (!target) return;
+    const section = document.getElementById(sectionId);
+    if (!section) return;
     const offset = window.innerWidth >= 1024 ? 192 : 160;
-    const top = window.scrollY + target.getBoundingClientRect().top - offset;
+    let top = section.offsetTop - offset;
+    const sectionIndex = sectionOrder.indexOf(sectionId);
+    if (sectionIndex > 0) {
+      const prevSection = document.getElementById(sectionOrder[sectionIndex - 1]);
+      if (prevSection) {
+        const prevBottom = prevSection.offsetTop + prevSection.offsetHeight;
+        const minTop = prevBottom - offset + 1;
+        if (top < minTop) top = minTop;
+      }
+    }
     activeSectionRef.current = sectionId;
     setActiveSectionId(sectionId);
     window.history.replaceState(null, "", `#${sectionId}`);
-    window.scrollTo({ top: Math.max(top, 0), behavior: "smooth" });
+    window.scrollTo({ top: Math.max(top, 0), behavior: "auto" });
   };
 
   return (
@@ -472,19 +485,7 @@ export default function Products() {
         title="Projetos Sob Medida"
         cards={projectCards}
         isActive={activeSectionId === "projetos"}
-      >
-        <div className="space-y-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gray">Mini-casos</p>
-          <ul className="grid gap-2 text-sm text-slate-700 md:grid-cols-2">
-            {projectCases.map((item) => (
-              <li key={item} className="flex items-start gap-2">
-                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-green" aria-hidden="true" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </ProductSection>
+      />
 
       <ProductSection
         id="rally"
@@ -517,7 +518,7 @@ export default function Products() {
         <section className="section-padding bg-gradient-to-b from-white via-white to-brand-light/40">
           <div className="page-container">
             <div className="gradient-border rounded-3xl">
-              <div className="relative overflow-hidden rounded-[22px] bg-brand-gradient px-6 py-10 text-white shadow-xl md:px-12">
+              <div className="relative overflow-hidden rounded-[22px] bg-brand-gradient bg-[length:200%_200%] px-6 py-10 text-white shadow-xl animate-pulse-gradient md:px-12">
                 <div className="absolute right-6 top-6 h-24 w-24 rounded-full bg-white/10 blur-3xl" aria-hidden="true" />
                 <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                   <div className="space-y-2">
