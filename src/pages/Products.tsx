@@ -12,7 +12,7 @@ type ProductCardData = {
 const contactHref = "mailto:contato@exemplo.com";
 
 const anchorItems = [
-  { id: "consultorias", label: "Consultorias" },
+  { id: "consultorias", label: "Inteligência de mercado" },
   { id: "dados-api", label: "Dados & API" },
   { id: "projetos", label: "Projetos" },
   { id: "rally", label: "Rally da Safra" },
@@ -468,7 +468,7 @@ export default function Products() {
 
       <ProductSection
         id="consultorias"
-        title="Consultorias"
+        title="Inteligência de mercado"
         cards={consultoriaCards}
         isActive={activeSectionId === "consultorias"}
       />
