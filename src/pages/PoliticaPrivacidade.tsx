@@ -44,7 +44,7 @@ const dataCategories = [
   {
     title: "Visitantes do Site e Redes Sociais",
     description:
-      "endereço de e-mail, nome, telefone, e outras informações que você deseja nos fornecer; informações técnicas, incluindo o endereço de protocolo da Internet (IP), tipo de navegador, fuso horário, data e hora de acesso; informações sobre sua visita, incluindo: log, cliques, tempo e frequência de acesso, geolocalização. Quando você interagir ou nos contatar por meio de um site ou plataforma de terceiros (como LinkedIn, Instagram, Facebook, Youtube, Twitter, Tik Tok e Threads), podemos coletar seu nome, cargo, empresa, endereço de e-mail, login, comentários e preferências a partir de suas curtidas."
+      "endereço de e-mail, nome, telefone e outras informações que você deseja nos fornecer; informações técnicas, incluindo o endereço de protocolo da Internet (IP), tipo de navegador, fuso horário, data e hora de acesso; informações sobre sua visita, incluindo: log, cliques, tempo e frequência de acesso, geolocalização. Quando você interagir ou nos contatar por meio de um site ou plataforma de terceiros (como LinkedIn, Instagram, Facebook, YouTube, Twitter, TikTok e Threads), podemos coletar seu nome, cargo, empresa, endereço de e-mail, login, comentários e preferências a partir de suas curtidas."
   },
   {
     title: "Agentes financeiros",
@@ -64,7 +64,7 @@ const dataCategories = [
   {
     title: "Colaboradores e terceirizados",
     description:
-      "Os dados coletados são, mas não se limitam a: nome, idade, telefone, foto, e-mail, referências, dados bancários, histórico escolar e profissional, sexo, profissão, estado civil, cônjuge, no de identificação, especialização, além das informações exigidas por leis específicas. Podemos ainda, coletar dados pessoais que você fornece a terceiros e são visíveis publicamente, como o LinkedIn e/ou receber suas informações de agências especializadas em recrutamento e seleção."
+      "Os dados coletados são, mas não se limitam a: nome, idade, telefone, foto, e-mail, referências, dados bancários, histórico escolar e profissional, sexo, profissão, estado civil, cônjuge, número de identificação, especialização, além das informações exigidas por leis específicas. Podemos ainda coletar dados pessoais que você fornece a terceiros e são visíveis publicamente, como o LinkedIn, e/ou receber suas informações de agências especializadas em recrutamento e seleção."
   },
   {
     title: "Fornecedores e parceiros",
@@ -256,7 +256,7 @@ export default function PoliticaPrivacidade() {
                 </li>
               ))}
             </ul>
-            <p>Por fim, podemos ainda, receber informações sobre você através de terceiros:</p>
+            <p>Por fim, podemos ainda receber informações sobre você por meio de terceiros:</p>
             <ul className="space-y-2">
               {thirdPartySources.map((item) => (
                 <li key={item}>{item}</li>

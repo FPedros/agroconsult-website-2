@@ -28,7 +28,7 @@ const valores = [
   "Comprometimento",
   "Somos um time",
   "Respeito",
-  "Excellence"
+  "Excelência"
 ];
 
 export default function QuemSomos() {
