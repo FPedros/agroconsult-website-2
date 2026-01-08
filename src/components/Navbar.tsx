@@ -20,10 +20,18 @@ export function Navbar() {
   const desktopPrimaryHover = usePrimaryGradientHover();
   const mobilePrimaryHover = usePrimaryGradientHover();
 
-  const scrollToHero = () => {
-    const hero = document.getElementById("hero");
-    if (hero) hero.scrollIntoView({ behavior: "smooth" });
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "auto" });
   };
+
+  const handleNavClick =
+    (to: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+      if (location.pathname === to) {
+        event.preventDefault();
+      }
+      scrollToTop();
+      close();
+    };
 
   const scrollToContact = () => {
     const contact = document.getElementById("contato");
@@ -66,13 +74,7 @@ export function Navbar() {
         <Link
           to="/"
           className="flex items-center gap-2"
-          onClick={(e) => {
-            if (location.pathname === "/") {
-              e.preventDefault();
-              scrollToHero();
-            }
-            close();
-          }}
+          onClick={handleNavClick("/")}
         >
           <div className="relative">
             <img src={logoSrc} alt="Agroconsult" className="h-10 w-auto transition duration-300" />
@@ -85,6 +87,7 @@ export function Navbar() {
               <NavLink
                 key={item.to}
                 to={item.to}
+                onClick={handleNavClick(item.to)}
                 className={({ isActive }) =>
                 [
                   "relative text-sm font-semibold transition-colors",
@@ -123,7 +126,7 @@ export function Navbar() {
               <NavLink
                 key={item.to}
                 to={item.to}
-                onClick={close}
+                onClick={handleNavClick(item.to)}
                 className={({ isActive }) =>
                   [
                     "rounded-xl px-3 py-2 text-sm font-semibold hover:bg-brand-green/10",
