@@ -129,6 +129,7 @@ export default function QuemSomos() {
     };
   }, []);
 
+
   return (
     <div className="min-h-screen bg-brand-gradient text-white relative overflow-hidden pt-16 lg:pt-0">
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden />
@@ -136,7 +137,9 @@ export default function QuemSomos() {
         <div className="page-container space-y-10">
           <div className="space-y-3">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">Quem somos</p>
-            <h1 className="text-3xl font-bold leading-tight text-white lg:text-4xl">Cultura Agroconsult</h1>
+            <h1 className="text-3xl font-bold leading-tight text-white lg:text-4xl">
+              Entregar excelência e construir confiança.
+            </h1>
             <p className="text-base text-white/85">
               Propósito, missão, visão e valores que guiam nossas decisões e projetos no agro.
             </p>
