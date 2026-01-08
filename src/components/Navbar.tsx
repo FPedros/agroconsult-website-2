@@ -4,6 +4,8 @@ import { Menu, X } from "lucide-react";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
 import logoBranca from "/images/logo-branca.png";
 import logoColorida from "/images/logo-colorida.png";
+import seloBranco from "/images/selo branco2.png";
+import seloColorido from "/images/selo.png";
 
 const navItems = [
   { label: "Home", to: "/" },
@@ -15,6 +17,7 @@ const navItems = [
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const desktopPrimaryHover = usePrimaryGradientHover();
@@ -56,13 +59,25 @@ export function Navbar() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  useEffect(() => {
+    const updateIsMobile = () => setIsMobile(window.innerWidth < 768);
+    updateIsMobile();
+    window.addEventListener("resize", updateIsMobile);
+    return () => window.removeEventListener("resize", updateIsMobile);
+  }, []);
 
   const headerSolid = scrolled || open || location.pathname === "/politica-de-privacidade";
   const linkBase = headerSolid ? "text-brand-navy hover:text-brand-green" : "text-white hover:text-brand-green";
   const activeClass =
     (headerSolid ? "text-brand-green" : "text-white") +
     " md:border-none md:after:absolute md:after:left-0 md:after:bottom-0 md:after:h-[3px] md:after:w-full md:after:rounded-full md:after:bg-brand-gradient md:after:content-['']";
-  const logoSrc = headerSolid ? logoColorida : logoBranca;
+  const logoSrc = isMobile
+    ? headerSolid
+      ? seloColorido
+      : seloBranco
+    : headerSolid
+    ? logoColorida
+    : logoBranca;
   const headerClasses = [
     "fixed left-0 top-0 z-50 w-full transition-all duration-300",
     headerSolid ? "bg-white/95 border-b border-brand-gray/15 shadow-sm backdrop-blur-md" : "bg-transparent border-transparent"
