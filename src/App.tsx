@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Products from "./pages/Products";
 import ScrollTopButton from "./components/ScrollTopButton";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
+import PrivacyBanner from "./components/PrivacyBanner";
 
 function ScrollToHash() {
   const { hash, pathname } = useLocation();
@@ -56,6 +57,7 @@ function App() {
         </Routes>
       </main>
       <ScrollTopButton />
+      <PrivacyBanner />
       <Footer />
     </div>
   );
