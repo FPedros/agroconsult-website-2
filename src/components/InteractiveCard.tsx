@@ -8,6 +8,9 @@ type InteractiveCardProps = {
   highlight?: string;
   icon?: React.ReactNode;
   href?: string;
+  disableHover?: boolean;
+  containerClassName?: string;
+  bodyClassName?: string;
   children?: React.ReactNode;
 };
 
@@ -24,9 +27,13 @@ export function InteractiveCard({
   highlight,
   icon,
   href,
+  disableHover = false,
+  containerClassName,
+  bodyClassName,
   children
 }: InteractiveCardProps) {
-  const [transform, setTransform] = useState("perspective(900px)");
+  const baseTransform = disableHover ? "none" : "perspective(900px)";
+  const [transform, setTransform] = useState(baseTransform);
 
   const gradientClass = useMemo(() => accentMap[accent], [accent]);
 
@@ -41,37 +48,51 @@ export function InteractiveCard({
   };
 
   const handleLeave = () => {
-    setTransform("perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)");
+    setTransform(baseTransform);
   };
+
+  const interactionHandlers = disableHover
+    ? {}
+    : {
+        onMouseMove: handleMove,
+        onMouseLeave: handleLeave
+      };
 
   const content = (
     <div
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
       style={{ transform }}
       className={clsx(
-        "group relative h-full overflow-hidden rounded-3xl border border-white/40 bg-white/80 p-[1px] shadow-panel transition-all duration-300 ease-out"
+        "relative h-full overflow-hidden rounded-3xl border border-white/40 bg-white/80 p-[1px] shadow-panel",
+        disableHover ? "" : "group transition-all duration-300 ease-out",
+        containerClassName
       )}
+      {...interactionHandlers}
     >
       <div
         className={clsx(
-          "absolute inset-0 bg-gradient-to-br opacity-80 blur-[0px] transition duration-500 group-hover:opacity-100 group-hover:blur-[2px]",
+          "absolute inset-0 bg-gradient-to-br opacity-80 blur-[0px]",
+          disableHover ? "" : "transition duration-500 group-hover:opacity-100 group-hover:blur-[2px]",
           gradientClass
         )}
       />
-      <div className="relative z-10 flex h-full flex-col gap-4 rounded-[22px] bg-white/70 p-6 backdrop-blur">
+      <div
+        className={clsx(
+          "relative z-10 flex h-full flex-col gap-4 rounded-[22px] bg-white/70 p-6 backdrop-blur",
+          bodyClassName
+        )}
+      >
         <div className="flex items-start gap-3">
           {icon && <div className="text-xl text-brand-green">{icon}</div>}
           <div className="flex-1">
             <div className="flex items-center justify-between gap-2">
-              <h3 className="text-lg font-bold text-brand-navy">{title}</h3>
+              <h3 className="text-xl font-bold text-brand-navy">{title}</h3>
               {highlight && (
                 <span className="rounded-full bg-brand-navy/10 px-3 py-1 text-xs font-semibold text-brand-navy">
                   {highlight}
                 </span>
               )}
             </div>
-            <p className="mt-1 text-sm text-slate-700">{description}</p>
+            <p className="mt-1 text-base text-slate-700">{description}</p>
           </div>
         </div>
         {children}
