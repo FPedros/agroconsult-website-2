@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -25,9 +25,17 @@ a {
 
 .glass-card {
   background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(32, 41, 86, 0.08);
   box-shadow: 0 20px 80px rgba(0, 0, 0, 0.08);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(32, 41, 86, 0.15);
+  }
 }
 
 .gradient-border {
@@ -167,11 +175,15 @@ a {
 .marquee-left {
   animation: marquee-left linear infinite;
   will-change: transform;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 .marquee-right {
   animation: marquee-right linear infinite;
   will-change: transform;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 @keyframes palestras-fade {
@@ -200,7 +212,9 @@ a {
 .palestras-slide {
   animation: palestras-fade 24s infinite;
   opacity: 0;
-  will-change: opacity, transform;
+  will-change: opacity;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 @media (prefers-reduced-motion: reduce) {

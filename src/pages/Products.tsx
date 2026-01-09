@@ -243,6 +243,7 @@ const cardGridClass = (count: number) => {
   return "grid gap-4 md:grid-cols-2 lg:grid-cols-3";
 };
 
+// UI Component Functions
 function ProductCard({ title, tagline, bullets, audience }: ProductCardData) {
   return (
     <InteractiveCard
@@ -269,6 +270,131 @@ function ProductCard({ title, tagline, bullets, audience }: ProductCardData) {
     </InteractiveCard>
   );
 }
+
+function ConsultoriaListItem({ card, index }: { card: ProductCardData; index: number }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="border-l-4 border-brand-green bg-white rounded-r-lg overflow-hidden transition-all hover:shadow-md">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full p-4 sm:p-5 text-left flex items-start justify-between gap-3 hover:bg-slate-50"
+      >
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="flex-shrink-0 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-gradient text-white text-xs font-bold">
+              {index + 1}
+            </span>
+            <h3 className="font-bold text-brand-navy text-sm sm:text-base line-clamp-2">
+              {card.title}
+            </h3>
+          </div>
+          <p className="text-xs sm:text-sm text-slate-700 line-clamp-2">{card.tagline}</p>
+        </div>
+        <div
+          className={`flex-shrink-0 text-brand-green text-lg transition-transform ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        >
+          ▼
+        </div>
+      </button>
+      {isOpen && (
+        <div className="px-4 py-3 sm:px-5 sm:py-4 border-t border-brand-green/20 bg-white">
+          <ul className="space-y-2 mb-3">
+            {card.bullets.map((item) => (
+              <li key={item} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700">
+                <span className="mt-1.5 h-1 w-1 rounded-full bg-brand-green flex-shrink-0" aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          {card.audience && (
+            <p className="text-xs text-brand-gray">
+              <span className="font-semibold">Para quem é:</span> {card.audience}
+            </p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ============ UI COMPONENTS ============
+
+// LISTA EXPANDÍVEL - ConsultoriaListItem
+function ConsultoriaSection({ isActive }: { isActive: boolean }) {
+  return (
+    <section
+      id="consultorias"
+      className="section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      aria-labelledby="consultorias-title"
+    >
+      <div className="page-container space-y-3 sm:space-y-4">
+        <div className="sticky top-16 sm:top-20 z-20" data-section-title="consultorias">
+          <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
+            <div className="pointer-events-none absolute left-0 right-0 -top-8 h-8 bg-white md:-top-12 md:h-12 lg:-top-20 lg:h-20" aria-hidden="true" />
+            <div className="page-container py-3 sm:py-2">
+              <h2 id="consultorias-title" className={`${sectionTitleClass} text-left`}>
+                Inteligência de mercado
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div className="relative left-1/2 w-screen -translate-x-1/2 py-4 sm:py-6 lg:py-8">
+          <div className={["pointer-events-none absolute inset-0 bg-brand-gradient transition-opacity duration-300 ease-out", isActive ? "opacity-100" : "opacity-0"].join(" ")} aria-hidden="true" />
+          <div className="page-container relative z-10">
+            <div className="space-y-2 sm:space-y-3">
+              {consultoriaCards.map((card, idx) => (
+                <ConsultoriaListItem key={card.title} card={card} index={idx} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Section component: DadosSection
+function DadosSection({ isActive }: { isActive: boolean }) {
+  return (
+    <section
+      id="dados-api"
+      className="section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      aria-labelledby="dados-api-title"
+    >
+      <div className="page-container space-y-3 sm:space-y-4">
+        <div className="sticky top-16 sm:top-20 z-20" data-section-title="dados-api">
+          <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
+            <div className="pointer-events-none absolute left-0 right-0 -top-8 h-8 bg-white md:-top-12 md:h-12 lg:-top-20 lg:h-20" aria-hidden="true" />
+            <div className="page-container py-3 sm:py-2">
+              <h2 id="dados-api-title" className={`${sectionTitleClass} text-left`}>
+                Dados & API
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div className="relative left-1/2 w-screen -translate-x-1/2 py-4 sm:py-6 lg:py-8">
+          <div className={["pointer-events-none absolute inset-0 bg-brand-gradient transition-opacity duration-300 ease-out", isActive ? "opacity-100" : "opacity-0"].join(" ")} aria-hidden="true" />
+          <div className="page-container relative z-10">
+            <div className="space-y-2 sm:space-y-3">
+              {[
+                { title: "Coleta de Dados", tagline: "Base histórica + projeção em tempo real (D+1) com validação cruzada de múltiplas fontes confiáveis", bullets: ["Dados primários validados", "Projeções D+1", "Múltiplas fontes"], audience: "Inteligência de mercado" },
+                { title: "Processamento", tagline: "Análise regionalizada e estruturação por microrregião, commodity e indicadores financeiros", bullets: ["Análise por região", "Estrutura por commodity", "Indicadores financeiros"], audience: "Analistas" },
+                { title: "Integração API", tagline: "API disponível para integração com sistemas internos, dashboards e BI com segurança enterprise", bullets: ["Segurança enterprise", "Integração BI", "Dashboards customizados"], audience: "Equipes técnicas" }
+              ].map((card, idx) => (
+                <ConsultoriaListItem key={idx} card={card} index={idx} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Section Component Functions
 
 function ProductSection({
   id,
@@ -330,6 +456,172 @@ function ProductSection({
     </section>
   );
 }
+
+function ProjectsSection({ isActive }: { isActive: boolean }) {
+  return (
+    <section
+      id="projetos"
+      className="section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      aria-labelledby="projetos-title"
+    >
+      <div className="page-container space-y-3 sm:space-y-4">
+        <div className="sticky top-16 sm:top-20 z-20" data-section-title="projetos">
+          <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
+            <div className="pointer-events-none absolute left-0 right-0 -top-8 h-8 bg-white md:-top-12 md:h-12 lg:-top-20 lg:h-20" aria-hidden="true" />
+            <div className="page-container py-3 sm:py-2">
+              <h2 id="projetos-title" className={`${sectionTitleClass} text-left`}>
+                Projetos Sob Medida
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div className="relative left-1/2 w-screen -translate-x-1/2 py-4 sm:py-6 lg:py-8">
+          <div className={["pointer-events-none absolute inset-0 bg-brand-gradient transition-opacity duration-300 ease-out", isActive ? "opacity-100" : "opacity-0"].join(" ")} aria-hidden="true" />
+          <div className="page-container relative z-10">
+            <div className="space-y-2 sm:space-y-3">
+              {projectCards.map((card, idx) => (
+                <ConsultoriaListItem key={idx} card={card} index={idx} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RallySection({ isActive }: { isActive: boolean }) {
+  return (
+    <section
+      id="rally"
+      className="section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      aria-labelledby="rally-title"
+    >
+      <div className="page-container space-y-3 sm:space-y-4">
+        <div className="sticky top-16 sm:top-20 z-20" data-section-title="rally">
+          <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
+            <div className="pointer-events-none absolute left-0 right-0 -top-8 h-8 bg-white md:-top-12 md:h-12 lg:-top-20 lg:h-20" aria-hidden="true" />
+            <div className="page-container py-3 sm:py-2">
+              <h2 id="rally-title" className={`${sectionTitleClass} text-left`}>
+                Rally da Safra
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div className="relative left-1/2 w-screen -translate-x-1/2 py-4 sm:py-6 lg:py-8">
+          <div className={["pointer-events-none absolute inset-0 bg-brand-gradient transition-opacity duration-300 ease-out", isActive ? "opacity-100" : "opacity-0"].join(" ")} aria-hidden="true" />
+          <div className="page-container relative z-10">
+            <div className="space-y-2 sm:space-y-3">
+              {rallyCards.map((card, idx) => (
+                <ConsultoriaListItem key={idx} card={card} index={idx} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ComunicacaoSection({ isActive }: { isActive: boolean }) {
+  return (
+    <section
+      id="agricontent"
+      className="section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      aria-labelledby="agricontent-title"
+    >
+      <div className="page-container space-y-3 sm:space-y-4">
+        <div className="sticky top-16 sm:top-20 z-20" data-section-title="agricontent">
+          <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
+            <div className="pointer-events-none absolute left-0 right-0 -top-8 h-8 bg-white md:-top-12 md:h-12 lg:-top-20 lg:h-20" aria-hidden="true" />
+            <div className="page-container py-3 sm:py-2">
+              <h2 id="agricontent-title" className={`${sectionTitleClass} text-left`}>
+                Comunicação
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div className="relative left-1/2 w-screen -translate-x-1/2 py-4 sm:py-6 lg:py-8">
+          <div className={["pointer-events-none absolute inset-0 bg-brand-gradient transition-opacity duration-300 ease-out", isActive ? "opacity-100" : "opacity-0"].join(" ")} aria-hidden="true" />
+          <div className="page-container relative z-10">
+            <div className="space-y-2 sm:space-y-3">
+              {agricontentCards.map((card, idx) => (
+                <ConsultoriaListItem key={idx} card={card} index={idx} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ValoracaoSection({ isActive }: { isActive: boolean }) {
+  return (
+    <section
+      id="valoracao"
+      className="section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      aria-labelledby="valoracao-title"
+    >
+      <div className="page-container space-y-3 sm:space-y-4">
+        <div className="sticky top-16 sm:top-20 z-20" data-section-title="valoracao">
+          <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
+            <div className="pointer-events-none absolute left-0 right-0 -top-8 h-8 bg-white md:-top-12 md:h-12 lg:-top-20 lg:h-20" aria-hidden="true" />
+            <div className="page-container py-3 sm:py-2">
+              <h2 id="valoracao-title" className={`${sectionTitleClass} text-left`}>
+                Avaliação de Ativos
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div className="relative left-1/2 w-screen -translate-x-1/2 py-4 sm:py-6 lg:py-8">
+          <div className={["pointer-events-none absolute inset-0 bg-brand-gradient transition-opacity duration-300 ease-out", isActive ? "opacity-100" : "opacity-0"].join(" ")} aria-hidden="true" />
+          <div className="page-container relative z-10">
+            <div className="space-y-2 sm:space-y-3">
+              {valoracaoCards.map((card, idx) => (
+                <ConsultoriaListItem key={idx} card={card} index={idx} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TrainingsSection({ isActive }: { isActive: boolean }) {
+  return (
+    <section
+      id="treinamentos"
+      className="section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      aria-labelledby="treinamentos-title"
+    >
+      <div className="page-container space-y-3 sm:space-y-4">
+        <div className="sticky top-16 sm:top-20 z-20" data-section-title="treinamentos">
+          <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
+            <div className="pointer-events-none absolute left-0 right-0 -top-8 h-8 bg-white md:-top-12 md:h-12 lg:-top-20 lg:h-20" aria-hidden="true" />
+            <div className="page-container py-3 sm:py-2">
+              <h2 id="treinamentos-title" className={`${sectionTitleClass} text-left`}>
+                Treinamentos & Palestras
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div className="relative left-1/2 w-screen -translate-x-1/2 py-4 sm:py-6 lg:py-8">
+          <div className={["pointer-events-none absolute inset-0 bg-brand-gradient transition-opacity duration-300 ease-out", isActive ? "opacity-100" : "opacity-0"].join(" ")} aria-hidden="true" />
+          <div className="page-container relative z-10">
+            <div className="space-y-2 sm:space-y-3">
+              {trainingCards.map((card, idx) => (
+                <ConsultoriaListItem key={idx} card={card} index={idx} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 export default function Products() {
   const ctaHover = usePrimaryGradientHover();
@@ -494,54 +786,19 @@ export default function Products() {
         </div>
       </section>
 
-      <ProductSection
-        id="consultorias"
-        title="Inteligência de mercado"
-        cards={consultoriaCards}
-        isActive={activeSectionId === "consultorias"}
-      />
+      <ConsultoriaSection isActive={activeSectionId === "consultorias"} />
 
-      <ProductSection
-        id="dados-api"
-        title="Dados, APIs e Integrações"
-        cards={dataCards}
-        isActive={activeSectionId === "dados-api"}
-      />
+      <DadosSection isActive={activeSectionId === "dados-api"} />
 
-      <ProductSection
-        id="projetos"
-        title="Projetos Sob Medida"
-        cards={projectCards}
-        isActive={activeSectionId === "projetos"}
-      />
+      <ProjectsSection isActive={activeSectionId === "projetos"} />
 
-      <ProductSection
-        id="rally"
-        title="Rally da Safra"
-        cards={rallyCards}
-        isActive={activeSectionId === "rally"}
-      />
+      <RallySection isActive={activeSectionId === "rally"} />
 
-      <ProductSection
-        id="agricontent"
-        title="Comunicação"
-        cards={agricontentCards}
-        isActive={activeSectionId === "agricontent"}
-      />
+      <ComunicacaoSection isActive={activeSectionId === "agricontent"} />
 
-      <ProductSection
-        id="valoracao"
-        title="Avaliação de Ativos e Mercado de Terras"
-        cards={valoracaoCards}
-        isActive={activeSectionId === "valoracao"}
-      />
+      <ValoracaoSection isActive={activeSectionId === "valoracao"} />
 
-      <ProductSection
-        id="treinamentos"
-        title="Treinamentos e Palestras"
-        cards={trainingCards}
-        isActive={activeSectionId === "treinamentos"}
-      />
+      <TrainingsSection isActive={activeSectionId === "treinamentos"} />
 
         <section className="section-padding bg-gradient-to-b from-white via-white to-brand-light/40">
           <div className="page-container">

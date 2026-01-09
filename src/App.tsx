@@ -6,6 +6,7 @@ import Palestras from "./pages/Palestras";
 import QuemSomos from "./pages/QuemSomos";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
+import Plataformas from "./pages/Plataformas";
 import ScrollTopButton from "./components/ScrollTopButton";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
 import PrivacyBanner from "./components/PrivacyBanner";
@@ -58,6 +59,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/produtos" element={<Products />} />
+          <Route path="/plataformas" element={<Plataformas />} />
           <Route path="/palestras" element={<Palestras />} />
           <Route path="/quem-somos" element={<QuemSomos />} />
           <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
