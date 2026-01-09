@@ -503,7 +503,7 @@ export default function Products() {
 
       <ProductSection
         id="dados-api"
-        title="Dados, Plataforma e Integrações"
+        title="Dados, APIs e Integrações"
         cards={dataCards}
         isActive={activeSectionId === "dados-api"}
       />
