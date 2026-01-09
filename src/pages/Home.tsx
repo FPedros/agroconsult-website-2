@@ -457,8 +457,8 @@ function ClientsSection() {
           {nonEmptyLines.map((line, idxLine) => {
             const doubled = [...line, ...line];
             const direction = idxLine % 2 === 0 ? "marquee-left" : "marquee-right";
-            const durationBase = isMobile ? 24 : 48;
-            const durationStep = isMobile ? 6 : 12;
+            const durationBase = isMobile ? 12 : 48;
+            const durationStep = isMobile ? 3 : 12;
             const duration = `${durationBase + idxLine * durationStep}s`;
             return (
               <div
@@ -887,4 +887,3 @@ export default function Home() {
     </div>
   );
 }
-
