@@ -66,7 +66,7 @@ export function Navbar() {
     return () => window.removeEventListener("resize", updateIsMobile);
   }, []);
 
-  const headerSolid = scrolled || open || location.pathname === "/politica-de-privacidade";
+  const headerSolid = scrolled || open || location.pathname === "/politica-de-privacidade" || location.pathname === "/plataformas";
   const linkBase = headerSolid ? "text-brand-navy hover:text-brand-green" : "text-white hover:text-brand-green";
   const activeClass =
     (headerSolid ? "text-brand-green" : "text-white") +
@@ -117,8 +117,8 @@ export function Navbar() {
             </NavLink>
           ))}
           </nav>
-          <button type="button" onClick={scrollToContact} className="btn-primary" {...desktopPrimaryHover}>
-            Fale com um especialista
+          <button type="button" onClick={() => navigate('/plataformas')} className="btn-primary" {...desktopPrimaryHover}>
+            Acesse Plataformas
           </button>
         </div>
 
@@ -159,13 +159,13 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => {
-                scrollToContact();
+                navigate('/plataformas');
                 close();
               }}
               className="btn-primary justify-center"
               {...mobilePrimaryHover}
             >
-              Fale com um especialista
+              Acesse Plataformas
             </button>
           </div>
           <p className="mt-3 text-xs text-brand-gray">

@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, BarChart3, ChevronDown, Database, Facebook, Instagram, Layers, Linkedin, TrendingUp, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
+import LazyIframe from "../components/LazyIframe";
 import seloBranco from "/images/selo branco.png";
 
 const tagClass =
@@ -550,12 +551,11 @@ function RallyEmbed() {
 
         <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
           <div className="relative h-[480px] w-full">
-            <iframe
+            <LazyIframe
               title="Rally da Safra"
               src="https://www.rallydasafra.com.br/"
               className="absolute inset-0 h-full w-full border-0"
-              loading="lazy"
-              scrolling="no"
+              fallbackText="Carregando Rally da Safra..."
             />
           </div>
         </div>
@@ -605,12 +605,11 @@ function AgrovaloraEmbed() {
 
         <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
           <div className="relative h-[480px] w-full">
-            <iframe
-            title="Agrovalora"
+            <LazyIframe
+              title="Agrovalora"
               src="https://terra-inteligente.vercel.app/"
               className="absolute inset-0 h-full w-full border-0"
-              loading="lazy"
-            scrolling="no"
+              fallbackText="Carregando Agrovalora..."
             />
           </div>
         </div>
@@ -660,12 +659,11 @@ function CropdataEmbed() {
 
         <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
           <div className="relative h-[480px] w-full">
-            <iframe
+            <LazyIframe
               title="Cropdata"
               src="https://website-cropdata.vercel.app/"
               className="absolute inset-0 h-full w-full border-0"
-              loading="lazy"
-              scrolling="no"
+              fallbackText="Carregando Cropdata..."
             />
           </div>
         </div>
