@@ -457,8 +457,8 @@ function ClientsSection() {
           {nonEmptyLines.map((line, idxLine) => {
             const doubled = [...line, ...line];
             const direction = idxLine % 2 === 0 ? "marquee-left" : "marquee-right";
-            const durationBase = isMobile ? 12 : 48;
-            const durationStep = isMobile ? 3 : 12;
+            const durationBase = isMobile ? 24 : 48;
+            const durationStep = isMobile ? 8 : 12;
             const duration = `${durationBase + idxLine * durationStep}s`;
             return (
               <div
@@ -466,13 +466,13 @@ function ClientsSection() {
                 className="overflow-hidden rounded-2xl border border-slate-100 bg-gradient-to-r from-white via-neutral-50 to-white/80 p-3 shadow-sm"
               >
                 <div
-                  className={`flex min-w-[200%] items-center gap-8 ${direction}`}
+                  className={`flex w-max items-center ${direction}`}
                   style={{ animationDuration: duration, animationTimingFunction: "linear" }}
                 >
                   {doubled.map((src, idx) => (
                     <div
                       key={`${idxLine}-${idx}-${src}`}
-                      className="flex h-14 min-w-[120px] items-center justify-center px-4"
+                      className="flex h-14 min-w-[120px] shrink-0 items-center justify-center px-4 mr-8"
                     >
                       <img src={src} alt="Cliente Agroconsult" className="max-h-10 w-auto object-contain opacity-90" loading="lazy" />
                     </div>
