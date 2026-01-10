@@ -292,11 +292,20 @@ function ConsultoriaListItem({ card, index }: { card: ProductCardData; index: nu
           <p className="text-xs sm:text-sm text-slate-700 line-clamp-2">{card.tagline}</p>
         </div>
         <div
-          className={`flex-shrink-0 text-brand-green text-lg transition-transform ${
+          className={`flex-shrink-0 transition-transform ${
             isOpen ? "rotate-180" : ""
           }`}
         >
-          ▼
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="chevronGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#202956" />
+                <stop offset="40%" stopColor="#1a445f" />
+                <stop offset="100%" stopColor="#008747" />
+              </linearGradient>
+            </defs>
+            <polyline points="6 9 12 15 18 9" stroke="url(#chevronGradient)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          </svg>
         </div>
       </button>
       {isOpen && (
