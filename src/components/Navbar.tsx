@@ -66,7 +66,7 @@ export function Navbar() {
     return () => window.removeEventListener("resize", updateIsMobile);
   }, []);
 
-  const headerSolid = scrolled || open || location.pathname === "/politica-de-privacidade" || location.pathname === "/plataformas";
+  const headerSolid = scrolled || open || location.pathname === "/politica-de-privacidade";
   const linkBase = headerSolid ? "text-brand-navy hover:text-brand-green" : "text-white hover:text-brand-green";
   const activeClass =
     (headerSolid ? "text-brand-green" : "text-white") +
