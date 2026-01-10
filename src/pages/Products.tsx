@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import InteractiveCard from "../components/InteractiveCard";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
+import { ProductCardCustomization } from "../config/productCardCustomization";
 
 type ProductCardData = {
   title: string;
@@ -332,24 +333,42 @@ function ConsultoriaListItem({ card, index }: { card: ProductCardData; index: nu
 // ============ UI COMPONENTS ============
 
 // LISTA EXPANDÍVEL - ConsultoriaListItem
-function ConsultoriaSection({ isActive }: { isActive: boolean }) {
+// ============================================
+// CONFIGURAÇÃO DO STICKY:
+// - sticky top-32 = 128px (mobile) - abaixo da barra de categorias
+// - sm:top-36 = 144px (tablet+) - abaixo da barra de categorias
+// - z-20: Título fica ACIMA do conteúdo
+// - Conteúdo tem z-10: rola POR TRÁS do título
+// - Barra de categorias: z-30 (sempre no topo)
+// - Ajuste esses valores se a altura do Navbar ou barra mudar
+// ============================================
+function ConsultoriaSection({ isActive, opacity = 1 }: { isActive: boolean; opacity?: number }) {
   return (
     <section
       id="consultorias"
-      className="section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      className="relative section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
       aria-labelledby="consultorias-title"
     >
-      <div className="page-container space-y-3 sm:space-y-4">
-        <div className="sticky top-16 sm:top-20 z-20" data-section-title="consultorias">
-          <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
-            <div className="pointer-events-none absolute left-0 right-0 -top-8 h-8 bg-white md:-top-12 md:h-12 lg:-top-20 lg:h-20" aria-hidden="true" />
-            <div className="page-container py-3 sm:py-2">
-              <h2 id="consultorias-title" className={`${sectionTitleClass} text-left`}>
-                Inteligência de mercado
-              </h2>
-            </div>
+      {/* Sticky Title Wrapper - Gruda abaixo da barra de categorias, conteúdo rola por trás */}
+      <div 
+        className="sticky top-32 sm:top-36 z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
+        data-section-title="consultorias"
+      >
+        <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
+          <div className="page-container py-4 sm:py-5">
+            <h2 
+              id="consultorias-title" 
+              className={`${sectionTitleClass} text-left transition-opacity duration-300`}
+              style={{ opacity }}
+            >
+              Inteligência de mercado
+            </h2>
           </div>
         </div>
+      </div>
+      
+      {/* Conteúdo que rola por trás do título (z-index menor) */}
+      <div className="relative z-10 page-container space-y-3 sm:space-y-4">
         <div className="relative left-1/2 w-screen -translate-x-1/2 py-4 sm:py-6 lg:py-8">
           <div className={["pointer-events-none absolute inset-0 bg-brand-gradient transition-opacity duration-300 ease-out", isActive ? "opacity-100" : "opacity-0"].join(" ")} aria-hidden="true" />
           <div className="page-container relative z-10">
@@ -366,24 +385,33 @@ function ConsultoriaSection({ isActive }: { isActive: boolean }) {
 }
 
 // Section component: DadosSection
-function DadosSection({ isActive }: { isActive: boolean }) {
+function DadosSection({ isActive, opacity = 1 }: { isActive: boolean; opacity?: number }) {
   return (
     <section
       id="dados-api"
-      className="section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      className="relative section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
       aria-labelledby="dados-api-title"
     >
-      <div className="page-container space-y-3 sm:space-y-4">
-        <div className="sticky top-16 sm:top-20 z-20" data-section-title="dados-api">
-          <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
-            <div className="pointer-events-none absolute left-0 right-0 -top-8 h-8 bg-white md:-top-12 md:h-12 lg:-top-20 lg:h-20" aria-hidden="true" />
-            <div className="page-container py-3 sm:py-2">
-              <h2 id="dados-api-title" className={`${sectionTitleClass} text-left`}>
-                Dados & API
-              </h2>
-            </div>
+      {/* Sticky Title - conteúdo rola por trás */}
+      <div 
+        className="sticky top-32 sm:top-36 z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
+        data-section-title="dados-api"
+      >
+        <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
+          <div className="page-container py-4 sm:py-5">
+            <h2 
+              id="dados-api-title" 
+              className={`${sectionTitleClass} text-left transition-opacity duration-300`}
+              style={{ opacity }}
+            >
+              Dados & API
+            </h2>
           </div>
         </div>
+      </div>
+      
+      {/* Conteúdo (z-10) rola por trás do título (z-20) */}
+      <div className="relative z-10"><div className="page-container space-y-3 sm:space-y-4">
         <div className="relative left-1/2 w-screen -translate-x-1/2 py-4 sm:py-6 lg:py-8">
           <div className={["pointer-events-none absolute inset-0 bg-brand-gradient transition-opacity duration-300 ease-out", isActive ? "opacity-100" : "opacity-0"].join(" ")} aria-hidden="true" />
           <div className="page-container relative z-10">
@@ -398,7 +426,7 @@ function DadosSection({ isActive }: { isActive: boolean }) {
             </div>
           </div>
         </div>
-      </div>
+      </div></div>
     </section>
   );
 }
@@ -466,24 +494,33 @@ function ProductSection({
   );
 }
 
-function ProjectsSection({ isActive }: { isActive: boolean }) {
+function ProjectsSection({ isActive, opacity = 1 }: { isActive: boolean; opacity?: number }) {
   return (
     <section
       id="projetos"
-      className="section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      className="relative section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
       aria-labelledby="projetos-title"
     >
-      <div className="page-container space-y-3 sm:space-y-4">
-        <div className="sticky top-16 sm:top-20 z-20" data-section-title="projetos">
-          <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
-            <div className="pointer-events-none absolute left-0 right-0 -top-8 h-8 bg-white md:-top-12 md:h-12 lg:-top-20 lg:h-20" aria-hidden="true" />
-            <div className="page-container py-3 sm:py-2">
-              <h2 id="projetos-title" className={`${sectionTitleClass} text-left`}>
-                Projetos Sob Medida
-              </h2>
-            </div>
+      {/* Sticky Title grudado */}
+      <div 
+        className="sticky top-32 sm:top-36 z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
+        data-section-title="projetos"
+      >
+        <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
+          <div className="page-container py-4 sm:py-5">
+            <h2 
+              id="projetos-title" 
+              className={`${sectionTitleClass} text-left transition-opacity duration-300`}
+              style={{ opacity }}
+            >
+              Projetos Sob Medida
+            </h2>
           </div>
         </div>
+      </div>
+      
+      {/* Conteúdo rola por trás */}
+      <div className="relative z-10 page-container space-y-3 sm:space-y-4">
         <div className="relative left-1/2 w-screen -translate-x-1/2 py-4 sm:py-6 lg:py-8">
           <div className={["pointer-events-none absolute inset-0 bg-brand-gradient transition-opacity duration-300 ease-out", isActive ? "opacity-100" : "opacity-0"].join(" ")} aria-hidden="true" />
           <div className="page-container relative z-10">
@@ -499,24 +536,33 @@ function ProjectsSection({ isActive }: { isActive: boolean }) {
   );
 }
 
-function RallySection({ isActive }: { isActive: boolean }) {
+function RallySection({ isActive, opacity = 1 }: { isActive: boolean; opacity?: number }) {
   return (
     <section
       id="rally"
-      className="section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      className="relative section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
       aria-labelledby="rally-title"
     >
-      <div className="page-container space-y-3 sm:space-y-4">
-        <div className="sticky top-16 sm:top-20 z-20" data-section-title="rally">
-          <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
-            <div className="pointer-events-none absolute left-0 right-0 -top-8 h-8 bg-white md:-top-12 md:h-12 lg:-top-20 lg:h-20" aria-hidden="true" />
-            <div className="page-container py-3 sm:py-2">
-              <h2 id="rally-title" className={`${sectionTitleClass} text-left`}>
-                Rally da Safra
-              </h2>
-            </div>
+      {/* Sticky Title */}
+      <div 
+        className="sticky top-32 sm:top-36 z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
+        data-section-title="rally"
+      >
+        <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
+          <div className="page-container py-4 sm:py-5">
+            <h2 
+              id="rally-title" 
+              className={`${sectionTitleClass} text-left transition-opacity duration-300`}
+              style={{ opacity }}
+            >
+              Rally da Safra
+            </h2>
           </div>
         </div>
+      </div>
+      
+      {/* Conteúdo rola por trás */}
+      <div className="relative z-10 page-container space-y-3 sm:space-y-4">
         <div className="relative left-1/2 w-screen -translate-x-1/2 py-4 sm:py-6 lg:py-8">
           <div className={["pointer-events-none absolute inset-0 bg-brand-gradient transition-opacity duration-300 ease-out", isActive ? "opacity-100" : "opacity-0"].join(" ")} aria-hidden="true" />
           <div className="page-container relative z-10">
@@ -532,24 +578,33 @@ function RallySection({ isActive }: { isActive: boolean }) {
   );
 }
 
-function ComunicacaoSection({ isActive }: { isActive: boolean }) {
+function ComunicacaoSection({ isActive, opacity = 1 }: { isActive: boolean; opacity?: number }) {
   return (
     <section
       id="agricontent"
-      className="section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      className="relative section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
       aria-labelledby="agricontent-title"
     >
-      <div className="page-container space-y-3 sm:space-y-4">
-        <div className="sticky top-16 sm:top-20 z-20" data-section-title="agricontent">
-          <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
-            <div className="pointer-events-none absolute left-0 right-0 -top-8 h-8 bg-white md:-top-12 md:h-12 lg:-top-20 lg:h-20" aria-hidden="true" />
-            <div className="page-container py-3 sm:py-2">
-              <h2 id="agricontent-title" className={`${sectionTitleClass} text-left`}>
-                Comunicação
-              </h2>
-            </div>
+      {/* Sticky Title */}
+      <div 
+        className="sticky top-32 sm:top-36 z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
+        data-section-title="agricontent"
+      >
+        <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
+          <div className="page-container py-4 sm:py-5">
+            <h2 
+              id="agricontent-title" 
+              className={`${sectionTitleClass} text-left transition-opacity duration-300`}
+              style={{ opacity }}
+            >
+              Comunicação
+            </h2>
           </div>
         </div>
+      </div>
+      
+      {/* Conteúdo rola por trás */}
+      <div className="relative z-10 page-container space-y-3 sm:space-y-4">
         <div className="relative left-1/2 w-screen -translate-x-1/2 py-4 sm:py-6 lg:py-8">
           <div className={["pointer-events-none absolute inset-0 bg-brand-gradient transition-opacity duration-300 ease-out", isActive ? "opacity-100" : "opacity-0"].join(" ")} aria-hidden="true" />
           <div className="page-container relative z-10">
@@ -565,24 +620,33 @@ function ComunicacaoSection({ isActive }: { isActive: boolean }) {
   );
 }
 
-function ValoracaoSection({ isActive }: { isActive: boolean }) {
+function ValoracaoSection({ isActive, opacity = 1 }: { isActive: boolean; opacity?: number }) {
   return (
     <section
       id="valoracao"
-      className="section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      className="relative section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
       aria-labelledby="valoracao-title"
     >
-      <div className="page-container space-y-3 sm:space-y-4">
-        <div className="sticky top-16 sm:top-20 z-20" data-section-title="valoracao">
-          <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
-            <div className="pointer-events-none absolute left-0 right-0 -top-8 h-8 bg-white md:-top-12 md:h-12 lg:-top-20 lg:h-20" aria-hidden="true" />
-            <div className="page-container py-3 sm:py-2">
-              <h2 id="valoracao-title" className={`${sectionTitleClass} text-left`}>
-                Avaliação de Ativos
-              </h2>
-            </div>
+      {/* Sticky Title */}
+      <div 
+        className="sticky top-32 sm:top-36 z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
+        data-section-title="valoracao"
+      >
+        <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
+          <div className="page-container py-4 sm:py-5">
+            <h2 
+              id="valoracao-title" 
+              className={`${sectionTitleClass} text-left transition-opacity duration-300`}
+              style={{ opacity }}
+            >
+              Avaliação de Ativos
+            </h2>
           </div>
         </div>
+      </div>
+      
+      {/* Conteúdo rola por trás */}
+      <div className="relative z-10 page-container space-y-3 sm:space-y-4">
         <div className="relative left-1/2 w-screen -translate-x-1/2 py-4 sm:py-6 lg:py-8">
           <div className={["pointer-events-none absolute inset-0 bg-brand-gradient transition-opacity duration-300 ease-out", isActive ? "opacity-100" : "opacity-0"].join(" ")} aria-hidden="true" />
           <div className="page-container relative z-10">
@@ -598,24 +662,33 @@ function ValoracaoSection({ isActive }: { isActive: boolean }) {
   );
 }
 
-function TrainingsSection({ isActive }: { isActive: boolean }) {
+function TrainingsSection({ isActive, opacity = 1 }: { isActive: boolean; opacity?: number }) {
   return (
     <section
       id="treinamentos"
-      className="section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      className="relative section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
       aria-labelledby="treinamentos-title"
     >
-      <div className="page-container space-y-3 sm:space-y-4">
-        <div className="sticky top-16 sm:top-20 z-20" data-section-title="treinamentos">
-          <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
-            <div className="pointer-events-none absolute left-0 right-0 -top-8 h-8 bg-white md:-top-12 md:h-12 lg:-top-20 lg:h-20" aria-hidden="true" />
-            <div className="page-container py-3 sm:py-2">
-              <h2 id="treinamentos-title" className={`${sectionTitleClass} text-left`}>
-                Treinamentos & Palestras
-              </h2>
-            </div>
+      {/* Sticky Title */}
+      <div 
+        className="sticky top-32 sm:top-36 z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
+        data-section-title="treinamentos"
+      >
+        <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
+          <div className="page-container py-4 sm:py-5">
+            <h2 
+              id="treinamentos-title" 
+              className={`${sectionTitleClass} text-left transition-opacity duration-300`}
+              style={{ opacity }}
+            >
+              Treinamentos & Palestras
+            </h2>
           </div>
         </div>
+      </div>
+      
+      {/* Conteúdo rola por trás */}
+      <div className="relative z-10 page-container space-y-3 sm:space-y-4">
         <div className="relative left-1/2 w-screen -translate-x-1/2 py-4 sm:py-6 lg:py-8">
           <div className={["pointer-events-none absolute inset-0 bg-brand-gradient transition-opacity duration-300 ease-out", isActive ? "opacity-100" : "opacity-0"].join(" ")} aria-hidden="true" />
           <div className="page-container relative z-10">
@@ -636,6 +709,7 @@ export default function Products() {
   const ctaHover = usePrimaryGradientHover();
   const activeSectionRef = useRef<string | null>(null);
   const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
+  const [sectionOpacities, setSectionOpacities] = useState<Record<string, number>>({});
   const navRef = useRef<HTMLDivElement | null>(null);
   const navItemRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
@@ -643,26 +717,57 @@ export default function Products() {
     let frame = 0;
     const getOffset = () => (window.innerWidth >= 1024 ? 192 : 128);
     const getLead = () => (window.innerWidth >= 1024 ? 96 : 64);
+    
     const updateActive = () => {
       frame = 0;
       const offset = getOffset();
       const lead = getLead();
       const tolerance = 2;
       let nextActive: string | null = null;
-      for (const id of sectionOrder) {
+      const opacities: Record<string, number> = {};
+      
+      for (let i = 0; i < sectionOrder.length; i++) {
+        const id = sectionOrder[i];
         const section = document.getElementById(id);
         if (!section) continue;
+        
         const rect = section.getBoundingClientRect();
+        const titleElement = section.querySelector('[data-section-title]');
+        
         if (rect.top <= offset + lead + tolerance) {
           nextActive = id;
+        }
+        
+        // Calcula opacidade do título baseado na distância da próxima seção
+        if (titleElement && i < sectionOrder.length - 1) {
+          const nextSection = document.getElementById(sectionOrder[i + 1]);
+          if (nextSection) {
+            const nextRect = nextSection.getBoundingClientRect();
+            const stickyTop = offset + lead;
+            const fadeDistance = 150; // Distância em pixels para o fade
+            
+            if (nextRect.top <= stickyTop + fadeDistance) {
+              // Próxima seção está chegando, aplica fade out
+              const distance = nextRect.top - stickyTop;
+              const opacity = Math.max(0, Math.min(1, distance / fadeDistance));
+              opacities[id] = opacity;
+            } else {
+              opacities[id] = 1;
+            }
+          } else {
+            opacities[id] = 1;
+          }
         } else {
-          break;
+          opacities[id] = 1;
         }
       }
+      
       if (activeSectionRef.current !== nextActive) {
         activeSectionRef.current = nextActive;
         setActiveSectionId(nextActive);
       }
+      
+      setSectionOpacities(opacities);
     };
     const handleScroll = () => {
       if (frame) return;
@@ -795,19 +900,19 @@ export default function Products() {
         </div>
       </section>
 
-      <ConsultoriaSection isActive={activeSectionId === "consultorias"} />
+      <ConsultoriaSection isActive={activeSectionId === "consultorias"} opacity={sectionOpacities["consultorias"]} />
 
-      <DadosSection isActive={activeSectionId === "dados-api"} />
+      <DadosSection isActive={activeSectionId === "dados-api"} opacity={sectionOpacities["dados-api"]} />
 
-      <ProjectsSection isActive={activeSectionId === "projetos"} />
+      <ProjectsSection isActive={activeSectionId === "projetos"} opacity={sectionOpacities["projetos"]} />
 
-      <RallySection isActive={activeSectionId === "rally"} />
+      <RallySection isActive={activeSectionId === "rally"} opacity={sectionOpacities["rally"]} />
 
-      <ComunicacaoSection isActive={activeSectionId === "agricontent"} />
+      <ComunicacaoSection isActive={activeSectionId === "agricontent"} opacity={sectionOpacities["agricontent"]} />
 
-      <ValoracaoSection isActive={activeSectionId === "valoracao"} />
+      <ValoracaoSection isActive={activeSectionId === "valoracao"} opacity={sectionOpacities["valoracao"]} />
 
-      <TrainingsSection isActive={activeSectionId === "treinamentos"} />
+      <TrainingsSection isActive={activeSectionId === "treinamentos"} opacity={sectionOpacities["treinamentos"]} />
 
         <section className="section-padding bg-gradient-to-b from-white via-white to-brand-light/40">
           <div className="page-container">
