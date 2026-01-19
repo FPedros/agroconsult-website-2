@@ -2,7 +2,6 @@ import { useEffect, useState, type CSSProperties } from "react";
 import { ArrowRight, BarChart3, ChevronDown, Database, Facebook, Instagram, Layers, Linkedin, TrendingUp, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
-import LazyIframe from "../components/LazyIframe";
 import seloBranco from "/images/selo branco.png";
 
 const tagClass =
@@ -472,6 +471,111 @@ function ProductsPreview() {
     </section>
   );
 }
+
+function ProductsOverview() {
+  const productsHover = usePrimaryGradientHover();
+  const productAreas = [
+    {
+      title: "Inteligencia de mercado",
+      description: "Relatorios, analises e cenarios para planejamento, trading e risco."
+    },
+    {
+      title: "Dados & API",
+      description: "Series historicas, paineis e integracao com BI e modelos."
+    },
+    {
+      title: "Projetos sob medida",
+      description: "Estudos personalizados para investimento, expansao e estrategia."
+    },
+    {
+      title: "Rally da Safra",
+      description: "Dados de campo e visibilidade para marcas no agro."
+    },
+    {
+      title: "Comunicacao",
+      description: "Conteudo, eventos e cobertura para posicionamento."
+    },
+    {
+      title: "Avaliacao de ativos",
+      description: "Laudos e inteligencia patrimonial para credito e M&A."
+    },
+    {
+      title: "Treinamentos & Palestras",
+      description: "Workshops e capacitacao para equipes e liderancas."
+    }
+  ];
+
+  return (
+    <section className="relative overflow-hidden bg-[#f4f8f3] py-16 sm:py-20 lg:py-24">
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="products-overview-pattern absolute inset-0" />
+        <div className="absolute -top-28 -left-24 h-72 w-72 rounded-full bg-brand-green/20 blur-3xl" />
+        <div className="absolute -bottom-28 right-[-10%] h-80 w-80 rounded-full bg-brand-navy/15 blur-3xl" />
+      </div>
+      <div className="page-container relative z-10">
+        <div className="pointer-events-none absolute -left-6 top-16 hidden -rotate-90 text-[120px] font-black tracking-[0.2em] text-brand-navy/5 lg:block">
+          PRODUTOS
+        </div>
+        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+          <div className="space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-brand-navy/10 bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.32em] text-brand-navy/70">
+              Produtos Agroconsult
+            </div>
+            <h2 className="text-[clamp(2.2rem,5.2vw,3.8rem)] font-black leading-[1.05] text-brand-navy">
+              Inteligencia aplicada em toda a jornada do agro
+            </h2>
+            <p className="max-w-xl text-base text-slate-700 md:text-lg">
+              A pagina de produtos detalha os blocos que sustentam nossa entrega, do monitoramento de safra aos
+              projetos estrategicos e dados auditados.
+            </p>
+            <div className="flex flex-wrap items-center gap-3">
+              <Link to="/produtos" className="btn-primary" {...productsHover}>
+                Ver pagina de produtos
+                <ArrowRight size={16} />
+              </Link>
+              <span className="rounded-full border border-brand-navy/10 bg-white/70 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-navy/70">
+                7 frentes integradas
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-brand-navy/50">
+              {["Dados auditados", "Visao consultiva", "Time dedicado"].map((item) => (
+                <span key={item} className="rounded-full border border-brand-navy/10 bg-white/60 px-3 py-1">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {productAreas.map((item, idx) => {
+              const isFeatured = idx === 0;
+              const isOffset = idx % 2 === 1;
+              return (
+                <div
+                  key={item.title}
+                  className={`group relative overflow-hidden rounded-3xl border border-white/70 bg-white/70 p-5 shadow-[0_18px_60px_rgba(15,23,42,0.12)] ring-1 ring-brand-navy/5 backdrop-blur transition duration-300 hover:-translate-y-2 ${
+                    isFeatured ? "sm:col-span-2" : ""
+                  } ${isOffset ? "sm:translate-y-4" : ""}`}
+                >
+                  <div className="absolute -right-10 -top-10 h-24 w-24 rounded-full bg-brand-green/20 blur-2xl opacity-0 transition duration-300 group-hover:opacity-100" />
+                  <div className="relative">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-navy/60">
+                      {String(idx + 1).padStart(2, "0")}
+                    </p>
+                    <h3 className="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-brand-navy">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-slate-700">{item.description}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 function ClientsSection() {
   const [isMobile, setIsMobile] = useState(false);
   const nonEmptyLines = clientLogoLines.filter((line) => line.length);
@@ -558,222 +662,6 @@ function CTA() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function RallyEmbed() {
-  const rallyHover = usePrimaryGradientHover();
-
-  return (
-    <section className="section-padding bg-white">
-      <div className={styles.sectionContainer}>
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="space-y-2">
-            <p className={styles.eyebrow}>Rally da Safra</p>
-            <h2 className={styles.title}>Veja o Rally em detalhes</h2>
-            <p className={`${styles.body} max-w-3xl`}>
-              Acesse o site oficial do Rally da Safra para acompanhar etapas, metodologia e resultados em tempo real.
-            </p>
-          </div>
-          <div className="hidden 2xl:block">
-            <a
-              href="https://www.rallydasafra.com.br/"
-              target="_blank"
-              rel="noreferrer"
-              className="btn-secondary !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
-              {...rallyHover}
-            >
-              Abrir site do Rally
-            </a>
-          </div>
-        </div>
-
-        <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
-          <div className="relative h-[480px] w-full">
-            <LazyIframe
-              title="Rally da Safra"
-              src="https://www.rallydasafra.com.br/"
-              className="absolute inset-0 h-full w-full border-0"
-              fallbackText="Carregando Rally da Safra..."
-            />
-          </div>
-        </div>
-        <div className="lg:hidden">
-          <a
-            href="https://www.rallydasafra.com.br/"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-secondary mt-4 inline-flex w-full justify-center !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
-            {...rallyHover}
-          >
-            Abrir site do Rally
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function AgrovaloraEmbed() {
-  const terraHover = usePrimaryGradientHover();
-
-  return (
-    <section className="section-padding bg-white">
-      <div className={styles.sectionContainer}>
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="space-y-2">
-          <p className={styles.eyebrow}>Agrovalora</p>
-            <h2 className={styles.title}>Valoração e inteligência patrimonial</h2>
-            <p className={`${styles.body} max-w-3xl`}>
-              Conheça a plataforma líder em avaliação de ativos rurais, comparáveis robustos e inteligência para crédito,
-              M&A, seguros e governança.
-            </p>
-          </div>
-          <div className="hidden 2xl:block">
-            <a
-              href="https://terra-inteligente.vercel.app/"
-              target="_blank"
-              rel="noreferrer"
-              className="btn-secondary !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
-              {...terraHover}
-            >
-              Abrir Agrovalora
-            </a>
-          </div>
-        </div>
-
-        <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
-          <div className="relative h-[480px] w-full">
-            <LazyIframe
-              title="Agrovalora"
-              src="https://terra-inteligente.vercel.app/"
-              className="absolute inset-0 h-full w-full border-0"
-              fallbackText="Carregando Agrovalora..."
-            />
-          </div>
-        </div>
-        <div className="lg:hidden">
-          <a
-            href="https://terra-inteligente.vercel.app/"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-secondary mt-4 inline-flex w-full justify-center !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
-            {...terraHover}
-          >
-            Abrir Agrovalora
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CropdataEmbed() {
-  const cropdataHover = usePrimaryGradientHover();
-
-  return (
-    <section className="section-padding bg-white">
-      <div className={styles.sectionContainer}>
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="space-y-2">
-            <p className={styles.eyebrow}>Cropdata</p>
-            <h2 className={styles.title}>Clima, safras e indicadores em um site leve</h2>
-            <p className={`${styles.body} max-w-3xl`}>
-              Navegue no Cropdata para acompanhar clima, produtividade e movimentos de mercado com visualizações rápidas e
-              acessíveis.
-            </p>
-          </div>
-          <div className="hidden 2xl:block">
-            <a
-              href="https://website-cropdata.vercel.app/"
-              target="_blank"
-              rel="noreferrer"
-              className="btn-secondary !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
-              {...cropdataHover}
-            >
-              Abrir Cropdata
-            </a>
-          </div>
-        </div>
-
-        <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
-          <div className="relative h-[480px] w-full">
-            <LazyIframe
-              title="Cropdata"
-              src="https://website-cropdata.vercel.app/"
-              className="absolute inset-0 h-full w-full border-0"
-              fallbackText="Carregando Cropdata..."
-            />
-          </div>
-        </div>
-        <div className="lg:hidden">
-          <a
-            href="https://website-cropdata.vercel.app/"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-secondary mt-4 inline-flex w-full justify-center !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
-            {...cropdataHover}
-          >
-            Abrir Cropdata
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function BDOnlineEmbed() {
-  const bdHover = usePrimaryGradientHover();
-
-  return (
-    <section className="section-padding bg-white">
-      <div className={styles.sectionContainer}>
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="space-y-2">
-            <p className={styles.eyebrow}>BD Online</p>
-            <h2 className={styles.title}>Dados proprietários para decisões em tempo real</h2>
-            <p className={`${styles.body} max-w-3xl`}>
-              Explore dashboards, análises e relatórios exclusivos do BD Online: curva de produção, rentabilidade,
-              preços, oferta e demanda para todo o agro brasileiro.
-            </p>
-          </div>
-          <div className="hidden 2xl:block">
-            <a
-              href="https://bd.agroconsult.com.br/"
-              target="_blank"
-              rel="noreferrer"
-              className="btn-secondary !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
-              {...bdHover}
-            >
-              Acessar BD Online
-            </a>
-          </div>
-        </div>
-
-        <div className="overflow-hidden rounded-3xl bg-white shadow-panel ring-1 ring-slate-100">
-          <div className="relative h-[480px] w-full">
-            <img
-              src="/images/bd-online-previaw.png"
-              alt="Prévia do BD Online Agroconsult"
-              className="absolute inset-0 h-full w-full object-cover"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/40 via-brand-navy/10 to-transparent" />
-          </div>
-        </div>
-        <div className="lg:hidden">
-          <a
-            href="https://bd.agroconsult.com.br/"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-secondary mt-4 inline-flex w-full justify-center !border-white !text-white hover:!border-white hover:!text-white hover:!bg-white/10"
-            {...bdHover}
-          >
-            Acessar BD Online
-          </a>
         </div>
       </div>
     </section>
@@ -918,10 +806,7 @@ export default function Home() {
       <Expertise />
       <Pillars />
       <ProductsPreview />
-      <RallyEmbed />
-      <AgrovaloraEmbed />
-      <CropdataEmbed />
-      <BDOnlineEmbed />
+      <ProductsOverview />
       <ClientsSection />
       <ContactSocialSection />
     </div>

@@ -224,6 +224,15 @@ a {
   }
 }
 
+.products-overview-pattern {
+  background-image: linear-gradient(0deg, rgba(32, 41, 86, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32, 41, 86, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.22;
+  -webkit-mask-image: radial-gradient(circle at 20% 15%, black 0%, transparent 70%);
+  mask-image: radial-gradient(circle at 20% 15%, black 0%, transparent 70%);
+}
+
 .signature-banner {
   --signature-perspective: 1200px;
   --signature-scroll-duration: 44s;
