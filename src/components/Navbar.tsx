@@ -80,7 +80,7 @@ export function Navbar() {
     : logoBranca;
   const headerClasses = [
     "fixed left-0 top-0 z-50 w-full transition-all duration-300",
-    headerSolid ? "bg-white/95 border-b border-brand-gray/15 shadow-sm backdrop-blur-md" : "bg-transparent border-transparent"
+    headerSolid ? "bg-white/70 border-b border-white/25 shadow-sm backdrop-blur-lg" : "bg-transparent border-transparent"
   ].join(" ");
 
   return (
