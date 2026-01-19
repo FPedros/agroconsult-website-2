@@ -223,3 +223,130 @@ a {
     opacity: 0.6;
   }
 }
+
+.signature-banner {
+  --signature-perspective: 1200px;
+  --signature-scroll-duration: 44s;
+  --signature-tilt-x: 12deg;
+  --signature-tilt-y: -12deg;
+  --signature-tilt-z: 6deg;
+  --signature-depth: 0px;
+  --signature-scale: 0.96;
+  --signature-offset-y: 0px;
+}
+
+.signature-banner-stage {
+  position: relative;
+  height: clamp(340px, 52vw, 600px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: var(--signature-perspective);
+  transform-style: preserve-3d;
+  touch-action: pan-y;
+  overflow: hidden;
+  clip-path: inset(0);
+  contain: paint;
+  padding-inline: clamp(8px, 2vw, 24px);
+}
+
+.signature-banner-wall {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  width: 100%;
+  height: 100%;
+  transform: translateY(var(--signature-offset-y)) translateZ(var(--signature-depth)) rotateX(var(--signature-tilt-x))
+    rotateY(var(--signature-tilt-y)) rotate(var(--signature-tilt-z)) scale(var(--signature-scale));
+  transform-origin: center;
+  transform-style: preserve-3d;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.signature-banner-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  will-change: transform;
+}
+
+.signature-scroll-up {
+  animation: signature-scroll-up var(--signature-scroll-duration) linear infinite;
+}
+
+.signature-scroll-down {
+  animation: signature-scroll-down var(--signature-scroll-duration) linear infinite;
+}
+
+.signature-banner-card {
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background-color: rgba(255, 255, 255, 0.35);
+  aspect-ratio: 9 / 16;
+  box-shadow: 0 12px 28px -12px rgba(15, 23, 42, 0.45);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.signature-banner-card img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: top center;
+  opacity: 0.92;
+  transition: opacity 0.3s ease;
+}
+
+.signature-banner-card:hover {
+  transform: scale(1.02);
+  border-color: rgba(0, 135, 71, 0.4);
+  box-shadow: 0 16px 30px -12px rgba(0, 0, 0, 0.4);
+}
+
+.signature-banner-card:hover img {
+  opacity: 1;
+}
+
+@keyframes signature-scroll-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes signature-scroll-down {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .signature-banner-wall {
+    gap: 0.75rem;
+  }
+
+  .signature-banner-column {
+    gap: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signature-scroll-up,
+  .signature-scroll-down {
+    animation: none;
+  }
+
+  .signature-banner-wall {
+    transform: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+    overflow-y: auto;
+  }
+}

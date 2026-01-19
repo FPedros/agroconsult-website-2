@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { ArrowRight, BarChart3, ChevronDown, Database, Facebook, Instagram, Layers, Linkedin, TrendingUp, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
@@ -355,27 +355,35 @@ function Expertise() {
 }
 
 function ProductsPreview() {
-  const spotlightHover = usePrimaryGradientHover();
-  const highlightCards = [
-    {
-      title: "80+ soluções prontas",
-      description: "Combinações para crédito, ESG, safra e estratégia comercial.",
-      icon: <Layers size={18} />
-    },
-    {
-      title: "Decisão guiada",
-      description: "Dashboards, war rooms e relatórios com time dedicado.",
-      icon: <BarChart3 size={18} />
-    },
-    {
-      title: "Dados auditados",
-      description: "Séries proprietárias com validação em campo e satélite.",
-      icon: <Database size={18} />
-    },
+  const [hoveredPlatform, setHoveredPlatform] = useState<number | null>(null);
+  const images = [
+    { webp: "/produtos/1.webp", jpeg: "/produtos/1.jpeg" },
+    { webp: "/produtos/2.webp", jpeg: "/produtos/2.jpeg" },
+    { webp: "/produtos/3.webp", jpeg: "/produtos/3.jpeg" }
+  ];
+  const platforms = [
+    { label: "BD Online", href: "https://bd.agroconsult.com.br/" },
+    { label: "Rally da Safra", href: "https://www.rallydasafra.com.br/" },
+    { label: "Agrovalora", href: "https://terra-inteligente.vercel.app/" }
   ];
 
+  const tiles = [...images, ...images, ...images, ...images];
+  const columnA = [...tiles, ...tiles];
+  const columnB = [...tiles, ...tiles].reverse();
+
+  const bannerStyle = {
+    "--signature-scroll-duration": "56s",
+    "--signature-perspective": "1200px",
+    "--signature-tilt-x": "12deg",
+    "--signature-tilt-y": "-12deg",
+    "--signature-tilt-z": "6deg",
+    "--signature-depth": "0px",
+    "--signature-scale": "0.96",
+    "--signature-offset-y": "-4%"
+  } as CSSProperties;
+
   return (
-    <section className="section-padding bg-brand-gradient">
+    <section className="bg-brand-gradient">
       <div className={`${styles.sectionContainer} space-y-8`}>
         <div className="grid gap-8 text-white lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-4">
@@ -386,50 +394,84 @@ function ProductsPreview() {
                 Conheça as plataformas que organizam essas soluções em experiências completas, do insight à decisão.
               </p>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {["BD Online", "Rally da Safra", "Agrovalora", "Palestras"].map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full bg-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-white"
-                >
-                  {item}
-                </span>
-              ))}
+            <div className="flex flex-wrap gap-3">
+              {platforms.map((item, idx) => {
+                const isHovered = hoveredPlatform === idx;
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-3xl bg-white/12 p-5 text-xs font-semibold uppercase tracking-[0.16em] text-white/85 shadow-xl ring-1 ring-white/20 backdrop-blur transition duration-300"
+                    style={{
+                      transform: isHovered ? "translateY(-8px) scale(1.02)" : "translateY(0) scale(1)",
+                      boxShadow: isHovered ? "0 24px 70px rgba(0,0,0,0.28)" : undefined
+                    }}
+                    onMouseEnter={() => setHoveredPlatform(idx)}
+                    onMouseLeave={() => setHoveredPlatform(null)}
+                    onFocus={() => setHoveredPlatform(idx)}
+                    onBlur={() => setHoveredPlatform(null)}
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
             </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            {highlightCards.map((card) => (
-              <div
-                key={card.title}
-                className="group h-full rounded-2xl border border-white/10 bg-white/5 p-4 shadow-lg backdrop-blur-md transition hover:-translate-y-1 hover:bg-white/10 hover:shadow-xl"
-              >
-                <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-white">
-                  {card.icon}
-                  {card.title}
+          <div className="relative">
+            <div className="signature-banner" style={bannerStyle}>
+              <div className="signature-banner-stage" role="region" aria-label="Mosaico de produtos Agroconsult">
+                <div className="signature-banner-wall" aria-hidden="true">
+                  <div className="signature-banner-column signature-scroll-up">
+                    {columnA.map((item, idx) => {
+                      const isPriority = idx < 2;
+                      return (
+                        <div className="signature-banner-card" key={`banner-a-${idx}`}>
+                          <picture>
+                            <source srcSet={item.webp} type="image/webp" />
+                            <img
+                              src={item.jpeg}
+                              alt=""
+                              loading={isPriority ? "eager" : "lazy"}
+                              decoding="async"
+                              fetchPriority={isPriority ? "high" : "low"}
+                            />
+                          </picture>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="signature-banner-column signature-scroll-down">
+                    {columnB.map((item, idx) => {
+                      const isPriority = idx < 2;
+                      return (
+                        <div className="signature-banner-card" key={`banner-b-${idx}`}>
+                          <picture>
+                            <source srcSet={item.webp} type="image/webp" />
+                            <img
+                              src={item.jpeg}
+                              alt=""
+                              loading={isPriority ? "eager" : "lazy"}
+                              decoding="async"
+                              fetchPriority={isPriority ? "high" : "low"}
+                            />
+                          </picture>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-                <p className="mt-3 text-sm text-white/85">{card.description}</p>
               </div>
-            ))}
+            </div>
           </div>
         </div>
 
-        <div className="relative py-6">
-          <div className="flex flex-col-reverse items-center gap-3 text-white/85 -translate-y-4 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em]">
-              <ChevronDown size={16} className="animate-bounce text-white" />
-              Continue descendo para ver as plataformas
-            </div>
-            <Link to="/produtos" className="btn-primary" {...spotlightHover}>
-              Ver portfólio completo
-            </Link>
-          </div>
-        </div>
       </div>
     </section>
   );
 }
-
 function ClientsSection() {
   const [isMobile, setIsMobile] = useState(false);
   const nonEmptyLines = clientLogoLines.filter((line) => line.length);
