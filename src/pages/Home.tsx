@@ -338,7 +338,7 @@ function Expertise() {
             {metrics.map((item) => (
               <div
                 key={item.label}
-                className="group space-y-2 rounded-2xl bg-slate-50 p-5 text-left shadow-sm ring-1 ring-slate-100 transition hover:-translate-y-1 hover:bg-gradient-to-r hover:from-brand-navy hover:via-brand-navy hover:to-brand-green hover:shadow-md hover:ring-brand-green/40"
+                className="group space-y-2 rounded-2xl bg-slate-50 p-5 text-left shadow-sm ring-1 ring-slate-100 transition duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:bg-brand-gradient hover:shadow-[0_24px_70px_rgba(0,0,0,0.28)] hover:ring-white/20"
               >
                 <div className="mb-2 text-brand-green transition group-hover:text-white">{item.icon}</div>
                 <p className="text-2xl font-bold text-brand-navy transition group-hover:text-white">{item.value}</p>
@@ -382,7 +382,7 @@ function ProductsPreview() {
   } as CSSProperties;
 
   return (
-    <section className="bg-brand-gradient">
+    <section className="bg-brand-gradient pt-6 sm:pt-0">
       <div className={`${styles.sectionContainer} space-y-8`}>
         <div className="grid gap-8 text-white lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-4">
@@ -474,6 +474,7 @@ function ProductsPreview() {
 
 function ProductsOverview() {
   const productsHover = usePrimaryGradientHover();
+  const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
   const productAreas = [
     {
       title: "Inteligencia de mercado",
@@ -506,26 +507,18 @@ function ProductsOverview() {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-[#f4f8f3] py-16 sm:py-20 lg:py-24">
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="products-overview-pattern absolute inset-0" />
-        <div className="absolute -top-28 -left-24 h-72 w-72 rounded-full bg-brand-green/20 blur-3xl" />
-        <div className="absolute -bottom-28 right-[-10%] h-80 w-80 rounded-full bg-brand-navy/15 blur-3xl" />
-      </div>
-      <div className="page-container relative z-10">
-        <div className="pointer-events-none absolute -left-6 top-16 hidden -rotate-90 text-[120px] font-black tracking-[0.2em] text-brand-navy/5 lg:block">
-          PRODUTOS
-        </div>
+    <section className="py-16 sm:py-20 lg:py-24">
+      <div className="page-container">
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-brand-navy/10 bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.32em] text-brand-navy/70">
               Produtos Agroconsult
             </div>
             <h2 className="text-[clamp(2.2rem,5.2vw,3.8rem)] font-black leading-[1.05] text-brand-navy">
-              Inteligencia aplicada em toda a jornada do agro
+              Inteligência aplicada em toda a jornada do agro
             </h2>
             <p className="max-w-xl text-base text-slate-700 md:text-lg">
-              A pagina de produtos detalha os blocos que sustentam nossa entrega, do monitoramento de safra aos
+             Do monitoramento de safra aos
               projetos estrategicos e dados auditados.
             </p>
             <div className="flex flex-wrap items-center gap-3">
@@ -534,7 +527,7 @@ function ProductsOverview() {
                 <ArrowRight size={16} />
               </Link>
               <span className="rounded-full border border-brand-navy/10 bg-white/70 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-navy/70">
-                7 frentes integradas
+              frentes integradas
               </span>
             </div>
             <div className="flex flex-wrap gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-brand-navy/50">
@@ -550,22 +543,38 @@ function ProductsOverview() {
             {productAreas.map((item, idx) => {
               const isFeatured = idx === 0;
               const isOffset = idx % 2 === 1;
+              const isHovered = hoveredProduct === idx;
               return (
                 <div
                   key={item.title}
-                  className={`group relative overflow-hidden rounded-3xl border border-white/70 bg-white/70 p-5 shadow-[0_18px_60px_rgba(15,23,42,0.12)] ring-1 ring-brand-navy/5 backdrop-blur transition duration-300 hover:-translate-y-2 ${
-                    isFeatured ? "sm:col-span-2" : ""
-                  } ${isOffset ? "sm:translate-y-4" : ""}`}
+                  className={`${isFeatured ? "sm:col-span-2" : ""} ${isOffset ? "sm:mt-4" : ""}`}
                 >
-                  <div className="absolute -right-10 -top-10 h-24 w-24 rounded-full bg-brand-green/20 blur-2xl opacity-0 transition duration-300 group-hover:opacity-100" />
-                  <div className="relative">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-navy/60">
-                      {String(idx + 1).padStart(2, "0")}
-                    </p>
-                    <h3 className="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-brand-navy">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-slate-700">{item.description}</p>
+                  <div
+                    className={`group relative overflow-hidden rounded-3xl p-5 shadow-xl ring-1 ring-white/20 backdrop-blur transition duration-300 ${
+                      isHovered ? "bg-brand-gradient" : "bg-white/12"
+                    }`}
+                    style={{
+                      transform: isHovered ? "translateY(-8px) scale(1.02)" : "translateY(0) scale(1)",
+                      boxShadow: isHovered ? "0 24px 70px rgba(0,0,0,0.28)" : undefined
+                    }}
+                    onMouseEnter={() => setHoveredProduct(idx)}
+                    onMouseLeave={() => setHoveredProduct(null)}
+                    onFocus={() => setHoveredProduct(idx)}
+                    onBlur={() => setHoveredProduct(null)}
+                  >
+                    <div className="absolute -right-10 -top-10 h-24 w-24 rounded-full bg-brand-green/20 blur-2xl opacity-0 transition duration-300 group-hover:opacity-100" />
+                    <div className="relative">
+                      <h3
+                        className={`text-sm font-semibold uppercase tracking-[0.18em] ${
+                          isHovered ? "text-white" : "text-brand-navy"
+                        }`}
+                      >
+                        {item.title}
+                      </h3>
+                      <p className={`mt-2 text-sm ${isHovered ? "text-white/85" : "text-slate-700"}`}>
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               );
