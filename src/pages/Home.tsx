@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+﻿import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { ArrowRight, BarChart3, ChevronDown, Database, Facebook, Instagram, Layers, Linkedin, TrendingUp, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
@@ -178,7 +178,7 @@ function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className="hero-parallax relative flex min-h-[84vh] flex-col items-center justify-center overflow-hidden isolate text-white sm:min-h-[86vh] lg:min-h-[88vh]"
+      className="hero-parallax relative flex min-h-[62vh] flex-col items-center justify-center overflow-hidden isolate text-white sm:min-h-[86vh] lg:min-h-[88vh]"
     >
       <div className="hero-parallax-gradient absolute inset-0 bg-brand-gradient" aria-hidden="true" />
       <img
@@ -187,39 +187,41 @@ function Hero() {
         aria-hidden="true"
         loading="eager"
         decoding="async"
-        className="hero-directors-image pointer-events-none absolute bottom-0 right-0 h-[55%] w-[60%] object-contain object-right-bottom sm:h-[62%] sm:w-[55%] lg:h-[70%] lg:w-[50%]"
+        className="hero-directors-image pointer-events-none absolute bottom-0 left-0 right-0 h-[88%] w-full object-contain object-right-bottom sm:left-auto sm:right-0 sm:h-[62%] sm:w-[55%] lg:h-[70%] lg:w-[50%]"
       />
 
       <div className="page-container relative z-10 flex min-h-full flex-col items-start justify-start gap-8 pt-2 pb-16 text-left -mt-6 sm:pt-4 sm:pb-20 lg:pt-6 lg:pb-24">
-        <h1 className="whitespace-nowrap text-[clamp(2.25rem,4.6vw,4.25rem)] font-black leading-[1.05] text-white tracking-tight drop-shadow-[0_14px_44px_rgba(0,23,71,0.5)]">
+        <h1 className="whitespace-normal sm:whitespace-nowrap text-[clamp(2.25rem,4.6vw,4.25rem)] font-black leading-[1.05] text-white tracking-tight drop-shadow-[0_14px_44px_rgba(0,23,71,0.5)]">
           Estratégia para quem{" "}
           <span className="bg-gradient-to-r from-brand-green via-emerald-300 to-brand-green bg-clip-text text-transparent drop-shadow-[0_10px_32px_rgba(47,197,111,0.55)]">
             decide no agro
           </span>
         </h1>
-        <p className="max-w-3xl text-base text-white/85 sm:text-lg">
-          Transformamos dados em inteligência estratégica para apoiar decisões{" "}
-          <span className="block">seguras no agronegócio brasileiro e global.</span>
-        </p>
-        <div className="flex flex-wrap justify-start gap-3">
-          <div className={tagClass}>
-            <Layers size={16} />
-            Estratégia sob medida
+        <div className="hidden sm:block space-y-4 lg:space-y-6">
+          <p className="max-w-3xl text-base text-white/85 sm:text-lg">
+            Transformamos dados em inteligência estratégica para apoiar decisões{" "}
+            <span className="block">seguras no agronegócio brasileiro e global.</span>
+          </p>
+          <div className="flex flex-wrap justify-start gap-3">
+            <div className={tagClass}>
+              <Layers size={16} />
+              Estratégia sob medida
+            </div>
           </div>
-        </div>
 
-        <div className="flex flex-wrap justify-start gap-3 pt-2">
-          <Link
-            to="/produtos"
-            className="btn-primary"
-            {...heroPrimaryHover}
-          >
-            Conheça nossas soluções
-            <ArrowRight size={16} />
-          </Link>
-          <button type="button" onClick={scrollToContact} className="btn-ghost">
-            Falar com um especialista
-          </button>
+          <div className="flex flex-wrap justify-start gap-3">
+            <Link
+              to="/produtos"
+              className="btn-primary"
+              {...heroPrimaryHover}
+            >
+              Conheça nossas soluções
+              <ArrowRight size={16} />
+            </Link>
+            <button type="button" onClick={scrollToContact} className="btn-ghost">
+              Falar com um especialista
+            </button>
+          </div>
         </div>
       </div>
       <div className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 flex items-center justify-center">
@@ -871,3 +873,4 @@ export default function Home() {
     </div>
   );
 }
+
