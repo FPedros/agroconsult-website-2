@@ -515,7 +515,7 @@ function ProductsOverview() {
               Produtos Agroconsult
             </div>
             <h2 className="text-[clamp(2.2rem,5.2vw,3.8rem)] font-black leading-[1.05] text-brand-navy">
-              Inteligência aplicada em toda a jornada do agro
+              teste 
             </h2>
             <p className="max-w-xl text-base text-slate-700 md:text-lg">
              Do monitoramento de safra aos
