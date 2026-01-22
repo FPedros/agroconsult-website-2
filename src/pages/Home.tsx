@@ -166,7 +166,7 @@ function Hero() {
           </span>
         </h1>
         <p className="max-w-3xl text-base text-white/85 sm:text-lg">
-          Dados precisos e visão estratégica para impulsionar o agronegócio brasileiro no cenário global.
+          Transformamos dados em inteligência estratégica para apoiar decisões seguras no agronegócio brasileiro e global.
         </p>
         <div className="flex flex-wrap justify-center gap-3">
           <div className={tagClass}>
@@ -181,11 +181,11 @@ function Hero() {
             className="btn-primary"
             {...heroPrimaryHover}
           >
-            Conheça Nossas Soluções
+            Conheça nossas soluções
             <ArrowRight size={16} />
           </Link>
           <button type="button" onClick={scrollToContact} className="btn-ghost">
-            Falar com Especialista
+            Falar com um especialista
           </button>
         </div>
       </div>
@@ -205,7 +205,7 @@ function Hero() {
 
 function Pillars() {
   const talksHover = usePrimaryGradientHover();
-  const talkTags = ["Safras e mercados", "Estratégia comercial", "ESG e governança", "Tecnologia e dados"];
+  const talkTags = ["Condições e resultados da safra", "Perspectivas de mercado", "Cenário econômico e financeiro"];
   const talkImages = [
     "/palestras/palestra-1.webp",
     "/palestras/palestra-2.webp",
@@ -250,16 +250,17 @@ function Pillars() {
             <div className="max-w-4xl space-y-6 text-center">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/80">Palestras Agroconsult</p>
               <h2 className="text-4xl font-bold leading-[1.03] text-white drop-shadow-[0_0_32px_rgba(120,255,210,0.75)] sm:text-5xl lg:text-6xl">
-                Conteúdo que inspira decisões no agro
+                Conteúdo que orienta decisões no agronegócio
               </h2>
               <div className="space-y-3">
                 <p className="text-lg text-white/90 sm:text-xl">
-                  Apresentações executivas, painéis e workshops desenhados para conselhos, lideranças comerciais e
-                  times operacionais.
+                  Apresentações executivas, painéis, treinamentos e workshops desenvolvidos para conselhos, lideranças,
+                  times estratégicos, clientes e parceiros, com foco em leitura de mercado, inteligência de safra e
+                  direcionamento para a tomada de decisão.
                 </p>
                 <p className="text-base text-white/80 sm:text-lg">
-                  Dados proprietários, leitura de mercado e inteligência de safra para acelerar resultados e apoiar
-                  decisões de alto impacto.
+                  Dados proprietários, análises exclusivas e a experiência de quem está no campo e no mercado para
+                  antecipar cenários, reduzir riscos e acelerar resultados.
                 </p>
               </div>
               <div className="hidden grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center">
@@ -274,8 +275,7 @@ function Pillars() {
               </div>
               <div className="flex flex-wrap justify-center gap-3">
                 <Link to="/palestras" className="btn-primary" {...talksHover}>
-                  Ver palestras
-                  <ArrowRight size={16} />
+                  Nossos palestrantes -&gt;
                 </Link>
               <button type="button" onClick={scrollToContact} className="btn-ghost">
                 Agendar palestra
@@ -293,26 +293,26 @@ function Expertise() {
   const metrics = [
     {
       value: "25+",
-      label: "Anos de Experiência",
-      detail: "Tecnologia e conhecimento profundo do setor para decisões seguras.",
+      label: "Anos de experiência",
+      detail: "Conhecimento profundo do agronegócio brasileiro, construído no campo, no mercado e na análise de dados.",
       icon: <TrendingUp size={28} className="text-brand-green" />
     },
     {
-      value: "500+",
-      label: "Clientes Atendidos",
-      detail: "Trading, fundos, indústrias, cooperativas e produtores.",
+      value: "+500",
+      label: "Empresas atendidas",
+      detail: "Atendemos empresas de insumos, serviços, indústria, logística e comercialização.",
       icon: <Users size={28} className="text-brand-green" />
     },
     {
-      value: "10M+",
-      label: "Hectares Analisados",
-      detail: "Monitoramento das principais fronteiras agrícolas do Brasil.",
+      value: "150+",
+      label: "Relatórios por ano",
+      detail: "Inteligência contínua para decisões estratégicas, com análises que conectam condições de safra, mercado e cenário econômico.",
       icon: <Database size={28} className="text-brand-green" />
     },
     {
-      value: "15k+",
-      label: "Relatórios Emitidos",
-      detail: "Entregas auditadas, comparáveis e acionáveis.",
+      value: "35 mil",
+      label: "Lavouras avaliadas in loco",
+      detail: "Visitas técnicas realizadas desde 2004, com presença nas principais regiões produtoras do país.",
       icon: <BarChart3 size={28} className="text-brand-green" />
     }
   ];
@@ -322,14 +322,17 @@ function Expertise() {
       <div className={styles.sectionContainer}>
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div className="space-y-4">
-            <p className={styles.eyebrow}>Dados que geram confiança</p>
+            <p className={styles.eyebrow}>INTELIGÊNCIA APLICADA AO AGRO</p>
             <h2 className="text-3xl font-semibold leading-tight text-brand-navy sm:text-4xl">
-              Dados que geram <br />
-              <span className="text-brand-green">Confiança e Resultado</span>
+              Conhecimento que gera <br />
+              <span className="text-brand-green">confiança e resultado</span>
             </h2>
             <p className={`${styles.body} max-w-3xl`}>
-              Combinamos tecnologia de ponta com conhecimento profundo do setor para entregar insights que definem o
-              futuro do seu negócio. Nossas análises são referência no mercado nacional e internacional.
+              A Agroconsult combina 25 anos de know-how, tecnologia própria e um relacionamento construído no campo e no
+              mercado para entregar inteligência aplicada à tomada de decisão.
+            </p>
+            <p className={`${styles.body} max-w-3xl`}>
+              Nossas análises são referência para empresas, investidores e líderes do agronegócio no Brasil e no mundo.
             </p>
             <div className="brand-underline" />
           </div>
@@ -361,9 +364,10 @@ function ProductsPreview() {
     { webp: "/produtos/3.webp", jpeg: "/produtos/3.jpeg" }
   ];
   const platforms = [
+    { label: "Agrovalora", href: "https://terra-inteligente.vercel.app/" },
     { label: "BD Online", href: "https://bd.agroconsult.com.br/" },
     { label: "Rally da Safra", href: "https://www.rallydasafra.com.br/" },
-    { label: "Agrovalora", href: "https://terra-inteligente.vercel.app/" }
+    { label: "Agricontent", href: "https://rallydasafra.rds.land/agricontent" }
   ];
 
   const tiles = [...images, ...images, ...images, ...images];
@@ -386,11 +390,14 @@ function ProductsPreview() {
       <div className={`${styles.sectionContainer} space-y-8`}>
         <div className="grid gap-8 text-white lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">Produtos assinatura Agroconsult</p>
-            <h2 className="text-3xl font-semibold leading-tight md:text-[34px]">Um portfólio completo para decisões rápidas e seguras</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">PRODUTOS POR ASSINATURA</p>
+            <h2 className="text-3xl font-semibold leading-tight md:text-[34px]">
+              Um portfólio completo para decisões rápidas e seguras
+            </h2>
             <div className="space-y-3 text-white/85">
               <p className="max-w-3xl text-sm md:text-base">
-                Conheça as plataformas que organizam essas soluções em experiências completas, do insight à decisão.
+                Plataformas desenvolvidas para quem precisa acompanhar mercados, antecipar movimentos, gerar
+                relacionamento e tomar decisões com agilidade, com dados confiáveis e análises recorrentes.
               </p>
             </div>
             <div className="flex flex-nowrap items-center gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:gap-3 sm:overflow-visible sm:pb-0">
@@ -477,32 +484,44 @@ function ProductsOverview() {
   const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
   const productAreas = [
     {
-      title: "Inteligencia de mercado",
-      description: "Relatorios, analises e cenarios para planejamento, trading e risco."
+      title: "Agromarket",
+      description:
+        "Análises, insights e informações relevantes sobre as principais commodities agrícolas no Brasil e no mundo."
     },
     {
-      title: "Dados & API",
-      description: "Series historicas, paineis e integracao com BI e modelos."
+      title: "Acompanhamento de safra",
+      description:
+        "Levantamento do andamento da safra de soja, milho, algodão, trigo e cana-de-açúcar no país."
     },
     {
-      title: "Projetos sob medida",
-      description: "Estudos personalizados para investimento, expansao e estrategia."
+      title: "BD Online",
+      description:
+        "Plataforma composta por um conjunto de dashboards que trazem históricos de dados sobre o mercado agrícola e condições das safras."
     },
     {
-      title: "Rally da Safra",
-      description: "Dados de campo e visibilidade para marcas no agro."
+      title: "CRR",
+      description:
+        "Informações que envolvem a parte financeira do produtor. Incluímos análise de custos de produção, relação de troca e rentabilidade."
     },
     {
-      title: "Comunicacao",
-      description: "Conteudo, eventos e cobertura para posicionamento."
+      title: "Projetos customizados",
+      description:
+        "Estudos setoriais e análise de mercado de acordo com a necessidade de cada cliente, que vão desde tendências e projeções de longo prazo até elaboração de plano de negócios e análise de viabilidade de novos negócios."
     },
     {
-      title: "Avaliacao de ativos",
-      description: "Laudos e inteligencia patrimonial para credito e M&A."
+      title: "Agrovalora",
+      description:
+        "Plataforma digital de avaliações de forma rápida e precisa de fazendas de pequeno a médio porte."
     },
     {
-      title: "Treinamentos & Palestras",
-      description: "Workshops e capacitacao para equipes e liderancas."
+      title: "Agroterra",
+      description:
+        "Levantamento de preços de terra para diferentes classes de uso de solo em todos os 5.568 municípios do Brasil."
+    },
+    {
+      title: "Treinamentos",
+      description:
+        "Capacite sua equipe para viver e entender o dia a dia do agronegócio no Brasil e no mundo."
     }
   ];
 
@@ -512,14 +531,13 @@ function ProductsOverview() {
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-brand-navy/10 bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.32em] text-brand-navy/70">
-              Produtos Agroconsult
+              PRODUTOS AGROCONSULT
             </div>
             <h2 className="text-[clamp(2.2rem,5.2vw,3.8rem)] font-black leading-[1.05] text-brand-navy">
-              teste 
+              Inteligência aplicada em toda a jornada de decisão do agro
             </h2>
             <p className="max-w-xl text-base text-slate-700 md:text-lg">
-             Do monitoramento de safra aos
-              projetos estrategicos e dados auditados.
+              Da leitura de safra à estratégia, com dados primários coletados diretamente no campo e por sensoriamento remoto.
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <Link to="/produtos" className="btn-primary" {...productsHover}>
@@ -605,7 +623,8 @@ function ClientsSection() {
           <p className={styles.eyebrow}>Clientes que confiam</p>
           <h2 className={styles.title}>Marcas que já aceleram decisões com a Agroconsult</h2>
           <p className={`${styles.body} max-w-3xl md:mx-auto`}>
-            Relações de longo prazo com líderes do agronegócio.
+            Atuamos ao lado de empresas líderes em toda a cadeia do agronegócio: Indústrias, instituições financeiras,
+            tradings, cooperativas e empresas de tecnologia.
           </p>
         </div>
 
@@ -657,8 +676,7 @@ function CTA() {
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/80">Contato</p>
                 <h3 className="text-2xl font-bold leading-tight">Vamos desenhar seu próximo ciclo com mais precisão?</h3>
                 <p className="mt-2 max-w-2xl text-white/85">
-                  Conecte dados, expedição e estratégia em uma só frente. Squads dedicados para trading, insumos, fundos,
-                  produtores e agroindústria.
+                  Conecte dados primários, inteligência de mercado e estratégia em uma única frente.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
@@ -748,8 +766,7 @@ function ContactSocialSection() {
                   Vamos desenhar seu próximo ciclo com mais precisão?
                 </p>
                 <p className="text-sm text-white/75">
-                  Conecte dados, expedição e estratégia em uma só frente. Squads dedicados para trading, insumos,
-                  fundos, produtores e agroindústria.
+                  Conecte dados primários, inteligência de mercado e estratégia em uma única frente.
                 </p>
               </div>
               <form className="grid gap-3 text-sm text-white/80" onSubmit={(event) => event.preventDefault()}>

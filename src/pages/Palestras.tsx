@@ -1,44 +1,44 @@
 import { useEffect } from "react";
-import { ArrowRight, Mic } from "lucide-react";
+import { ArrowRight, Linkedin, Mic } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
 
 const speakers = [
   {
     name: "André Pessôa",
-    role: "Estratégia e originação",
-    bio: "Fundador da Agroconsult, referência em estratégia comercial, hedge e decisões de alto impacto.",
-    photo: "/authors/andre-pessoa.jpg"
+    bio: "Fundador e CEO da Agroconsult.",
+    photo: "/authors/andre-pessoa.jpg",
+    linkedin: "https://www.linkedin.com/in/andr%C3%A9-pess%C3%B4a-0bb85012a/"
   },
   {
     name: "André Debastiani",
-    role: "Mercados e safras",
-    bio: "Especialista em monitoramento de safra, custos e tendências de mercado para originação.",
-    photo: "/authors/andre-debastiani.jpg"
-  },
-  {
-    name: "Heloísa Melo",
-    role: "Clientes e sustentabilidade",
-    bio: "Conecta compliance, rastreabilidade e impacto para cadeias agro sustentáveis.",
-    photo: "/authors/heloisa-melo.jpg"
-  },
-  {
-    name: "Adriano Lo Turco",
-    role: "Gestão de risco e comercialização",
-    bio: "Combina precificação, risco e inteligência de mercado para suportar trading e originação.",
-    photo: "/authors/adriano-lo-turco.jpg"
-  },
-  {
-    name: "Débora Simões",
-    role: "ESG e governança",
-    bio: "Lidera agendas de ESG, rastreabilidade e compliance socioambiental em cadeias agrícolas.",
-    photo: "/authors/debora-simoes.jpg"
+    bio: "Sócio-diretor da Agroconsult e coordenador geral do Rally da Safra.",
+    photo: "/authors/andre-debastiani.jpg",
+    linkedin: "https://www.linkedin.com/in/andr%C3%A9-debastiani-853ab250/"
   },
   {
     name: "Cleber Vieira",
-    role: "Mercados e crédito",
-    bio: "Estrutura estratégia financeira, risco e relacionamento com mercado de capitais.",
-    photo: "/authors/cleber-vieira.jpg"
+    bio: "Sócio-diretor da Agroconsult.",
+    photo: "/authors/cleber-vieira.jpg",
+    linkedin: "https://www.linkedin.com/in/cleber-vieira-2a234732/"
+  },
+  {
+    name: "Débora Simões",
+    bio: "Sócia-diretora da Agroconsult.",
+    photo: "/authors/debora-simoes.jpg",
+    linkedin: "https://www.linkedin.com/in/debora-simoes/"
+  },
+  {
+    name: "Adriano Lo Turco",
+    bio: "Sócio da Agroconsult e especialista em mercado de grãos.",
+    photo: "/authors/adriano-lo-turco.jpg",
+    linkedin: "https://www.linkedin.com/in/adriano-aude-lo-turco-57224219/"
+  },
+  {
+    name: "Heloisa Melo",
+    bio: "Sócia da Agroconsult e especialista em mercado de algodão e café.",
+    photo: "/authors/heloisa-melo.jpg",
+    linkedin: "https://www.linkedin.com/in/heloisa-mara-melo-2b955523/"
   }
 ];
 
@@ -56,13 +56,13 @@ export default function Palestras() {
         <div className="page-container relative flex flex-col gap-6 pt-8 pb-16 md:py-16 lg:flex-row lg:items-center lg:pt-12 lg:pb-20">
           <div className="space-y-4 lg:w-3/5">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">Palestras</p>
-            <h1 className="text-3xl font-bold leading-tight lg:text-4xl">Conteúdo que inspira decisões no agro</h1>
+            <h1 className="text-3xl font-bold leading-tight lg:text-4xl">Conteúdo que orienta decisões no agronegócio</h1>
             <p className="text-base text-white/85">
-              Talks customizados com especialistas Agroconsult para conselhos, lideranças comerciais e times operacionais.
-              Tendências de mercado, safras, ESG e estratégias para acelerar resultados.
+              Talks customizados com especialistas da Agroconsult para conselhos, lideranças e times estratégicos.
+              Conteúdo baseado em dados primários, leitura de mercado e inteligência de safra para apoiar decisões e acelerar resultados.
             </p>
-            <div className="flex flex-wrap gap-2">
-              {["Safras e mercados", "Estratégia comercial", "ESG e governança", "Tecnologia e dados"].map((tag) => (
+            <div className="flex flex-wrap items-center gap-2">
+              {["Condições e resultados da safra", "Perspectivas de mercado", "Cenário econômico e financeiro"].map((tag) => (
                 <span key={tag} className="rounded-full bg-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-wide">
                   {tag}
                 </span>
@@ -83,9 +83,10 @@ export default function Palestras() {
               <div className="space-y-3 text-sm text-white/85">
                 {[
                   "Keynotes para eventos e conselhos",
-                  "Painéis moderados com especialistas",
-                  "Workshops in-company focados em ação",
-                  "Talks executivos para clientes e parceiros"
+                  "Painéis moderados com especialistas da Agroconsult",
+                  "Workshops in-company",
+                  "Palestras para clientes, parceiros e equipes",
+                  "Curadoria de eventos, com escolha de temas e painelistas"
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2">
                     <span className="mt-1 h-2 w-2 rounded-full bg-emerald-300" />
@@ -101,10 +102,10 @@ export default function Palestras() {
       <section className="section-padding bg-white">
         <div className="page-container space-y-6">
           <div className="space-y-2 text-left md:text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-gray">Especialistas</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-gray">NOSSOS ESPECIALISTAS</p>
             <h2 className="text-3xl font-semibold leading-tight text-brand-navy">Quem leva a Agroconsult ao palco</h2>
             <p className="text-base text-slate-700 md:text-lg">
-              Times que vivem campo, dados e estratégia para traduzir tendências em ação.
+              Especialistas que vivem o campo, os dados e a estratégia para traduzir tendências em decisões.
             </p>
           </div>
 
@@ -127,8 +128,20 @@ export default function Palestras() {
                   />
                 </div>
                 <div className="space-y-1 p-4 text-center">
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-green sm:text-sm">{speaker.role}</p>
-                  <h3 className="text-base font-bold text-brand-navy sm:text-lg">{speaker.name}</h3>
+                  <div className="flex items-center justify-center gap-2">
+                    <h3 className="text-base font-bold text-brand-navy sm:text-lg">{speaker.name}</h3>
+                    {speaker.linkedin ? (
+                      <a
+                        href={speaker.linkedin}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`LinkedIn de ${speaker.name}`}
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 text-brand-navy transition duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-transparent hover:bg-brand-gradient hover:text-white hover:shadow-[0_0_20px_rgba(255,255,255,0.6),0_16px_40px_rgba(0,0,0,0.2)]"
+                      >
+                        <Linkedin size={14} />
+                      </a>
+                    ) : null}
+                  </div>
                   <p className="text-xs text-slate-700 sm:text-sm">{speaker.bio}</p>
                 </div>
               </div>
