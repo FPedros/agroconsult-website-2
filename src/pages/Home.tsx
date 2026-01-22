@@ -1,8 +1,7 @@
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { ArrowRight, BarChart3, ChevronDown, Database, Facebook, Instagram, Layers, Linkedin, TrendingUp, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
-import seloBranco from "/images/selo branco.png";
 
 const tagClass =
   "inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-brand-navy shadow-sm";
@@ -128,10 +127,41 @@ const followLinks = [
 
 function Hero() {
   const heroPrimaryHover = usePrimaryGradientHover();
-  const [showSelo, setShowSelo] = useState(false);
+  const heroRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    setShowSelo(true);
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (prefersReducedMotion.matches) {
+      hero.style.setProperty("--hero-gradient-shift", "0px");
+      return;
+    }
+
+    let frame = 0;
+    const updateParallax = () => {
+      frame = 0;
+      const rect = hero.getBoundingClientRect();
+      const scrolled = Math.min(Math.max(-rect.top, 0), rect.height);
+      const gradientShift = Math.round(Math.min(scrolled * 0.1, 48));
+      hero.style.setProperty("--hero-gradient-shift", `${gradientShift}px`);
+    };
+
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(updateParallax);
+    };
+
+    updateParallax();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   const scrollToContact = () => {
@@ -147,35 +177,38 @@ function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex h-screen flex-col items-center justify-center overflow-hidden bg-brand-gradient text-white"
+      ref={heroRef}
+      className="hero-parallax relative flex min-h-[84vh] flex-col items-center justify-center overflow-hidden isolate text-white sm:min-h-[86vh] lg:min-h-[88vh]"
     >
-      <div
-        className={`pointer-events-none absolute inset-0 bg-center bg-no-repeat bg-contain mix-blend-screen transform transition duration-1000 ease-out ${
-          showSelo ? "opacity-60 scale-100" : "opacity-0 scale-95"
-        }`}
-        style={{ backgroundImage: `url(${seloBranco})` }}
-        aria-hidden
+      <div className="hero-parallax-gradient absolute inset-0 bg-brand-gradient" aria-hidden="true" />
+      <img
+        src="/images/diretoria.png"
+        alt=""
+        aria-hidden="true"
+        loading="eager"
+        decoding="async"
+        className="hero-directors-image pointer-events-none absolute bottom-0 right-0 h-[55%] w-[60%] object-contain object-right-bottom sm:h-[62%] sm:w-[55%] lg:h-[70%] lg:w-[50%]"
       />
-      <div className="pointer-events-none absolute inset-0 bg-slate-900/45" aria-hidden />
 
-      <div className="page-container relative z-10 flex min-h-full flex-col items-center justify-center gap-8 py-20 text-center sm:py-24 lg:py-28">
-        <h1 className="max-w-3xl text-5xl font-black leading-tight text-white sm:text-6xl md:text-[68px] md:leading-[1.08] tracking-tight drop-shadow-[0_14px_44px_rgba(0,23,71,0.5)]">
+      <div className="page-container relative z-10 flex min-h-full flex-col items-start justify-start gap-8 pt-2 pb-16 text-left -mt-6 sm:pt-4 sm:pb-20 lg:pt-6 lg:pb-24">
+        <h1 className="whitespace-nowrap text-[clamp(2.25rem,4.6vw,4.25rem)] font-black leading-[1.05] text-white tracking-tight drop-shadow-[0_14px_44px_rgba(0,23,71,0.5)]">
           Estratégia para quem{" "}
           <span className="bg-gradient-to-r from-brand-green via-emerald-300 to-brand-green bg-clip-text text-transparent drop-shadow-[0_10px_32px_rgba(47,197,111,0.55)]">
             decide no agro
           </span>
         </h1>
         <p className="max-w-3xl text-base text-white/85 sm:text-lg">
-          Transformamos dados em inteligência estratégica para apoiar decisões seguras no agronegócio brasileiro e global.
+          Transformamos dados em inteligência estratégica para apoiar decisões{" "}
+          <span className="block">seguras no agronegócio brasileiro e global.</span>
         </p>
-        <div className="flex flex-wrap justify-center gap-3">
+        <div className="flex flex-wrap justify-start gap-3">
           <div className={tagClass}>
             <Layers size={16} />
             Estratégia sob medida
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3 pt-2">
+        <div className="flex flex-wrap justify-start gap-3 pt-2">
           <Link
             to="/produtos"
             className="btn-primary"

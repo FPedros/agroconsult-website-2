@@ -135,6 +135,21 @@ a {
   background: linear-gradient(90deg, #202956 0%, #1a445f 40%, #008747 100%);
 }
 
+.hero-parallax {
+  --hero-gradient-shift: 0px;
+}
+
+.hero-parallax-gradient {
+  inset: -12%;
+  transform: translateY(var(--hero-gradient-shift));
+  will-change: transform;
+}
+
+.hero-directors-image {
+  transform: translateY(0) scaleX(-1);
+  will-change: transform;
+}
+
 .hero-video {
   transform-origin: center;
 }
