@@ -400,7 +400,7 @@ function ProductsPreview() {
                 relacionamento e tomar decisões com agilidade, com dados confiáveis e análises recorrentes.
               </p>
             </div>
-            <div className="flex flex-nowrap items-center gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:gap-3 sm:overflow-visible sm:pb-0">
+            <div className="grid grid-cols-2 gap-x-2 gap-y-1 sm:flex sm:flex-wrap sm:items-center sm:gap-3">
               {platforms.map((item, idx) => {
                 const isHovered = hoveredPlatform === idx;
                 return (
@@ -409,7 +409,7 @@ function ProductsPreview() {
                     href={item.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex-shrink-0 whitespace-nowrap rounded-3xl bg-white/12 px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.12em] text-white/85 shadow-xl ring-1 ring-white/20 backdrop-blur transition duration-300 sm:px-3.5 sm:py-2.5 sm:text-[10px] sm:tracking-[0.14em]"
+                    className="flex w-full items-center justify-center text-center whitespace-nowrap rounded-3xl bg-white/12 px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.12em] text-white/85 shadow-xl ring-1 ring-white/20 backdrop-blur transition duration-300 sm:w-auto sm:px-3.5 sm:py-2.5 sm:text-[10px] sm:tracking-[0.14em]"
                     style={{
                       transform: isHovered ? "translateY(-8px) scale(1.02)" : "translateY(0) scale(1)",
                       boxShadow: isHovered ? "0 24px 70px rgba(0,0,0,0.28)" : undefined
