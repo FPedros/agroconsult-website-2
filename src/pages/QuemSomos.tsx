@@ -156,35 +156,43 @@ export default function QuemSomos() {
               return (
                 <div
                   key={item.label}
-                  className="rounded-3xl bg-white/12 p-5 shadow-xl ring-1 ring-white/20 backdrop-blur transition duration-300"
                   data-reveal="card"
-                  style={{
-                    "--reveal-delay": `${idx * 90}ms`,
-                    transform: isHovered ? "translateY(-8px) scale(1.02)" : "translateY(0) scale(1)",
-                    boxShadow: isHovered ? "0 24px 70px rgba(0,0,0,0.28)" : undefined
-                  } as CSSProperties}
-                  onMouseEnter={() => setHovered(idx)}
-                  onMouseLeave={() => setHovered(null)}
+                  style={{ "--reveal-delay": `${idx * 90}ms` } as CSSProperties}
                 >
-                  <div className="type-label flex items-center gap-2 text-white/85">
-                    {item.icon}
-                    {item.label}
+                  <div
+                    className="rounded-3xl bg-white/12 p-5 shadow-xl ring-1 ring-white/20 backdrop-blur transition duration-300"
+                    style={{
+                      transform: isHovered ? "translateY(-8px) scale(1.02)" : "translateY(0) scale(1)",
+                      boxShadow: isHovered
+                        ? "0 0 40px rgba(255,255,255,0.18), 0 24px 70px rgba(0,0,0,0.28)"
+                        : undefined
+                    }}
+                    onMouseEnter={() => setHovered(idx)}
+                    onMouseLeave={() => setHovered(null)}
+                    onFocus={() => setHovered(idx)}
+                    onBlur={() => setHovered(null)}
+                    tabIndex={0}
+                  >
+                    <div className="type-label flex items-center gap-2 text-white/85">
+                      {item.icon}
+                      {item.label}
+                    </div>
+                    <p className="type-label mt-1 text-white/70">
+                      {"subtitle" in item ? item.subtitle : "base de crenças e comportamentos éticos"}
+                    </p>
+                    {"values" in item ? (
+                      <ul className="type-small mt-3 space-y-2 text-white">
+                        {item.values?.map((val) => (
+                          <li key={val} className="flex items-start gap-2">
+                            <span className="mt-1 inline-flex h-2 w-2 shrink-0 rounded-full bg-emerald-300" />
+                            <span>{val}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="type-body mt-3 font-semibold text-white">{item.body}</p>
+                    )}
                   </div>
-                  <p className="type-label mt-1 text-white/70">
-                    {"subtitle" in item ? item.subtitle : "base de crenças e comportamentos éticos"}
-                  </p>
-                  {"values" in item ? (
-                    <ul className="type-small mt-3 space-y-2 text-white">
-                      {item.values?.map((val) => (
-                        <li key={val} className="flex items-start gap-2">
-                          <span className="mt-1 inline-flex h-2 w-2 shrink-0 rounded-full bg-emerald-300" />
-                          <span>{val}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="type-body mt-3 font-semibold text-white">{item.body}</p>
-                  )}
                 </div>
               );
             })}
@@ -194,3 +202,5 @@ export default function QuemSomos() {
     </div>
   );
 }
+
+

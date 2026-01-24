@@ -787,7 +787,7 @@ function ClientsSection() {
                 key={`linha-${idxLine}`}
                 data-reveal="card"
                 style={{ "--reveal-delay": `${idxLine * 120}ms` } as CSSProperties}
-                className="overflow-hidden rounded-2xl border border-slate-100 bg-gradient-to-r from-white via-neutral-50 to-white/80 p-3 shadow-sm"
+                className="py-2"
               >
                 <div
                   className={`flex w-max items-center ${direction}`}
