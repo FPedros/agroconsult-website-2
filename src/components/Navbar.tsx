@@ -65,7 +65,7 @@ export function Navbar() {
     " md:border-none md:after:absolute md:after:left-0 md:after:bottom-0 md:after:h-[3px] md:after:w-full md:after:rounded-full md:after:bg-brand-gradient md:after:content-['']";
   const logoSrc = headerSolid ? logoColorida : logoBranca;
   const headerClasses = [
-    "fixed left-0 top-0 z-50 w-full transition-all duration-300",
+    "site-header fixed left-0 top-0 z-50 w-full transition-all duration-300",
     headerSolid ? "bg-white/70 border-b border-white/25 shadow-sm backdrop-blur-lg" : "bg-transparent border-transparent"
   ].join(" ");
 
@@ -91,7 +91,7 @@ export function Navbar() {
                 onClick={handleNavClick(item.to)}
                 className={({ isActive }) =>
                 [
-                  "relative text-sm font-semibold transition-colors",
+                  "relative type-link transition-colors",
                   linkBase,
                   isActive ? activeClass : ""
                 ]
@@ -130,7 +130,7 @@ export function Navbar() {
                 onClick={handleNavClick(item.to)}
                 className={({ isActive }) =>
                   [
-                    "rounded-xl px-3 py-2 text-sm font-semibold hover:bg-brand-green/10",
+                    "rounded-xl px-3 py-2 type-link hover:bg-brand-green/10",
                     isActive ? "bg-brand-green/10 text-brand-green" : ""
                   ]
                     .filter(Boolean)

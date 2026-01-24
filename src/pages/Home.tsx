@@ -2,14 +2,15 @@
 import { ArrowRight, BarChart3, ChevronDown, Database, Facebook, Instagram, Layers, Linkedin, TrendingUp, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
+import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 
 const tagClass =
   "inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-brand-navy shadow-sm";
 
 const styles = {
-  eyebrow: "text-xs font-semibold uppercase tracking-[0.24em] text-brand-gray",
-  title: "text-3xl font-semibold leading-tight text-brand-navy md:text-[34px]",
-  body: "text-base text-slate-700 md:text-lg",
+  eyebrow: "eyebrow type-label text-brand-gray",
+  title: "type-h2 text-brand-navy",
+  body: "type-body text-slate-700",
   sectionContainer: "page-container space-y-8"
 };
 
@@ -83,6 +84,13 @@ const clientLogoLines = [
   ]
 ];
 
+const rallySlides = [
+  "/rally%20da%20safra/hero-1.webp",
+  "/rally%20da%20safra/hero-2.webp",
+  "/rally%20da%20safra/hero-3.webp",
+  "/rally%20da%20safra/hero-4.webp"
+];
+
 const XIcon = () => (
   <svg
     aria-hidden="true"
@@ -136,6 +144,8 @@ function Hero() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (prefersReducedMotion.matches) {
       hero.style.setProperty("--hero-gradient-shift", "0px");
+      hero.style.setProperty("--hero-image-opacity", "1");
+      hero.style.setProperty("--hero-image-shift", "0px");
       return;
     }
 
@@ -145,7 +155,9 @@ function Hero() {
       const rect = hero.getBoundingClientRect();
       const scrolled = Math.min(Math.max(-rect.top, 0), rect.height);
       const gradientShift = Math.round(Math.min(scrolled * 0.1, 48));
+      const imageShift = Math.round(Math.min(window.scrollY * 0.18, 180));
       hero.style.setProperty("--hero-gradient-shift", `${gradientShift}px`);
+      hero.style.setProperty("--hero-image-shift", `${imageShift}px`);
     };
 
     const onScroll = () => {
@@ -157,10 +169,19 @@ function Hero() {
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
 
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        hero.style.setProperty("--hero-image-opacity", entry.isIntersecting ? "1" : "0");
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(hero);
+
     return () => {
       if (frame) window.cancelAnimationFrame(frame);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      observer.disconnect();
     };
   }, []);
 
@@ -178,49 +199,57 @@ function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className="hero-parallax relative flex min-h-[62vh] flex-col items-center justify-center overflow-hidden isolate text-white sm:min-h-[86vh] lg:min-h-[88vh]"
+      data-reveal="section"
+      className="hero-parallax relative flex min-h-[640px] flex-col items-start justify-center overflow-hidden isolate text-white sm:min-h-[680px] lg:min-h-[720px]"
     >
       <div className="hero-parallax-gradient absolute inset-0 bg-brand-gradient" aria-hidden="true" />
+      <div className="absolute inset-0 bg-brand-radial opacity-60" aria-hidden="true" />
       <img
         src="/images/diretoria.png"
         alt=""
         aria-hidden="true"
         loading="eager"
         decoding="async"
-        className="hero-directors-image pointer-events-none absolute bottom-0 left-0 right-0 h-[88%] w-full object-contain object-right-bottom sm:left-auto sm:right-0 sm:h-[62%] sm:w-[55%] lg:h-[70%] lg:w-[50%]"
+        className="hero-directors-image pointer-events-none fixed bottom-0 right-0 z-0 h-[60%] w-[92%] max-w-[520px] object-contain object-bottom opacity-95 sm:h-[66%] sm:w-[70%] sm:max-w-[640px] lg:h-[78%] lg:w-[54%] lg:max-w-[860px] lg:object-right"
+        style={{ "--hero-image-base-shift": "clamp(32px, 6vw, 96px)" } as CSSProperties}
       />
 
-      <div className="page-container relative z-10 flex min-h-full flex-col items-start justify-start gap-8 pt-2 pb-16 text-left -mt-6 sm:pt-4 sm:pb-20 lg:pt-6 lg:pb-24">
-        <h1 className="whitespace-normal sm:whitespace-nowrap text-[clamp(2.25rem,4.6vw,4.25rem)] font-black leading-[1.05] text-white tracking-tight drop-shadow-[0_14px_44px_rgba(0,23,71,0.5)]">
-          Estratégia para quem{" "}
-          <span className="bg-gradient-to-r from-brand-green via-emerald-300 to-brand-green bg-clip-text text-transparent drop-shadow-[0_10px_32px_rgba(47,197,111,0.55)]">
-            decide no agro
-          </span>
-        </h1>
-        <div className="hidden sm:block space-y-4 lg:space-y-6">
-          <p className="max-w-3xl text-base text-white/85 sm:text-lg">
-            Transformamos dados em inteligência estratégica para apoiar decisões{" "}
-            <span className="block">seguras no agronegócio brasileiro e global.</span>
-          </p>
-          <div className="flex flex-wrap justify-start gap-3">
-            <div className={tagClass}>
-              <Layers size={16} />
-              Estratégia sob medida
+      <div className="page-container relative z-10 flex min-h-[640px] flex-col items-start justify-center gap-6 pb-16 pt-24 text-left sm:min-h-[680px] sm:pt-28 sm:pb-20 lg:min-h-[720px] lg:pb-24">
+        <div
+          data-reveal="card"
+          style={{ "--reveal-delay": "120ms" } as CSSProperties}
+          className="w-full max-w-2xl"
+        >
+          <h1 className="type-h1 whitespace-normal font-black text-white">
+            Estratégia para quem{" "}
+            <span className="inline-block bg-gradient-to-r from-emerald-200 via-brand-green to-emerald-200 bg-clip-text text-transparent">
+              decide no agro
+            </span>
+          </h1>
+          <div className="space-y-4 lg:space-y-6">
+            <p className="type-body max-w-xl text-white/85">
+              Transformamos dados em inteligência estratégica para apoiar decisões seguras no agronegócio brasileiro e global.
+            </p>
+            <div className="flex flex-wrap items-center gap-3">
+              <div className={tagClass}>
+                <Layers size={16} />
+                Estratégia sob medida
+              </div>
             </div>
-          </div>
 
-          <div className="flex flex-wrap justify-start gap-3">
-            <Link
-              to="/produtos"
-              className="btn-primary"
-              {...heroPrimaryHover}
-            >
-              Conheça nossas soluções
-              <ArrowRight size={16} />
-            </Link>
-            <button type="button" onClick={scrollToContact} className="btn-ghost">
-              Falar com um especialista
-            </button>
+            <div className="flex flex-wrap items-center gap-3">
+              <Link
+                to="/produtos"
+                className="btn-primary"
+                {...heroPrimaryHover}
+              >
+                Conheça nossas soluções
+                <ArrowRight size={16} />
+              </Link>
+              <button type="button" onClick={scrollToContact} className="btn-ghost">
+                Falar com um especialista
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -258,7 +287,7 @@ function Pillars() {
   };
 
   return (
-    <section className="section-padding bg-white mb-14 md:mb-16 lg:mb-24">
+    <section className="section-padding bg-white mb-14 md:mb-16 lg:mb-24" data-reveal="section">
       <div className={styles.sectionContainer}>
         <div className="relative min-h-[520px] overflow-hidden rounded-[32px] bg-brand-navy text-white shadow-panel md:min-h-[620px]">
           <div className="absolute inset-0">
@@ -283,17 +312,17 @@ function Pillars() {
 
           <div className="relative z-10 flex min-h-[520px] items-center justify-center px-6 py-14 md:min-h-[620px] md:px-10 md:py-16 lg:py-20">
             <div className="max-w-4xl space-y-6 text-center">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/80">Palestras Agroconsult</p>
-              <h2 className="text-4xl font-bold leading-[1.03] text-white drop-shadow-[0_0_32px_rgba(120,255,210,0.75)] sm:text-5xl lg:text-6xl">
+              <p className="eyebrow type-label text-white/80">Palestras Agroconsult</p>
+              <h2 className="type-h1 text-white drop-shadow-[0_0_32px_rgba(120,255,210,0.75)]">
                 Conteúdo que orienta decisões no agronegócio
               </h2>
               <div className="space-y-3">
-                <p className="text-lg text-white/90 sm:text-xl">
+                <p className="type-body-lg text-white/90">
                   Apresentações executivas, painéis, treinamentos e workshops desenvolvidos para conselhos, lideranças,
                   times estratégicos, clientes e parceiros, com foco em leitura de mercado, inteligência de safra e
                   direcionamento para a tomada de decisão.
                 </p>
-                <p className="text-base text-white/80 sm:text-lg">
+                <p className="type-body text-white/80">
                   Dados proprietários, análises exclusivas e a experiência de quem está no campo e no mercado para
                   antecipar cenários, reduzir riscos e acelerar resultados.
                 </p>
@@ -302,7 +331,7 @@ function Pillars() {
                 {talkTags.map((tag) => (
                   <span
                     key={tag}
-                    className="w-full whitespace-nowrap rounded-full bg-white/15 px-2 py-2 text-center text-[10px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur sm:w-auto sm:px-3 sm:text-xs sm:tracking-wide"
+                    className="type-label w-full whitespace-nowrap rounded-full bg-white/15 px-2 py-2 text-center text-white backdrop-blur sm:w-auto sm:px-3"
                   >
                     {tag}
                   </span>
@@ -353,12 +382,12 @@ function Expertise() {
   ];
 
   return (
-    <section id="expertise" className="section-padding bg-white">
+    <section id="expertise" className="section-padding bg-white" data-reveal="section">
       <div className={styles.sectionContainer}>
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div className="space-y-4">
             <p className={styles.eyebrow}>INTELIGÊNCIA APLICADA AO AGRO</p>
-            <h2 className="text-3xl font-semibold leading-tight text-brand-navy sm:text-4xl">
+            <h2 className="type-h2 text-brand-navy">
               Conhecimento que gera <br />
               <span className="text-brand-green">confiança e resultado</span>
             </h2>
@@ -373,15 +402,18 @@ function Expertise() {
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
-            {metrics.map((item) => (
+            {metrics.map((item, idx) => (
               <div
                 key={item.label}
-                className="group space-y-2 rounded-2xl bg-slate-50 p-5 text-left shadow-sm ring-1 ring-slate-100 transition duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:bg-brand-gradient hover:shadow-[0_24px_70px_rgba(0,0,0,0.28)] hover:ring-white/20"
+                data-reveal="card"
+                style={{ "--reveal-delay": `${idx * 120}ms` } as CSSProperties}
               >
-                <div className="mb-2 text-brand-green transition group-hover:text-white">{item.icon}</div>
-                <p className="text-2xl font-bold text-brand-navy transition group-hover:text-white">{item.value}</p>
-                <p className="text-sm font-semibold text-brand-navy transition group-hover:text-white/90">{item.label}</p>
-                <p className="text-sm text-slate-700 transition group-hover:text-white/85">{item.detail}</p>
+                <div className="group space-y-2 rounded-2xl bg-slate-50 p-5 text-left shadow-sm ring-1 ring-slate-100 transition duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:bg-brand-gradient hover:shadow-[0_24px_70px_rgba(0,0,0,0.28)] hover:ring-white/20">
+                  <div className="mb-2 text-brand-green transition group-hover:text-white">{item.icon}</div>
+                  <p className="text-2xl font-bold text-brand-navy transition group-hover:text-white">{item.value}</p>
+                  <p className="text-sm font-semibold text-brand-navy transition group-hover:text-white/90">{item.label}</p>
+                  <p className="text-sm text-slate-700 transition group-hover:text-white/85">{item.detail}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -401,7 +433,6 @@ function ProductsPreview() {
   const platforms = [
     { label: "Agrovalora", href: "https://terra-inteligente.vercel.app/" },
     { label: "BD Online", href: "https://bd.agroconsult.com.br/" },
-    { label: "Rally da Safra", href: "https://www.rallydasafra.com.br/" },
     { label: "Agricontent", href: "https://rallydasafra.rds.land/agricontent" }
   ];
 
@@ -421,16 +452,16 @@ function ProductsPreview() {
   } as CSSProperties;
 
   return (
-    <section className="bg-brand-gradient pt-6 sm:pt-0">
+    <section className="bg-brand-gradient pt-6 sm:pt-0" data-reveal="section">
       <div className={`${styles.sectionContainer} space-y-8`}>
         <div className="grid gap-8 text-white lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">PRODUTOS POR ASSINATURA</p>
-            <h2 className="text-3xl font-semibold leading-tight md:text-[34px]">
+            <p className="eyebrow type-label text-white/80">PRODUTOS POR ASSINATURA</p>
+            <h2 className="type-h2 text-white">
               Um portfólio completo para decisões rápidas e seguras
             </h2>
             <div className="space-y-3 text-white/85">
-              <p className="max-w-3xl text-sm md:text-base">
+              <p className="type-body max-w-3xl">
                 Plataformas desenvolvidas para quem precisa acompanhar mercados, antecipar movimentos, gerar
                 relacionamento e tomar decisões com agilidade, com dados confiáveis e análises recorrentes.
               </p>
@@ -439,23 +470,29 @@ function ProductsPreview() {
               {platforms.map((item, idx) => {
                 const isHovered = hoveredPlatform === idx;
                 return (
-                  <a
+                  <div
                     key={item.label}
-                    href={item.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex w-full items-center justify-center text-center whitespace-nowrap rounded-3xl bg-white/12 px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.12em] text-white/85 shadow-xl ring-1 ring-white/20 backdrop-blur transition duration-300 sm:w-auto sm:px-3.5 sm:py-2.5 sm:text-[10px] sm:tracking-[0.14em]"
-                    style={{
-                      transform: isHovered ? "translateY(-8px) scale(1.02)" : "translateY(0) scale(1)",
-                      boxShadow: isHovered ? "0 24px 70px rgba(0,0,0,0.28)" : undefined
-                    }}
-                    onMouseEnter={() => setHoveredPlatform(idx)}
-                    onMouseLeave={() => setHoveredPlatform(null)}
-                    onFocus={() => setHoveredPlatform(idx)}
-                    onBlur={() => setHoveredPlatform(null)}
+                    data-reveal="card"
+                    style={{ "--reveal-delay": `${idx * 120}ms` } as CSSProperties}
+                    className="w-full sm:w-auto"
                   >
-                    {item.label}
-                  </a>
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="type-label flex w-full items-center justify-center text-center whitespace-nowrap rounded-3xl bg-white/12 px-3 py-2 text-white/85 shadow-xl ring-1 ring-white/20 backdrop-blur transition duration-300 sm:w-auto sm:px-3.5 sm:py-2.5"
+                      style={{
+                        transform: isHovered ? "translateY(-8px) scale(1.02)" : "translateY(0) scale(1)",
+                        boxShadow: isHovered ? "0 24px 70px rgba(0,0,0,0.28)" : undefined
+                      }}
+                      onMouseEnter={() => setHoveredPlatform(idx)}
+                      onMouseLeave={() => setHoveredPlatform(null)}
+                      onFocus={() => setHoveredPlatform(idx)}
+                      onBlur={() => setHoveredPlatform(null)}
+                    >
+                      {item.label}
+                    </a>
+                  </div>
                 );
               })}
             </div>
@@ -516,7 +553,6 @@ function ProductsPreview() {
 
 function ProductsOverview() {
   const productsHover = usePrimaryGradientHover();
-  const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
   const productAreas = [
     {
       title: "Agromarket",
@@ -561,17 +597,17 @@ function ProductsOverview() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24">
-      <div className="page-container">
+    <section className="relative overflow-hidden bg-brand-gradient py-16 text-white sm:py-20 lg:py-24" data-reveal="section">
+      <div className="page-container relative">
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-brand-navy/10 bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.32em] text-brand-navy/70">
+            <div className="eyebrow type-label inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/15 px-3 py-1 text-white/80">
               PRODUTOS AGROCONSULT
             </div>
-            <h2 className="text-[clamp(2.2rem,5.2vw,3.8rem)] font-black leading-[1.05] text-brand-navy">
+            <h2 className="type-h2 font-black text-white">
               Inteligência aplicada em toda a jornada de decisão do agro
             </h2>
-            <p className="max-w-xl text-base text-slate-700 md:text-lg">
+            <p className="type-body max-w-xl text-white/85">
               Da leitura de safra à estratégia, com dados primários coletados diretamente no campo e por sensoriamento remoto.
             </p>
             <div className="flex flex-wrap items-center gap-3">
@@ -579,59 +615,135 @@ function ProductsOverview() {
                 Ver pagina de produtos
                 <ArrowRight size={16} />
               </Link>
-              <span className="rounded-full border border-brand-navy/10 bg-white/70 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-navy/70">
-              frentes integradas
-              </span>
-            </div>
-            <div className="flex flex-wrap gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-brand-navy/50">
-              {["Dados auditados", "Visao consultiva", "Time dedicado"].map((item) => (
-                <span key={item} className="rounded-full border border-brand-navy/10 bg-white/60 px-3 py-1">
-                  {item}
-                </span>
-              ))}
             </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            {productAreas.map((item, idx) => {
-              const isFeatured = idx === 0;
-              const isOffset = idx % 2 === 1;
-              const isHovered = hoveredProduct === idx;
-              return (
+          <div className="relative">
+            <div
+              className="pointer-events-none absolute left-3.5 top-2 h-[calc(100%-1rem)] w-px bg-gradient-to-b from-white/70 via-white/25 to-transparent"
+              aria-hidden="true"
+            />
+            <div className="space-y-6 pl-8">
+              {productAreas.map((item, idx) => (
                 <div
                   key={item.title}
-                  className={`${isFeatured ? "sm:col-span-2" : ""} ${isOffset ? "sm:mt-4" : ""}`}
+                  data-reveal="card"
+                  style={{ "--reveal-delay": `${idx * 120}ms` } as CSSProperties}
+                  className="group relative"
                 >
-                  <div
-                    className={`group relative overflow-hidden rounded-3xl p-5 shadow-xl ring-1 ring-white/20 backdrop-blur transition duration-300 ${
-                      isHovered ? "bg-brand-gradient" : "bg-white/12"
-                    }`}
-                    style={{
-                      transform: isHovered ? "translateY(-8px) scale(1.02)" : "translateY(0) scale(1)",
-                      boxShadow: isHovered ? "0 24px 70px rgba(0,0,0,0.28)" : undefined
-                    }}
-                    onMouseEnter={() => setHoveredProduct(idx)}
-                    onMouseLeave={() => setHoveredProduct(null)}
-                    onFocus={() => setHoveredProduct(idx)}
-                    onBlur={() => setHoveredProduct(null)}
-                  >
-                    <div className="absolute -right-10 -top-10 h-24 w-24 rounded-full bg-brand-green/20 blur-2xl opacity-0 transition duration-300 group-hover:opacity-100" />
-                    <div className="relative">
-                      <h3
-                        className={`text-sm font-semibold uppercase tracking-[0.18em] ${
-                          isHovered ? "text-white" : "text-brand-navy"
-                        }`}
-                      >
-                        {item.title}
-                      </h3>
-                      <p className={`mt-2 text-sm ${isHovered ? "text-white/85" : "text-slate-700"}`}>
-                        {item.description}
-                      </p>
+                  <span className="absolute left-2 top-2 flex h-3 w-3 items-center justify-center rounded-full bg-white/85 shadow-[0_0_0_6px_rgba(255,255,255,0.08)] transition group-hover:shadow-[0_0_0_10px_rgba(255,255,255,0.18)]">
+                    <span className="h-1.5 w-1.5 rounded-full bg-white/80 transition group-hover:h-2 group-hover:w-2 group-hover:bg-gradient-to-r group-hover:from-brand-green group-hover:via-emerald-200 group-hover:to-emerald-100" />
+                  </span>
+                  <div className="grid gap-2 md:grid-cols-[220px_1fr] md:items-baseline">
+                    <div className="flex items-baseline gap-3 text-white/85">
+                      <span className="text-xs font-bold text-white/45">{String(idx + 1).padStart(2, "0")}</span>
+                      <h3 className="type-body font-semibold text-white">{item.title}</h3>
                     </div>
+                    <p className="type-small text-white/75">{item.description}</p>
                   </div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RallySection() {
+  const rallyHover = usePrimaryGradientHover();
+  const slideStep = 5;
+  const slideDuration = rallySlides.length * slideStep;
+  const initialOffset = slideStep;
+
+  return (
+    <section className="section-padding rally-hero relative overflow-hidden bg-white text-brand-navy" data-reveal="section">
+      <div className="page-container relative z-10">
+        <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div className="space-y-5">
+            <p className="eyebrow type-label text-brand-navy/70">Rally da Safra</p>
+            <div className="space-y-3">
+              <h2 className="type-h2 font-black text-brand-navy">
+                A Agroconsult lidera a maior expedição de{" "}
+                <span className="bg-gradient-to-r from-brand-green via-emerald-300 to-brand-green bg-clip-text text-transparent">
+                  análise de safra do Brasil
+                </span>
+                .
+              </h2>
+              <p className="type-body max-w-2xl text-slate-700">
+                Uma operação técnica que cruza milhares de quilômetros para auditar campo a campo, antecipar cenários e
+                transformar informação em decisões estratégicas para todo o agronegócio.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-6">
+              {[
+                { value: "+1,99 milhões", label: "de km percorridos" },
+                { value: "+34 mil", label: "lavouras avaliadas" },
+                { value: "+220 mil", label: "seguidores nas redes sociais" }
+              ].map((item, idx) => (
+                <div
+                  key={item.value}
+                  data-reveal="card"
+                  style={{ "--reveal-delay": `${idx * 120}ms` } as CSSProperties}
+                  className="flex items-baseline gap-2 whitespace-nowrap"
+                >
+                  <span className="text-sm font-bold text-brand-navy">{item.value}</span>
+                  <span className="type-label text-brand-navy/60">{item.label}</span>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="https://www.rallydasafra.com.br/"
+                target="_blank"
+                rel="noreferrer"
+                className="btn-primary"
+                {...rallyHover}
+              >
+                Conhecer a expedição
+                <ArrowRight size={16} />
+              </a>
+              <Link to="/produtos" className="btn-secondary">
+                Ver soluções Agroconsult
+              </Link>
+            </div>
+          </div>
+
+          <div className="space-y-5">
+            <div
+              className="rally-carousel"
+              data-reveal="card"
+              style={{ "--reveal-delay": "120ms" } as CSSProperties}
+              role="region"
+              aria-label="Carrossel de imagens do Rally da Safra"
+            >
+              <div className="rally-carousel-frame" aria-hidden="true" />
+              {rallySlides.map((src, idx) => {
+                const isPriority = idx === 0;
+                const slideDelay = idx * slideStep - initialOffset;
+                return (
+                  <div
+                    key={src}
+                    className="rally-carousel-slide"
+                    style={
+                      {
+                        "--slide-delay": `${slideDelay}s`,
+                        "--slide-duration": `${slideDuration}s`
+                      } as CSSProperties
+                    }
+                  >
+                    <img
+                      src={src}
+                      alt=""
+                      loading={isPriority ? "eager" : "lazy"}
+                      decoding="async"
+                      fetchPriority={isPriority ? "high" : "low"}
+                    />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
@@ -652,7 +764,7 @@ function ClientsSection() {
   if (!nonEmptyLines.length) return null;
 
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-white" data-reveal="section">
       <div className={styles.sectionContainer}>
         <div className="space-y-2 text-left md:text-center">
           <p className={styles.eyebrow}>Clientes que confiam</p>
@@ -673,6 +785,8 @@ function ClientsSection() {
             return (
               <div
                 key={`linha-${idxLine}`}
+                data-reveal="card"
+                style={{ "--reveal-delay": `${idxLine * 120}ms` } as CSSProperties}
                 className="overflow-hidden rounded-2xl border border-slate-100 bg-gradient-to-r from-white via-neutral-50 to-white/80 p-3 shadow-sm"
               >
                 <div
@@ -708,9 +822,9 @@ function CTA() {
             <div className="absolute right-10 top-0 h-48 w-48 rounded-full bg-white/10 opacity-60 blur-3xl" />
             <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/80">Contato</p>
-                <h3 className="text-2xl font-bold leading-tight">Vamos desenhar seu próximo ciclo com mais precisão?</h3>
-                <p className="mt-2 max-w-2xl text-white/85">
+                <p className="eyebrow type-label text-white/80">Contato</p>
+                <h3 className="type-h3">Vamos desenhar seu próximo ciclo com mais precisão?</h3>
+                <p className="type-body mt-2 max-w-2xl text-white/85">
                   Conecte dados primários, inteligência de mercado e estratégia em uma única frente.
                 </p>
               </div>
@@ -735,15 +849,15 @@ function ContactSocialSection() {
   const contactPrimaryHover = usePrimaryGradientHover();
 
   return (
-    <section id="contato" className="section-padding bg-brand-gradient">
+    <section id="contato" className="section-padding bg-brand-gradient" data-reveal="section">
       <div className="page-container">
         <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <aside className="text-white" aria-labelledby="follow-title">
             <div className="space-y-4">
               <div className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">Redes sociais</p>
-                <h4 id="follow-title" className="text-2xl font-semibold">Siga a Agroconsult</h4>
-                <p className="text-sm text-white/75">
+                <p className="eyebrow type-label text-white/70">Redes sociais</p>
+                <h4 id="follow-title" className="type-h3">Siga a Agroconsult</h4>
+                <p className="type-small text-white/75">
                   Conteúdo oficial, bastidores dos projetos e novidades em tempo real. Escolha sua rede favorita e acompanhe a Agroconsult.
                 </p>
               </div>
@@ -752,61 +866,71 @@ function ContactSocialSection() {
                 {followLinks.map((item, idx) => {
                   const isHovered = hoveredFollow === idx;
                   return (
-                    <a
+                    <div
                       key={item.label}
-                      href={item.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="group flex items-center justify-between gap-3 rounded-2xl bg-white/12 px-4 py-3 shadow-xl ring-1 ring-white/20 backdrop-blur transition duration-300"
-                      style={{
-                        transform: isHovered ? "translateY(-8px) scale(1.02)" : "translateY(0) scale(1)",
-                        boxShadow: isHovered
-                          ? "0 0 40px rgba(255,255,255,0.18), 0 24px 70px rgba(0,0,0,0.28)"
-                          : undefined
-                      }}
-                      onMouseEnter={() => setHoveredFollow(idx)}
-                      onMouseLeave={() => setHoveredFollow(null)}
+                      data-reveal="card"
+                      style={{ "--reveal-delay": `${idx * 120}ms` } as CSSProperties}
                     >
-                      <div className="flex items-center gap-3">
-                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition group-hover:bg-brand-gradient group-hover:text-white">
-                          {item.icon}
-                        </span>
-                        <div className="space-y-0.5">
-                          <p className="text-sm font-semibold">Siga no {item.label}</p>
-                          <p className="text-xs text-white/70">{item.detail}</p>
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group flex items-center justify-between gap-3 rounded-2xl bg-white/12 px-4 py-3 shadow-xl ring-1 ring-white/20 backdrop-blur transition duration-300"
+                        style={{
+                          transform: isHovered ? "translateY(-8px) scale(1.02)" : "translateY(0) scale(1)",
+                          boxShadow: isHovered
+                            ? "0 0 40px rgba(255,255,255,0.18), 0 24px 70px rgba(0,0,0,0.28)"
+                            : undefined
+                        }}
+                        onMouseEnter={() => setHoveredFollow(idx)}
+                        onMouseLeave={() => setHoveredFollow(null)}
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition group-hover:bg-brand-gradient group-hover:text-white">
+                            {item.icon}
+                          </span>
+                          <div className="space-y-0.5">
+                          <p className="type-small font-semibold">Siga no {item.label}</p>
+                          <p className="type-small text-white/70">{item.detail}</p>
+                          </div>
                         </div>
-                      </div>
-                      <span className="text-xs font-semibold uppercase tracking-[0.16em] text-white/80 transition group-hover:text-white">
+                      <span className="type-label text-white/80 transition group-hover:text-white">
                         Seguir
                       </span>
-                    </a>
+                      </a>
+                    </div>
                   );
                 })}
               </div>
 
-              <p className="text-xs text-white/70">
+              <p className="type-small text-white/70">
                 Prefere falar diretamente com a equipe? Envie uma mensagem pelas redes sociais e retornaremos em breve.
               </p>
             </div>
           </aside>
 
-          <div id="contato-form" className="relative w-full overflow-hidden rounded-2xl bg-white/12 p-6 shadow-xl ring-1 ring-white/20 backdrop-blur">
+          <div
+            id="contato-form"
+            data-reveal="card"
+            style={{ "--reveal-delay": "180ms" } as CSSProperties}
+            className="relative w-full overflow-hidden rounded-2xl bg-white/12 p-6 shadow-xl ring-1 ring-white/20 backdrop-blur"
+          >
             <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-brand-green/10 blur-3xl" aria-hidden />
             <div className="absolute -left-6 bottom-10 h-20 w-20 rounded-full bg-brand-navy/10 blur-3xl" aria-hidden />
 
             <div className="relative z-10 space-y-4">
-              <h4 id="contact-title" className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Contato</h4>
+              <h4 id="contact-title" className="eyebrow type-label text-white/70">Contato</h4>
               <div className="space-y-2 text-white/90">
-                <p className="text-lg font-semibold leading-tight text-white sm:text-xl">
+                <p className="type-h3 text-white">
                   Vamos desenhar seu próximo ciclo com mais precisão?
                 </p>
-                <p className="text-sm text-white/75">
+                <p className="type-small text-white/75">
                   Conecte dados primários, inteligência de mercado e estratégia em uma única frente.
                 </p>
               </div>
-              <form className="grid gap-3 text-sm text-white/80" onSubmit={(event) => event.preventDefault()}>
+              <form className="grid gap-3 type-small text-white/80" onSubmit={(event) => event.preventDefault()}>
                 <label className="grid gap-1">
-                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Assunto</span>
+                  <span className="type-label text-white/70">Assunto</span>
                   <select
                     name="assunto"
                     required
@@ -821,7 +945,7 @@ function ContactSocialSection() {
                   </select>
                 </label>
                 <label className="grid gap-1">
-                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Email corporativo</span>
+                  <span className="type-label text-white/70">Email corporativo</span>
                   <input
                     type="email"
                     name="email"
@@ -834,7 +958,7 @@ function ContactSocialSection() {
                   />
                 </label>
                 <label className="grid gap-1">
-                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Mensagem</span>
+                  <span className="type-label text-white/70">Mensagem</span>
                   <textarea
                     name="mensagem"
                     rows={4}
@@ -861,15 +985,20 @@ function ContactSocialSection() {
   );
 }
 export default function Home() {
+  const revealRef = useRevealOnScroll<HTMLDivElement>();
+
   return (
-    <div className="bg-white/60">
+    <div ref={revealRef} className="relative z-0 bg-white/60">
       <Hero />
-      <Expertise />
-      <Pillars />
-      <ProductsPreview />
-      <ProductsOverview />
-      <ClientsSection />
-      <ContactSocialSection />
+      <div className="relative z-10">
+        <Expertise />
+        <Pillars />
+        <ProductsPreview />
+        <RallySection />
+        <ProductsOverview />
+        <ClientsSection />
+        <ContactSocialSection />
+      </div>
     </div>
   );
 }

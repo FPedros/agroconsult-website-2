@@ -1,3 +1,5 @@
+import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
+
 const definitions = [
   {
     term: "Dado Pessoal",
@@ -190,17 +192,19 @@ const rights = [
 ];
 
 export default function PoliticaPrivacidade() {
+  const revealRef = useRevealOnScroll<HTMLDivElement>();
+
   return (
-    <div className="min-h-screen bg-white/90 pb-16 pt-14 md:pt-28">
+    <div ref={revealRef} className="min-h-screen bg-white/90 pb-16 pt-14 md:pt-28">
       <div className="page-container max-w-5xl space-y-10">
-        <header className="space-y-2 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gray">Privacidade</p>
-          <h1 className="text-3xl font-bold text-brand-navy">Política de Privacidade</h1>
+        <header className="space-y-2 text-center" data-reveal="section">
+          <p className="type-label text-brand-gray">Privacidade</p>
+          <h1 className="type-h1 text-brand-navy">Política de Privacidade</h1>
           <p className="text-sm text-slate-600">Atualizado em 2026.</p>
         </header>
 
         <section className="space-y-6 text-sm text-slate-700 leading-relaxed">
-          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100">
+          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100" data-reveal="card">
             <h2 className="text-lg font-semibold text-brand-navy">Aviso de Privacidade</h2>
             <p>
               Este Aviso de Privacidade descreve como o AGROCONSULT e suas afiliadas Agroconsult Participações Ltda e
@@ -213,7 +217,7 @@ export default function PoliticaPrivacidade() {
             </p>
           </div>
 
-          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100">
+          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100" data-reveal="card">
             <h2 className="text-lg font-semibold text-brand-navy">Quem somos, definições e agentes</h2>
             <p>
               A AGROCONSULT é uma consultoria especializada no agronegócio brasileiro. Somos uma empresa que associa
@@ -234,7 +238,7 @@ export default function PoliticaPrivacidade() {
             </div>
           </div>
 
-          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100">
+          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100" data-reveal="card">
             <h2 className="text-lg font-semibold text-brand-navy">Definições</h2>
             <dl className="grid gap-3">
               {definitions.map((item) => (
@@ -246,7 +250,7 @@ export default function PoliticaPrivacidade() {
             </dl>
           </div>
 
-          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100">
+          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100" data-reveal="card">
             <h2 className="text-lg font-semibold text-brand-navy">Dados pessoais</h2>
             <p>Podemos processar diferentes tipos de dados pessoais sobre você, os quais agrupamos da seguinte forma:</p>
             <ul className="space-y-2">
@@ -264,7 +268,7 @@ export default function PoliticaPrivacidade() {
             </ul>
           </div>
 
-          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100">
+          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100" data-reveal="card">
             <h2 className="text-lg font-semibold text-brand-navy">Fundamentos legais</h2>
             <p>
               Dependendo da finalidade, contaremos com os seguintes fundamentos legais (conforme apropriado) para
@@ -298,7 +302,7 @@ export default function PoliticaPrivacidade() {
             </div>
           </div>
 
-          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100">
+          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100" data-reveal="card">
             <h2 className="text-lg font-semibold text-brand-navy">Com quem é compartilhado</h2>
             <p>
               Nós podemos compartilhar alguns de seus dados com nossos prestadores de serviços relacionados à operação
@@ -333,7 +337,7 @@ export default function PoliticaPrivacidade() {
             </p>
           </div>
 
-          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100">
+          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100" data-reveal="card">
             <h2 className="text-lg font-semibold text-brand-navy">Cookies, links e segurança</h2>
             <div className="space-y-2">
               <h3 className="text-sm font-semibold text-brand-navy">Cookies</h3>
@@ -376,7 +380,7 @@ export default function PoliticaPrivacidade() {
             </div>
           </div>
 
-          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100">
+          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100" data-reveal="card">
             <h2 className="text-lg font-semibold text-brand-navy">Por quanto tempo guardamos suas informações</h2>
             <p>
               Retemos suas informações pelo período necessário para cumprir os propósitos pelos quais seus dados foram
@@ -390,7 +394,7 @@ export default function PoliticaPrivacidade() {
             </ul>
           </div>
 
-          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100">
+          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100" data-reveal="card">
             <h2 className="text-lg font-semibold text-brand-navy">Seus direitos</h2>
             <p>
               Em cumprimento à Lei Geral de Proteção de Dados pessoais (LGPD), no que diz respeito ao tratamento de
@@ -424,7 +428,7 @@ export default function PoliticaPrivacidade() {
             </p>
           </div>
 
-          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100">
+          <div className="space-y-3 rounded-2xl bg-white p-5 shadow-panel ring-1 ring-slate-100" data-reveal="card">
             <h2 className="text-lg font-semibold text-brand-navy">Atualização do aviso</h2>
             <p>
               Quaisquer alterações que possamos fazer ao nosso Aviso de Privacidade no futuro serão publicadas nesta

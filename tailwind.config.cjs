@@ -13,7 +13,15 @@ module.exports = {
       },
       fontFamily: {
         display: ["Comfortaa", "system-ui", "sans-serif"],
-        body: ["Comfortaa", "system-ui", "sans-serif"]
+        body: [
+          "Century Gothic",
+          "CenturyGothic",
+          "AppleGothic",
+          "Avenir Next",
+          "Trebuchet MS",
+          "system-ui",
+          "sans-serif"
+        ]
       },
       backgroundImage: {
         "brand-gradient": "linear-gradient(90deg, #202956 0%, #1a445f 40%, #008747 100%)",

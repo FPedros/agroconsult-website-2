@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, type CSSProperties } from "react";
 import { ArrowRight, Linkedin, Mic } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
+import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 
 const speakers = [
   {
@@ -44,25 +45,29 @@ const speakers = [
 
 export default function Palestras() {
   const ctaHover = usePrimaryGradientHover();
+  const revealRef = useRevealOnScroll<HTMLDivElement>();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div className="bg-white">
-      <section className="relative overflow-hidden bg-brand-gradient pt-12 text-white md:pt-24 lg:pt-20">
+    <div ref={revealRef} className="bg-white">
+      <section
+        className="relative overflow-hidden bg-brand-gradient pt-12 text-white md:pt-24 lg:pt-20"
+        data-reveal="section"
+      >
         <div className="page-container relative flex flex-col gap-6 pt-8 pb-16 md:py-16 lg:flex-row lg:items-center lg:pt-12 lg:pb-20">
           <div className="space-y-4 lg:w-3/5">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">Palestras</p>
-            <h1 className="text-3xl font-bold leading-tight lg:text-4xl">Conteúdo que orienta decisões no agronegócio</h1>
-            <p className="text-base text-white/85">
+            <p className="type-label text-white/80">Palestras</p>
+            <h1 className="type-h1">Conteúdo que orienta decisões no agronegócio</h1>
+            <p className="type-body text-white/85">
               Talks customizados com especialistas da Agroconsult para conselhos, lideranças e times estratégicos.
               Conteúdo baseado em dados primários, leitura de mercado e inteligência de safra para apoiar decisões e acelerar resultados.
             </p>
             <div className="flex flex-wrap items-center gap-2">
               {["Condições e resultados da safra", "Perspectivas de mercado", "Cenário econômico e financeiro"].map((tag) => (
-                <span key={tag} className="rounded-full bg-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-wide">
+                <span key={tag} className="type-label rounded-full bg-white/10 px-3 py-2 text-white">
                   {tag}
                 </span>
               ))}
@@ -75,11 +80,15 @@ export default function Palestras() {
             </div>
           </div>
           <div className="lg:w-2/5">
-            <div className="rounded-3xl bg-white/10 p-6 shadow-xl ring-1 ring-white/20 backdrop-blur">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide">
+            <div
+              className="rounded-3xl bg-white/10 p-6 shadow-xl ring-1 ring-white/20 backdrop-blur"
+              data-reveal="card"
+              style={{ "--reveal-delay": "120ms" } as CSSProperties}
+            >
+              <div className="type-label mb-4 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-white">
                 <Mic size={16} /> Formatos
               </div>
-              <div className="space-y-3 text-sm text-white/85">
+              <div className="type-small space-y-3 text-white/85">
                 {[
                   "Keynotes para eventos e conselhos",
                   "Painéis moderados com especialistas da Agroconsult",
@@ -98,21 +107,23 @@ export default function Palestras() {
         </div>
       </section>
 
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-white" data-reveal="section">
         <div className="page-container space-y-6">
-          <div className="space-y-2 text-left md:text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-gray">NOSSOS ESPECIALISTAS</p>
-            <h2 className="text-3xl font-semibold leading-tight text-brand-navy">Quem leva a Agroconsult ao palco</h2>
-            <p className="text-base text-slate-700 md:text-lg">
+          <div className="space-y-2 text-left md:text-center" data-reveal="section">
+            <p className="type-label text-brand-gray">NOSSOS ESPECIALISTAS</p>
+            <h2 className="type-h2 text-brand-navy">Quem leva a Agroconsult ao palco</h2>
+            <p className="type-body text-slate-700">
               Especialistas que vivem o campo, os dados e a estratégia para traduzir tendências em decisões.
             </p>
           </div>
 
           <div className="grid gap-4 grid-cols-2 lg:grid-cols-3">
-            {speakers.map((speaker) => (
+            {speakers.map((speaker, idx) => (
               <div
                 key={speaker.name}
                 className="group rounded-3xl bg-white shadow-panel ring-1 ring-slate-100 transition hover:-translate-y-1 hover:shadow-lg"
+                data-reveal="card"
+                style={{ "--reveal-delay": `${idx * 80}ms` } as CSSProperties}
               >
                 <div className="relative mx-auto mt-4 w-2/3 max-w-[200px] aspect-square overflow-hidden rounded-full">
                   <img
@@ -128,7 +139,7 @@ export default function Palestras() {
                 </div>
                 <div className="space-y-1 p-4 text-center">
                   <div className="flex items-center justify-center gap-2">
-                    <h3 className="text-base font-bold text-brand-navy sm:text-lg">{speaker.name}</h3>
+                    <h3 className="type-body font-semibold text-brand-navy">{speaker.name}</h3>
                     {speaker.linkedin ? (
                       <a
                         href={speaker.linkedin}
@@ -141,7 +152,7 @@ export default function Palestras() {
                       </a>
                     ) : null}
                   </div>
-                  <p className="text-xs text-slate-700 sm:text-sm">{speaker.bio}</p>
+                  <p className="type-small text-slate-700">{speaker.bio}</p>
                 </div>
               </div>
             ))}

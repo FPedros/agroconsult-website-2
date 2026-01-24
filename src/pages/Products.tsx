@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import InteractiveCard from "../components/InteractiveCard";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
 import { ProductCardCustomization } from "../config/productCardCustomization";
+import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 
 type ProductCardData = {
   title: string;
@@ -167,14 +168,13 @@ const rallyCards: ProductCardData[] = [
     title: "Rally da Safra",
     tagline: "Dados de campo antecipados + relacionamento direto com produtores e stakeholders.",
     bullets: [
-      "Previsão mais assertiva e mais cedo (antes das origens oficiais)",
-      "Coleta de dados primários na prática (confiabilidade)",
+      "PrevisÃ£o mais assertiva e mais cedo (antes das origens oficiais)",
+      "Coleta de dados primÃ¡rios na prÃ¡tica (confiabilidade)",
       "Visibilidade e relacionamento: eventos, imprensa, digital e campo"
     ],
-    audience: "Marcas que buscam posicionamento e engamento no Agronegócio"
+    audience: "Marcas que buscam posicionamento e engamento no AgronegÃ³cio"
   }
 ];
-
 
 const agricontentCards: ProductCardData[] = [
   {
@@ -236,7 +236,7 @@ const trainingCards: ProductCardData[] = [
 ];
 
 const sectionTitleClass =
-  "relative inline-block pb-2 text-[clamp(0.85rem,4.2vw,1.6rem)] font-bold leading-tight tracking-tight text-brand-navy whitespace-nowrap sm:pb-3 sm:text-4xl lg:text-5xl after:absolute after:bottom-0 after:left-0 after:h-1.5 after:w-16 after:rounded-full after:bg-brand-gradient after:content-['']";
+  "relative inline-block pt-2 pb-2 type-h2 text-brand-navy whitespace-nowrap sm:pt-3 sm:pb-3 after:absolute after:bottom-0 after:left-0 after:h-1.5 after:w-16 after:rounded-full after:bg-brand-gradient after:content-['']";
 
 const cardGridClass = (count: number) => {
   if (count <= 1) return "grid gap-4";
@@ -263,8 +263,8 @@ function ProductCard({ title, tagline, bullets, audience }: ProductCardData) {
         ))}
       </ul>
       {audience && (
-        <p className="text-sm text-brand-gray">
-          <span className="font-semibold uppercase tracking-[0.16em] text-brand-gray">Para quem é:</span>{" "}
+        <p className="type-small text-brand-gray">
+          <span className="type-label text-brand-gray">Para quem é:</span>{" "}
           <span className="font-semibold text-brand-navy">{audience}</span>
         </p>
       )}
@@ -276,7 +276,11 @@ function ConsultoriaListItem({ card, index }: { card: ProductCardData; index: nu
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border-l-4 border-brand-green bg-white rounded-r-lg overflow-hidden transition-all hover:shadow-md">
+    <div
+      className="border-l-4 border-brand-green bg-white rounded-r-lg overflow-hidden transition-all hover:shadow-md"
+      data-reveal="card"
+      style={{ "--reveal-delay": `${index * 80}ms` } as CSSProperties}
+    >
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full p-4 sm:p-5 text-left flex items-start justify-between gap-3 hover:bg-slate-50"
@@ -335,8 +339,7 @@ function ConsultoriaListItem({ card, index }: { card: ProductCardData; index: nu
 // LISTA EXPANDÍVEL - ConsultoriaListItem
 // ============================================
 // CONFIGURAÇÃO DO STICKY:
-// - sticky top-32 = 128px (mobile) - abaixo da barra de categorias
-// - sm:top-36 = 144px (tablet+) - abaixo da barra de categorias
+// - sticky top-[120px] = 120px (mobile/desktop) - abaixo da barra de categorias
 // - z-20: Título fica ACIMA do conteúdo
 // - Conteúdo tem z-10: rola POR TRÁS do título
 // - Barra de categorias: z-30 (sempre no topo)
@@ -346,12 +349,12 @@ function ConsultoriaSection({ isActive, opacity = 1 }: { isActive: boolean; opac
   return (
     <section
       id="consultorias"
-      className="relative section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      className="relative section-padding bg-white scroll-mt-[120px] pt-6 sm:pt-8 md:pt-16 lg:pt-24"
       aria-labelledby="consultorias-title"
     >
       {/* Sticky Title Wrapper - Gruda abaixo da barra de categorias, conteúdo rola por trás */}
       <div 
-        className="sticky top-32 sm:top-36 z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
+        className="sticky top-[120px] z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
         data-section-title="consultorias"
       >
         <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
@@ -389,12 +392,12 @@ function DadosSection({ isActive, opacity = 1 }: { isActive: boolean; opacity?: 
   return (
     <section
       id="dados-api"
-      className="relative section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      className="relative section-padding bg-white scroll-mt-[120px] pt-6 sm:pt-8 md:pt-16 lg:pt-24"
       aria-labelledby="dados-api-title"
     >
       {/* Sticky Title - conteúdo rola por trás */}
       <div 
-        className="sticky top-32 sm:top-36 z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
+        className="sticky top-[120px] z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
         data-section-title="dados-api"
       >
         <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
@@ -461,11 +464,11 @@ function ProductSection({
   return (
     <section
       id={id}
-      className="section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      className="section-padding bg-white scroll-mt-[120px] pt-6 sm:pt-8 md:pt-16 lg:pt-24"
       aria-labelledby={`${id}-title`}
     >
       <div className="page-container space-y-4 sm:space-y-6">
-        <div className="sticky top-32 z-20 md:top-40 lg:top-48" data-section-title={id}>
+        <div className="sticky top-[120px] z-20" data-section-title={id}>
           <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
             <div
               className="pointer-events-none absolute left-0 right-0 -top-8 h-8 bg-white md:-top-12 md:h-12 lg:-top-20 lg:h-20"
@@ -498,12 +501,12 @@ function ProjectsSection({ isActive, opacity = 1 }: { isActive: boolean; opacity
   return (
     <section
       id="projetos"
-      className="relative section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      className="relative section-padding bg-white scroll-mt-[120px] pt-6 sm:pt-8 md:pt-16 lg:pt-24"
       aria-labelledby="projetos-title"
     >
       {/* Sticky Title grudado */}
       <div 
-        className="sticky top-32 sm:top-36 z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
+        className="sticky top-[120px] z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
         data-section-title="projetos"
       >
         <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
@@ -540,18 +543,18 @@ function RallySection({ isActive, opacity = 1 }: { isActive: boolean; opacity?: 
   return (
     <section
       id="rally"
-      className="relative section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      className="relative section-padding bg-white scroll-mt-[120px] pt-6 sm:pt-8 md:pt-16 lg:pt-24"
       aria-labelledby="rally-title"
     >
       {/* Sticky Title */}
-      <div 
-        className="sticky top-32 sm:top-36 z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
+      <div
+        className="sticky top-[120px] z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
         data-section-title="rally"
       >
         <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
           <div className="page-container py-4 sm:py-5">
-            <h2 
-              id="rally-title" 
+            <h2
+              id="rally-title"
               className={`${sectionTitleClass} text-left transition-opacity duration-300`}
               style={{ opacity }}
             >
@@ -560,11 +563,17 @@ function RallySection({ isActive, opacity = 1 }: { isActive: boolean; opacity?: 
           </div>
         </div>
       </div>
-      
-      {/* Conteúdo rola por trás */}
+
+      {/* ConteÃºdo rola por trÃ¡s */}
       <div className="relative z-10 page-container space-y-3 sm:space-y-4">
         <div className="relative left-1/2 w-screen -translate-x-1/2 py-4 sm:py-6 lg:py-8">
-          <div className={["pointer-events-none absolute inset-0 bg-brand-gradient transition-opacity duration-300 ease-out", isActive ? "opacity-100" : "opacity-0"].join(" ")} aria-hidden="true" />
+          <div
+            className={[
+              "pointer-events-none absolute inset-0 bg-brand-gradient transition-opacity duration-300 ease-out",
+              isActive ? "opacity-100" : "opacity-0"
+            ].join(" ")}
+            aria-hidden="true"
+          />
           <div className="page-container relative z-10">
             <div className="space-y-2 sm:space-y-3">
               {rallyCards.map((card, idx) => (
@@ -582,12 +591,12 @@ function ComunicacaoSection({ isActive, opacity = 1 }: { isActive: boolean; opac
   return (
     <section
       id="agricontent"
-      className="relative section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      className="relative section-padding bg-white scroll-mt-[120px] pt-6 sm:pt-8 md:pt-16 lg:pt-24"
       aria-labelledby="agricontent-title"
     >
       {/* Sticky Title */}
       <div 
-        className="sticky top-32 sm:top-36 z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
+        className="sticky top-[120px] z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
         data-section-title="agricontent"
       >
         <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
@@ -624,12 +633,12 @@ function ValoracaoSection({ isActive, opacity = 1 }: { isActive: boolean; opacit
   return (
     <section
       id="valoracao"
-      className="relative section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      className="relative section-padding bg-white scroll-mt-[120px] pt-6 sm:pt-8 md:pt-16 lg:pt-24"
       aria-labelledby="valoracao-title"
     >
       {/* Sticky Title */}
       <div 
-        className="sticky top-32 sm:top-36 z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
+        className="sticky top-[120px] z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
         data-section-title="valoracao"
       >
         <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
@@ -666,12 +675,12 @@ function TrainingsSection({ isActive, opacity = 1 }: { isActive: boolean; opacit
   return (
     <section
       id="treinamentos"
-      className="relative section-padding bg-white scroll-mt-32 pt-6 sm:pt-8 md:pt-16 lg:pt-24 md:scroll-mt-40 lg:scroll-mt-48"
+      className="relative section-padding bg-white scroll-mt-[120px] pt-6 sm:pt-8 md:pt-16 lg:pt-24"
       aria-labelledby="treinamentos-title"
     >
       {/* Sticky Title */}
       <div 
-        className="sticky top-32 sm:top-36 z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
+        className="sticky top-[120px] z-20 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]" 
         data-section-title="treinamentos"
       >
         <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white">
@@ -707,6 +716,7 @@ function TrainingsSection({ isActive, opacity = 1 }: { isActive: boolean; opacit
 
 export default function Products() {
   const ctaHover = usePrimaryGradientHover();
+  const revealRef = useRevealOnScroll<HTMLDivElement>();
   const activeSectionRef = useRef<string | null>(null);
   const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
   const [sectionOpacities, setSectionOpacities] = useState<Record<string, number>>({});
@@ -831,22 +841,25 @@ export default function Products() {
   };
 
   return (
-    <div className="relative bg-white">
+    <div ref={revealRef} className="relative bg-white">
       <div className="relative">
-        <section className="relative overflow-hidden bg-brand-gradient pt-12 text-white md:pt-24 lg:pt-20">
+        <section
+          className="relative overflow-hidden bg-brand-gradient pt-12 text-white md:pt-24 lg:pt-20"
+          data-reveal="section"
+        >
         <div className="absolute inset-0 bg-brand-radial opacity-25" aria-hidden="true" />
         <div className="page-container relative flex flex-col gap-6 pt-8 pb-16 md:py-16 lg:flex-row lg:items-center lg:pt-12 lg:pb-20">
           <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">Produtos</p>
-            <h1 className="text-3xl font-bold leading-tight lg:text-4xl">Soluções Agroconsult</h1>
-            <p className="max-w-3xl text-base text-white/85 lg:text-lg">
+            <p className="type-label text-white/80">Produtos</p>
+            <h1 className="type-h1">Soluções Agroconsult</h1>
+            <p className="type-body max-w-3xl text-white/85">
               Inteligência e entregas para decisões estratégicas no agro - do dado ao projeto sob medida.
             </p>
             <div className="flex flex-wrap gap-2">
               {whyItems.map((item) => (
                 <span
                   key={item}
-                  className="rounded-2xl bg-white/10 px-3 py-2 text-xs font-semibold text-white/90"
+                  className="type-small rounded-2xl bg-white/10 px-3 py-2 text-white/90"
                 >
                   {item}
                 </span>
@@ -863,7 +876,7 @@ export default function Products() {
 
       <section
         id="categorias"
-        className="border-y border-brand-gray/20 bg-white sticky top-16 z-30 md:top-20 lg:top-20"
+        className="border-y border-brand-gray/20 bg-white sticky top-16 z-30 md:top-[72px] lg:top-[72px]"
       >
         <div className="page-container">
           <nav
@@ -907,21 +920,20 @@ export default function Products() {
       <ProjectsSection isActive={activeSectionId === "projetos"} opacity={sectionOpacities["projetos"]} />
 
       <RallySection isActive={activeSectionId === "rally"} opacity={sectionOpacities["rally"]} />
-
       <ComunicacaoSection isActive={activeSectionId === "agricontent"} opacity={sectionOpacities["agricontent"]} />
 
       <ValoracaoSection isActive={activeSectionId === "valoracao"} opacity={sectionOpacities["valoracao"]} />
 
       <TrainingsSection isActive={activeSectionId === "treinamentos"} opacity={sectionOpacities["treinamentos"]} />
 
-        <section className="section-padding bg-gradient-to-b from-white via-white to-brand-light/40">
+        <section className="section-padding bg-gradient-to-b from-white via-white to-brand-light/40" data-reveal="section">
           <div className="page-container">
             <div className="gradient-border rounded-3xl">
               <div className="relative overflow-hidden rounded-[22px] bg-brand-gradient bg-[length:200%_200%] px-6 py-10 text-white shadow-xl animate-pulse-gradient md:px-12">
                 <div className="absolute right-6 top-6 h-24 w-24 rounded-full bg-white/10 blur-3xl" aria-hidden="true" />
                 <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                   <div className="space-y-2">
-                    <h3 className="text-2xl font-bold leading-tight">Vamos escolher a entrega ideal para seu desafio?</h3>
+                    <h3 className="type-h3">Vamos escolher a entrega ideal para seu desafio?</h3>
                     <p className="text-sm text-white/85">
                       Fale com o time Agroconsult e conecte inteligência, dados e projetos sob medida.
                     </p>
@@ -940,3 +952,6 @@ export default function Products() {
     </div>
   );
 }
+
+
+

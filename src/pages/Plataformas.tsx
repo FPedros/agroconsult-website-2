@@ -1,9 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, type CSSProperties } from "react";
 import valoraImg from "/images/valora.png";
 import bdonlineImg from "/images/bdonline.png";
 import cropdataImg from "/images/cropdata.png";
+import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 
 export default function Plataformas() {
+  const revealRef = useRevealOnScroll<HTMLElement>();
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, []);
@@ -37,7 +40,10 @@ export default function Plataformas() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <main
+      ref={revealRef}
+      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+    >
       {/* Background Effects */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(0,135,71,0.15),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(32,41,86,0.2),transparent_50%)]" />
@@ -48,8 +54,8 @@ export default function Plataformas() {
       <div className="relative pt-24 sm:pt-32 md:pt-40 pb-16">
         <div className="page-container">
           {/* Header */}
-          <div className="mb-16 text-center">
-            <h1 className="mb-4 text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-brand-green via-emerald-400 to-teal-400 bg-clip-text text-transparent">
+          <div className="mb-16 text-center" data-reveal="section">
+            <h1 className="type-h1 mb-4 font-bold bg-gradient-to-r from-brand-green via-emerald-400 to-teal-400 bg-clip-text text-transparent">
               Acesse Nossas Plataformas
             </h1>
           </div>
@@ -60,6 +66,8 @@ export default function Plataformas() {
               <div
                 key={plataforma.id}
                 className="group relative rounded-2xl md:rounded-3xl overflow-hidden bg-slate-900/90 backdrop-blur-xl border border-slate-800 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                data-reveal="card"
+                style={{ "--reveal-delay": `${idx * 90}ms` } as CSSProperties}
               >
                 {/* Card Content */}
                 <div className="bg-brand-gradient p-4 sm:p-8 h-24 sm:h-36 flex items-center justify-center text-white relative overflow-hidden">
@@ -91,8 +99,12 @@ export default function Plataformas() {
           </div>
 
           {/* Info Section */}
-          <div className="max-w-4xl mx-auto bg-slate-900/90 backdrop-blur-xl border border-brand-green/30 rounded-3xl p-8 md:p-12">
-            <h3 className="text-2xl font-bold text-white mb-4">Precisa de ajuda?</h3>
+          <div
+            className="max-w-4xl mx-auto bg-slate-900/90 backdrop-blur-xl border border-brand-green/30 rounded-3xl p-8 md:p-12"
+            data-reveal="section"
+            style={{ "--reveal-delay": "120ms" } as CSSProperties}
+          >
+            <h3 className="type-h3 text-white mb-4">Precisa de ajuda?</h3>
             <p className="text-slate-300 mb-6">
               Se você ainda não tem acesso a nossas plataformas ou precisa de suporte, entre em contato com nosso time de especialistas.
             </p>

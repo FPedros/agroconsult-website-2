@@ -32,17 +32,17 @@ export default function PrivacyBanner() {
       aria-label="Aviso de privacidade"
     >
       <div className="flex flex-col gap-3 rounded-2xl border border-brand-gray/15 bg-white/90 p-4 text-brand-navy shadow-lg backdrop-blur">
-        <div className="space-y-1 text-sm text-slate-700">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-gray">Aviso de privacidade</p>
+        <div className="type-small space-y-1 text-slate-700">
+          <p className="type-label text-brand-gray">Aviso de privacidade</p>
           <p>
             Usamos dados para melhorar sua experiência e prestar nossos serviços. Leia a nossa Política de Privacidade.
           </p>
         </div>
         <div className="flex flex-wrap items-center justify-end gap-2">
-          <Link to="/politica-de-privacidade" className="btn-secondary !px-4 !py-2 text-xs">
+          <Link to="/politica-de-privacidade" className="btn-secondary !px-4 !py-2">
             Ver política
           </Link>
-          <button type="button" className="btn-secondary !px-4 !py-2 text-xs" onClick={handleAccept}>
+          <button type="button" className="btn-secondary !px-4 !py-2" onClick={handleAccept}>
             Entendi
           </button>
         </div>

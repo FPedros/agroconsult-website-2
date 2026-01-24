@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Award, Compass, Handshake, Users } from "lucide-react";
+import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 
 const pillars = [
   {
@@ -35,6 +36,7 @@ export default function QuemSomos() {
   const [hovered, setHovered] = useState<number | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationRef = useRef<number>();
+  const revealRef = useRevealOnScroll<HTMLDivElement>();
 
   const cards = [
     ...pillars.map((item) => ({ ...item, type: "pillar" as const })),
@@ -131,16 +133,19 @@ export default function QuemSomos() {
 
 
   return (
-    <div className="min-h-screen bg-brand-gradient text-white relative overflow-hidden pt-8 md:pt-16 lg:pt-0">
+    <div ref={revealRef} className="min-h-screen bg-brand-gradient text-white relative overflow-hidden pt-8 md:pt-16 lg:pt-0">
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden />
-      <section className="section-padding w-full relative z-10 min-h-screen flex items-center pt-6 pb-16 sm:pt-20 sm:pb-20 lg:pt-0 lg:pb-0">
+      <section
+        className="section-padding w-full relative z-10 min-h-screen flex items-center pt-6 pb-16 sm:pt-20 sm:pb-20 lg:pt-0 lg:pb-0"
+        data-reveal="section"
+      >
         <div className="page-container space-y-10">
           <div className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">Quem somos</p>
-            <h1 className="text-3xl font-bold leading-tight text-white lg:text-4xl">
+            <p className="type-label text-white/80">Quem somos</p>
+            <h1 className="type-h1 text-white">
               Entregar excelência e construir confiança.
             </h1>
-            <p className="text-base text-white/85">
+            <p className="type-body text-white/85">
               Propósito, missão, visão e valores que guiam nossas decisões e projetos no agro.
             </p>
           </div>
@@ -152,22 +157,24 @@ export default function QuemSomos() {
                 <div
                   key={item.label}
                   className="rounded-3xl bg-white/12 p-5 shadow-xl ring-1 ring-white/20 backdrop-blur transition duration-300"
+                  data-reveal="card"
                   style={{
+                    "--reveal-delay": `${idx * 90}ms`,
                     transform: isHovered ? "translateY(-8px) scale(1.02)" : "translateY(0) scale(1)",
                     boxShadow: isHovered ? "0 24px 70px rgba(0,0,0,0.28)" : undefined
-                  }}
+                  } as CSSProperties}
                   onMouseEnter={() => setHovered(idx)}
                   onMouseLeave={() => setHovered(null)}
                 >
-                  <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-white/85">
+                  <div className="type-label flex items-center gap-2 text-white/85">
                     {item.icon}
                     {item.label}
                   </div>
-                  <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-white/70">
+                  <p className="type-label mt-1 text-white/70">
                     {"subtitle" in item ? item.subtitle : "base de crenças e comportamentos éticos"}
                   </p>
                   {"values" in item ? (
-                    <ul className="mt-3 space-y-2 text-sm text-white">
+                    <ul className="type-small mt-3 space-y-2 text-white">
                       {item.values?.map((val) => (
                         <li key={val} className="flex items-start gap-2">
                           <span className="mt-1 inline-flex h-2 w-2 shrink-0 rounded-full bg-emerald-300" />
@@ -176,7 +183,7 @@ export default function QuemSomos() {
                       ))}
                     </ul>
                   ) : (
-                    <p className="mt-3 text-base font-semibold text-white">{item.body}</p>
+                    <p className="type-body mt-3 font-semibold text-white">{item.body}</p>
                   )}
                 </div>
               );
