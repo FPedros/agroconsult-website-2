@@ -379,10 +379,16 @@ a {
 
 @keyframes rally-carousel-z {
   0% {
-    z-index: 3;
+    z-index: 4;
+  }
+  20% {
+    z-index: 4;
+  }
+  21% {
+    z-index: 2;
   }
   85% {
-    z-index: 3;
+    z-index: 2;
   }
   86% {
     z-index: 1;

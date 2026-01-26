@@ -85,10 +85,12 @@ const clientLogoLines = [
 ];
 
 const rallySlides = [
-  "/rally%20da%20safra/hero-1.webp",
-  "/rally%20da%20safra/hero-2.webp",
-  "/rally%20da%20safra/hero-3.webp",
-  "/rally%20da%20safra/hero-4.webp"
+  "/carousel%20rally/_MS_0122.webp",
+  "/carousel%20rally/_MS_0134.webp",
+  "/carousel%20rally/_MS_0189.webp",
+  "/carousel%20rally/_MS_0212.webp",
+  "/carousel%20rally/_MS_0415.webp",
+  "/carousel%20rally/IMG_8809.webp"
 ];
 
 const XIcon = () => (
@@ -206,15 +208,15 @@ function Hero() {
       <div className="hero-parallax-gradient absolute inset-0 bg-brand-gradient" aria-hidden="true" />
       <div className="absolute inset-0 bg-brand-radial opacity-60" aria-hidden="true" />
       <img
-        src="/images/diretoria.png"
+        src="/images/Diretoria_Novo.webp"
         alt=""
         aria-hidden="true"
         loading="eager"
         decoding="async"
-        className="hero-directors-image pointer-events-none absolute bottom-0 right-0 z-0 h-[60%] w-[92%] max-w-[520px] object-contain object-bottom opacity-95 sm:fixed sm:h-[66%] sm:w-[70%] sm:max-w-[640px] lg:h-[78%] lg:w-[54%] lg:max-w-[860px] lg:object-right"
+        className="hero-directors-image pointer-events-none absolute bottom-0 right-0 z-0 h-[68%] w-[100%] max-w-[600px] object-contain object-bottom opacity-95 sm:fixed sm:h-[74%] sm:w-[78%] sm:max-w-[720px] lg:h-[86%] lg:w-[62%] lg:max-w-[980px] lg:object-right"
         style={
           {
-            "--hero-image-base-shift": "clamp(32px, 6vw, 96px)",
+            "--hero-image-base-shift": "clamp(20px, 5vw, 72px)",
             transform: "translateY(calc(var(--hero-image-base-shift, 0px) + var(--hero-image-shift, 0px)))"
           } as CSSProperties
         }
