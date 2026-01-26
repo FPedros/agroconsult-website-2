@@ -137,10 +137,11 @@ export default function Palestras() {
                     className="h-full w-full object-cover object-center transition duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="space-y-1 p-4 text-center">
-                  <div className="flex items-center justify-center gap-2">
-                    <h3 className="type-body font-semibold text-brand-navy">{speaker.name}</h3>
-                    {speaker.linkedin ? (
+                <div className="space-y-2 p-4 text-center">
+                  <h3 className="type-body font-semibold text-brand-navy">{speaker.name}</h3>
+                  <p className="type-small text-slate-700">{speaker.bio}</p>
+                  {speaker.linkedin ? (
+                    <div className="flex justify-center">
                       <a
                         href={speaker.linkedin}
                         target="_blank"
@@ -150,9 +151,8 @@ export default function Palestras() {
                       >
                         <Linkedin size={14} />
                       </a>
-                    ) : null}
-                  </div>
-                  <p className="type-small text-slate-700">{speaker.bio}</p>
+                    </div>
+                  ) : null}
                 </div>
               </div>
             ))}

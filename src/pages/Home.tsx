@@ -152,20 +152,20 @@ function Hero() {
     <section
       id="hero"
       data-reveal="section"
-      className="hero-parallax relative flex min-h-[512px] flex-col items-start justify-center overflow-hidden isolate text-white sm:min-h-[680px] lg:min-h-[720px]"
+      className="hero-parallax relative flex min-h-[512px] flex-col items-start justify-center overflow-visible isolate text-white touch-pan-y sm:min-h-[680px] sm:overflow-hidden lg:min-h-[720px]"
     >
-      <div className="hero-parallax-gradient absolute inset-0 bg-brand-gradient" aria-hidden="true" />
-      <div className="absolute inset-0 bg-brand-radial opacity-60" aria-hidden="true" />
+      <div className="hero-parallax-gradient pointer-events-none absolute inset-0 bg-brand-gradient" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 bg-brand-radial opacity-60" aria-hidden="true" />
       <img
         src="/images/Diretoria_Novo.webp"
         alt=""
         aria-hidden="true"
         loading="eager"
         decoding="async"
-        className="hero-directors-image pointer-events-none absolute bottom-0 right-0 z-0 h-[68%] w-[100%] max-w-[600px] object-contain object-bottom opacity-95 sm:fixed sm:h-[74%] sm:w-[78%] sm:max-w-[720px] lg:h-[86%] lg:w-[62%] lg:max-w-[980px] lg:object-right"
+        className="hero-directors-image pointer-events-none absolute bottom-0 right-0 z-0 h-[68%] w-[100%] max-w-[600px] object-contain object-bottom opacity-95 sm:h-[74%] sm:w-[78%] sm:max-w-[720px] lg:h-[86%] lg:w-[62%] lg:max-w-[980px] lg:object-right"
         style={
           {
-            "--hero-image-base-shift": "clamp(20px, 5vw, 72px)",
+            "--hero-image-base-shift": "clamp(16px, 3vw, 56px)",
             transform: "translateY(calc(var(--hero-image-base-shift, 0px) + var(--hero-image-shift, 0px)))"
           } as CSSProperties
         }
