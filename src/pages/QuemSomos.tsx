@@ -4,20 +4,20 @@ import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 
 const pillars = [
   {
-    label: "Nosso Propósito",
-    subtitle: "por que existimos?",
+    label: "Nosso Propósito?",
+    subtitle: "POR QUE EXISTIMOS?",
     body: "Gerar conhecimento para promover e impactar positivamente o agronegócio.",
     icon: <Compass size={20} />
   },
   {
     label: "Nossa Missão",
-    subtitle: "o que fazemos bem?",
+    subtitle: "O QUE FAZEMOS BEM?",
     body: "Transformar conhecimento em soluções de mercado para o agronegócio.",
     icon: <Handshake size={20} />
   },
   {
     label: "Nossa Visão",
-    subtitle: "onde queremos chegar?",
+    subtitle: "ONDE QUEREMOS CHEGAR?",
     body: "Ser a empresa de inteligência de mercado mais confiável do agronegócio.",
     icon: <Award size={20} />
   }
@@ -42,7 +42,7 @@ export default function QuemSomos() {
     ...pillars.map((item) => ({ ...item, type: "pillar" as const })),
     {
       label: "Nossos Valores",
-      subtitle: "base de crenças e comportamentos éticos",
+      subtitle: "BASE DE CRENÇAS E COMPORTAMENTOS ÉTICOS",
       values: valores,
       icon: <Users size={20} />,
       type: "valores" as const
@@ -141,12 +141,12 @@ export default function QuemSomos() {
       >
         <div className="page-container space-y-10">
           <div className="space-y-3">
-            <p className="type-label text-white/80">Quem somos</p>
+            <p className="type-label text-white/80">QUEM SOMOS</p>
             <h1 className="type-h1 text-white">
               Entregar excelência e construir confiança.
             </h1>
             <p className="type-body text-white/85">
-              Propósito, missão, visão e valores que guiam nossas decisões e projetos no agro.
+              Propósito, missão e valores que guiam nossas decisões e projetos no agro.
             </p>
           </div>
 
@@ -202,5 +202,4 @@ export default function QuemSomos() {
     </div>
   );
 }
-
 

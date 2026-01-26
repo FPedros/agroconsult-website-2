@@ -15,12 +15,12 @@ const contactHref = "mailto:contato@exemplo.com";
 
 const anchorItems = [
   { id: "consultorias", label: "Inteligência de mercado" },
-  { id: "dados-api", label: "Dados & API" },
+  { id: "dados-api", label: "Dados e APIs" },
   { id: "projetos", label: "Projetos" },
   { id: "rally", label: "Rally da Safra" },
   { id: "agricontent", label: "Comunicação" },
   { id: "valoracao", label: "Avaliação de Ativos" },
-  { id: "treinamentos", label: "Treinamentos & Palestras" }
+  { id: "treinamentos", label: "Palestras e Treinamentos" }
 ];
 
 const sectionOrder = anchorItems.map((item) => item.id);
@@ -36,7 +36,7 @@ const whyItems = [
 
 const consultoriaCards: ProductCardData[] = [
   {
-    title: "AgroMarket (mensal)",
+    title: "Agromarket (mensal)",
     tagline: "Leitura do cenário e projeção D+1 das commodities para decisões mais rápidas e seguras.",
     bullets: [
       "Tendência da próxima safra e fatos atuais das principais commodities",
@@ -66,8 +66,8 @@ const consultoriaCards: ProductCardData[] = [
     audience: "Estratégia, investimento, logística e crédito"
   },
   {
-    title: "CRR - Custo, Rentabilidade e Relação de Troca",
-    tagline: "Entenda margem e poder de compra para calibrar estratégia comercial.",
+    title: "CRR – Custo, Rentabilidade e Relação de Troca",
+    tagline: "Entenda a margem e poder de compra para calibrar estratégia comercial.",
     bullets: [
       "Rentabilidade por commodity e região",
       "Relação de troca e timing comercial",
@@ -90,7 +90,7 @@ const consultoriaCards: ProductCardData[] = [
     tagline: "Plantio, desenvolvimento e colheita com leitura de risco e logística.",
     bullets: [
       "Consolidação do plantio e riscos de produção (clima, pragas e doenças)",
-      "Tendências de produtividade ",
+      "Tendências de produtividade",
       "Volume, sazonalidade e dinâmica logística da colheita"
     ],
     audience: "Trading, logística, indústria e crédito"
@@ -106,7 +106,7 @@ const consultoriaCards: ProductCardData[] = [
     audience: "Usinas, distribuidoras e crédito"
   },
   {
-    title: "Consultoria - Fertilizantes",
+    title: "Consultoria (Fertilizantes)",
     tagline: "Dinâmica por matéria-prima para planejar suprimento e risco.",
     bullets: [
       "Relação de troca, estoques e sazonalidade",
@@ -116,8 +116,8 @@ const consultoriaCards: ProductCardData[] = [
     audience: "Indústria, distribuição, bancos e grandes produtores"
   },
   {
-    title: "AgroSize Defensivos",
-    tagline: "Planejamento de portfólio e suprimento com leitura por cultura.",
+    title: "AgroSize (Defensivos)",
+    tagline: "Planejamento de portifólio e suprimento por cultura.",
     bullets: [
       "Dimensionamento por classe de defensivos e por cultura",
       "Acompanhamento quinzenal por cultura e possíveis movimentos de repique",
@@ -129,14 +129,22 @@ const consultoriaCards: ProductCardData[] = [
 
 const dataCards: ProductCardData[] = [
   {
-    title: "Agroterra",
-    tagline: "Dashboard do mercado de terras em nível municipal com histórico longo.",
-    bullets: [
-      "Histórico por classes de uso de terra",
-      "Base histórica de 15 anos e ampla amostra de imóveis rurais",
-      "Potencial integração com sistemas"
-    ],
-    audience: "Bancos, fundos, corretoras e estratégia de aquisição"
+    title: "Coleta de Dados",
+    tagline: "Base histórica + projeção em tempo real D+1 com validação cruzada de múltiplas fontes confiáveis.",
+    bullets: ["Dados primários validados", "Projeções D+1", "Múltiplas fontes"],
+    audience: "Inteligência de mercado"
+  },
+  {
+    title: "Processamento",
+    tagline: "Análise regionalizada e estruturação por microrregião. Commodity e indicadores financeiros.",
+    bullets: ["Análise por região", "Estrutura por commodity", "Indicadores financeiros"],
+    audience: "Inteligência de mercado"
+  },
+  {
+    title: "Integração API",
+    tagline: "API disponível para integração com sistemas internos, dashboards e BI com segurança enterprise.",
+    bullets: ["Segurança enterprise", "Integração BI", "Dashboards customizados"],
+    audience: "Equipes técnicas"
   }
 ];
 
@@ -149,7 +157,7 @@ const projectCases = [
 
 const projectCards: ProductCardData[] = [
   {
-    title: "Projetos (on-demand)",
+    title: "Projetos on-demand",
     tagline: "Estudos personalizados para decisões estratégicas com critério e validação cruzada.",
     bullets: [
       "Escopo claro: objetivo -> hipóteses -> premissas -> cenários -> recomendações",
@@ -168,20 +176,45 @@ const projectCards: ProductCardData[] = [
 const rallyCards: ProductCardData[] = [
   {
     title: "Rally da Safra",
-    tagline: "Dados de campo antecipados + relacionamento direto com produtores e stakeholders.",
+    tagline:
+      "Maior expedição técnica de levantamento das condições das safras brasileiras de soja e de milho in loco, com mais de 100 mil km percorridos anualmente.",
     bullets: [
-      "PrevisÃ£o mais assertiva e mais cedo (antes das origens oficiais)",
-      "Coleta de dados primÃ¡rios na prÃ¡tica (confiabilidade)",
-      "Visibilidade e relacionamento: eventos, imprensa, digital e campo"
+      "Visibilidade e relacionamento: eventos, imprensa, digital e campo",
+      "Previsão mais assertiva e mais cedo (antes das origens oficiais)",
+      "Coleta de dados primários na prática (confiabilidade)"
     ],
-    audience: "Marcas que buscam posicionamento e engamento no AgronegÃ³cio"
+    audience: "Marcas que buscam posicionamento e engajamento no Agronegócio"
+  },
+  {
+    title: "Etapa Algodão",
+    tagline:
+      "Equipes e eventos dedicados à avaliação de áreas de algodão e de relacionamento com grandes grupos agrícolas.",
+    bullets: [
+      "Visitas aos grandes grupos agrícolas nas principais regiões de produção de algodão do Brasil",
+      "Eventos virtuais e presenciais que reúnem os principais empresários rurais, entidades e empresas relacionadas com a fibra",
+      "Criação de conteúdo rico sobre a safra e o mercado de algodão."
+    ],
+    audience: "Marcas que buscam posicionamento e relacionamento com grandes grupos agrícolas produtores de algodão."
+  },
+  {
+    title: "Etapa Fronteiras",
+    tagline:
+      "Levantamento de dados inéditos em regiões de fronteiras agrícolas, com ampla divulgação dos resultados e potencialidades por meio das plataformas do Rally da Safra.",
+    bullets: [
+      "Levantamento de dados in loco em lavouras da região com a metodologia utilizada no campo pelo Rally da Safra.",
+      "Visitas a produtores rurais e autoridades da região para entender as potencialidades e os desafios de se produzir na nova fronteira.",
+      "Divulgação das novas fronteiras agrícolas por meio das plataformas digitais do Rally da Safra, democratizando os resultados e colocando a fronteiras agrícola no mapa do agronegócio brasileiro."
+    ],
+    audience:
+      "Autoridades e empresas que buscam colocar áreas de fronteira agrícola no radar da indústria, investimentos e do agronegócio brasileiro."
   }
 ];
 
 const agricontentCards: ProductCardData[] = [
   {
-    title: "AgriContent",
-    tagline: "Conteúdo técnico com autoridade e lastro em dados, sem inflar o time interno.",
+    title: "Agricontent",
+    tagline:
+      "Conteúdo técnico sobre safra e mercado personalizado com a marca e a identidade do cliente, pronto para ser usado como fonte de relacionamento com clientes e prospects.",
     bullets: [
       "Vídeos semanais com especialistas + produção completa (roteiro, gravação, edição, legendas)",
       "Reels/shorts/posts/carrosséis educativos com cadência",
@@ -193,38 +226,47 @@ const agricontentCards: ProductCardData[] = [
 
 const valoracaoCards: ProductCardData[] = [
   {
-    title: "Avaliação de Ativos",
-    tagline: "Laudo completo com análise crítica para máxima confiabilidade.",
+    title: "Agrovalora Basic",
+    tagline:
+      "O Agrovalora Basic é um laudo gerado de forma automática pela nossa plataforma, indicado para obter rapidamente uma estimativa do valor do imóvel rural e uma visão geral de suas características.",
     bullets: [
-      "Análise documental (matrículas, CAR, SIGEF, sobreposições)",
-      "Risco climático, potencial agronômico, declividade e solo por matrícula",
-      "Pesquisa de ofertas + mapas de apoio"
+      "Análise de uso e ocupação do imóvel com aplicação de algoritmos",
+      "Análise socioambiental padrão",
+      "Análise simplificada de clima, solo e declividade",
+      "Apresentação do valor de mercado do imóvel por matrícula"
     ],
-    audience: "Crédito, risco, compliance e investimento"
+    audience: "Quem precisa de uma avaliação rápida, objetiva e de baixo custo para tomada de decisão."
   },
   {
-    title: "Agrovalora Basic",
-    tagline: "Laudo automatizado para escala com padronização e agilidade.",
+    title: "Agrovalora Plus",
+    tagline:
+      "O Agrovalora Plus é um laudo técnico simplificado, porém com revisão humana especializada e visualização completa por mapas.",
     bullets: [
-      "Uso e ocupação da terra com algoritmo de análise",
-      "Análise socioambiental padrão",
-      "Clima/solo/declividade simplificados"
+      "Análise de uso e ocupação do imóvel realizada por analistas GEO",
+      "Análise socioambiental detalhada, com percentuais de sobreposição, pontos de atenção",
+      "Mapas de logística, uso do imóvel e socioambiental",
+      "Precificação realizada por especialista no mercado de terras"
     ],
-    audience: "Operações que precisam padronização e velocidade"
+    audience: "Quem precisa avaliar atributos específicos do imóvel com maior nível de confiabilidade e detalhamento."
+  },
+  {
+    title: "Agrovalora Premium",
+    tagline:
+      "O Agrovalora Premium é o laudo mais completo, com avaliação técnica aprofundada, análise documental e parecer crítico do especialista, oferecendo máxima segurança para investimentos, aquisições e operações complexas.",
+    bullets: [
+      "Análise detalhada de uso e ocupação por analistas GEO, com avaliação individual de cada matrícula",
+      "Análise documental completa, incluindo Matrícula, CCIR, CAR e SIGEF",
+      "Análise socioambiental aprofundada, com percentuais de sobreposição, pontos de atenção e mapas técnicos",
+      "Análise detalhada de risco climático, potencial agronômico, declividade e tipo de solo por matrícula e mapas técnicos",
+      "Mapas do eixo logístico regional, com análise detalhada das condições de acesso, encravamento e estado das rodovias que influenciam o imóvel.",
+      "Precificação realizada por especialista, considerando fatores intrínsecos e extrínsecos do imóvel"
+    ],
+    audience:
+      "Quem precisa da máxima segurança, profundidade técnica e precisão na definição do valor e dos riscos que envolvem o imóvel."
   }
 ];
 
 const trainingCards: ProductCardData[] = [
-  {
-    title: "Treinamentos Digitais (in-company)",
-    tagline: "Capacitação em escala com padronização e flexibilidade.",
-    bullets: [
-      "Vídeos, quizzes e módulos organizados",
-      "Conteúdo técnico/estratégico (soja, milho, fertilizantes etc.)",
-      "Qualifica discurso comercial e abordagem com o produtor"
-    ],
-    audience: "Grandes equipes comerciais e técnicas"
-  },
   {
     title: "Palestras Avulsas",
     tagline: "Alinhamento de cenário com especialistas e conteúdo visual.",
@@ -234,6 +276,16 @@ const trainingCards: ProductCardData[] = [
       "Reforço de confiança e autoridade técnica"
     ],
     audience: "Eventos, convenções e liderança"
+  },
+  {
+    title: "Treinamentos digitais e presenciais",
+    tagline: "Capacitação em escala com padronização e flexibilidade.",
+    bullets: [
+      "Vídeos, quizzes e módulos organizados",
+      "Conteúdo técnico/estratégico (soja, milho, fertilizantes etc.)",
+      "Qualifica discurso comercial e abordagem com o produtor"
+    ],
+    audience: "Grandes equipes comerciais e técnicas"
   }
 ];
 
@@ -409,7 +461,7 @@ function DadosSection({ isActive, opacity = 1 }: { isActive: boolean; opacity?: 
               className={`${sectionTitleClass} text-left transition-opacity duration-300`}
               style={{ opacity }}
             >
-              Dados & API
+              Dados e APIs
             </h2>
           </div>
         </div>
@@ -421,12 +473,8 @@ function DadosSection({ isActive, opacity = 1 }: { isActive: boolean; opacity?: 
           <div className={["pointer-events-none absolute inset-0 bg-brand-gradient transition-opacity duration-300 ease-out", isActive ? "opacity-100" : "opacity-0"].join(" ")} aria-hidden="true" />
           <div className="page-container relative z-10">
             <div className="space-y-2 sm:space-y-3">
-              {[
-                { title: "Coleta de Dados", tagline: "Base histórica + projeção em tempo real (D+1) com validação cruzada de múltiplas fontes confiáveis", bullets: ["Dados primários validados", "Projeções D+1", "Múltiplas fontes"], audience: "Inteligência de mercado" },
-                { title: "Processamento", tagline: "Análise regionalizada e estruturação por microrregião, commodity e indicadores financeiros", bullets: ["Análise por região", "Estrutura por commodity", "Indicadores financeiros"], audience: "Analistas" },
-                { title: "Integração API", tagline: "API disponível para integração com sistemas internos, dashboards e BI com segurança enterprise", bullets: ["Segurança enterprise", "Integração BI", "Dashboards customizados"], audience: "Equipes técnicas" }
-              ].map((card, idx) => (
-                <ConsultoriaListItem key={idx} card={card} index={idx} />
+              {dataCards.map((card, idx) => (
+                <ConsultoriaListItem key={card.title} card={card} index={idx} />
               ))}
             </div>
           </div>
@@ -692,7 +740,7 @@ function TrainingsSection({ isActive, opacity = 1 }: { isActive: boolean; opacit
               className={`${sectionTitleClass} text-left transition-opacity duration-300`}
               style={{ opacity }}
             >
-              Treinamentos & Palestras
+              Palestras e Treinamentos
             </h2>
           </div>
         </div>
@@ -935,13 +983,13 @@ export default function Products() {
                 <div className="absolute right-6 top-6 h-24 w-24 rounded-full bg-white/10 blur-3xl" aria-hidden="true" />
                 <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                   <div className="space-y-2">
-                    <h3 className="type-h3">Vamos escolher a entrega ideal para seu desafio?</h3>
+                    <h3 className="type-h3">Vamos definir a entrega ideal para o seu desafio estratégico?</h3>
                     <p className="text-sm text-white/85">
-                      Fale com o time Agroconsult e conecte inteligência, dados e projetos sob medida.
+                      Conecte dados primários, inteligência de mercado e projetos sob medida com o time da Agroconsult.
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-3">
-                    <a href={contactHref} className="btn-primary" {...ctaHover}>
+                    <a href={contactHref} className="btn-primary whitespace-nowrap" {...ctaHover}>
                       Falar com especialista
                     </a>
                   </div>
@@ -954,4 +1002,3 @@ export default function Products() {
     </div>
   );
 }
-

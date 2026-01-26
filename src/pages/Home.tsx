@@ -692,26 +692,10 @@ function RallySection() {
                 .
               </h2>
               <p className="type-body max-w-2xl text-slate-700">
-                Uma operação técnica que cruza milhares de quilômetros para auditar campo a campo, antecipar cenários e
-                transformar informação em decisões estratégicas para todo o agronegócio.
+                Uma operação técnica que cruza milhares de quilômetros todos os anos para verificar, no campo, o real tamanho
+                da safra brasileira de grãos. Mais do que isso, o Rally transforma informação em decisões estratégicas para
+                todo o agronegócio para um público de mais de 250 mil seguidores.
               </p>
-            </div>
-            <div className="flex flex-wrap items-center gap-6">
-              {[
-                { value: "+1,99 milhões", label: "de km percorridos" },
-                { value: "+34 mil", label: "lavouras avaliadas" },
-                { value: "+220 mil", label: "seguidores nas redes sociais" }
-              ].map((item, idx) => (
-                <div
-                  key={item.value}
-                  data-reveal="card"
-                  style={{ "--reveal-delay": `${idx * 120}ms` } as CSSProperties}
-                  className="flex items-baseline gap-2 whitespace-nowrap"
-                >
-                  <span className="text-sm font-bold text-brand-navy">{item.value}</span>
-                  <span className="type-label text-brand-navy/60">{item.label}</span>
-                </div>
-              ))}
             </div>
             <div className="hidden flex-wrap gap-3 sm:flex">
               <a
