@@ -145,7 +145,8 @@ function Hero() {
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const isMobile = window.matchMedia("(max-width: 639px)");
-    if (prefersReducedMotion.matches || isMobile.matches) {
+    const isTouch = window.matchMedia("(pointer: coarse)");
+    if (prefersReducedMotion.matches || isMobile.matches || isTouch.matches) {
       hero.style.setProperty("--hero-gradient-shift", "0px");
       hero.style.setProperty("--hero-image-opacity", "1");
       hero.style.setProperty("--hero-image-shift", "0px");
