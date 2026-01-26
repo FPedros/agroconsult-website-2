@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { ArrowRight, BarChart3, ChevronDown, Database, Facebook, Instagram, Layers, Linkedin, TrendingUp, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
@@ -137,57 +137,6 @@ const followLinks = [
 
 function Hero() {
   const heroPrimaryHover = usePrimaryGradientHover();
-  const heroRef = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    const hero = heroRef.current;
-    if (!hero) return;
-
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const isMobile = window.matchMedia("(max-width: 639px)");
-    const isTouch = window.matchMedia("(pointer: coarse)");
-    if (prefersReducedMotion.matches || isMobile.matches || isTouch.matches) {
-      hero.style.setProperty("--hero-gradient-shift", "0px");
-      hero.style.setProperty("--hero-image-opacity", "1");
-      hero.style.setProperty("--hero-image-shift", "0px");
-      return;
-    }
-
-    let frame = 0;
-    const updateParallax = () => {
-      frame = 0;
-      const rect = hero.getBoundingClientRect();
-      const scrolled = Math.min(Math.max(-rect.top, 0), rect.height);
-      const gradientShift = Math.round(Math.min(scrolled * 0.1, 48));
-      const imageShift = Math.round(Math.min(window.scrollY * 0.18, 180));
-      hero.style.setProperty("--hero-gradient-shift", `${gradientShift}px`);
-      hero.style.setProperty("--hero-image-shift", `${imageShift}px`);
-    };
-
-    const onScroll = () => {
-      if (frame) return;
-      frame = window.requestAnimationFrame(updateParallax);
-    };
-
-    updateParallax();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        hero.style.setProperty("--hero-image-opacity", entry.isIntersecting ? "1" : "0");
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(hero);
-
-    return () => {
-      if (frame) window.cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      observer.disconnect();
-    };
-  }, []);
 
   const scrollToContact = () => {
     const target = document.getElementById("contato-form") || document.getElementById("contato");
@@ -202,7 +151,6 @@ function Hero() {
   return (
     <section
       id="hero"
-      ref={heroRef}
       data-reveal="section"
       className="hero-parallax relative flex min-h-[512px] flex-col items-start justify-center overflow-hidden isolate text-white sm:min-h-[680px] lg:min-h-[720px]"
     >
@@ -1030,3 +978,4 @@ export default function Home() {
     </div>
   );
 }
+
