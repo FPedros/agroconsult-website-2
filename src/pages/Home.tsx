@@ -142,7 +142,8 @@ function Hero() {
     if (!hero) return;
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (prefersReducedMotion.matches) {
+    const isMobile = window.matchMedia("(max-width: 639px)");
+    if (prefersReducedMotion.matches || isMobile.matches) {
       hero.style.setProperty("--hero-gradient-shift", "0px");
       hero.style.setProperty("--hero-image-opacity", "1");
       hero.style.setProperty("--hero-image-shift", "0px");
@@ -210,8 +211,13 @@ function Hero() {
         aria-hidden="true"
         loading="eager"
         decoding="async"
-        className="hero-directors-image pointer-events-none fixed bottom-0 right-0 z-0 h-[60%] w-[92%] max-w-[520px] object-contain object-bottom opacity-95 sm:h-[66%] sm:w-[70%] sm:max-w-[640px] lg:h-[78%] lg:w-[54%] lg:max-w-[860px] lg:object-right"
-        style={{ "--hero-image-base-shift": "clamp(32px, 6vw, 96px)" } as CSSProperties}
+        className="hero-directors-image pointer-events-none absolute bottom-0 right-0 z-0 h-[60%] w-[92%] max-w-[520px] object-contain object-bottom opacity-95 sm:fixed sm:h-[66%] sm:w-[70%] sm:max-w-[640px] lg:h-[78%] lg:w-[54%] lg:max-w-[860px] lg:object-right"
+        style={
+          {
+            "--hero-image-base-shift": "clamp(32px, 6vw, 96px)",
+            transform: "translateY(calc(var(--hero-image-base-shift, 0px) + var(--hero-image-shift, 0px)))"
+          } as CSSProperties
+        }
       />
 
       <div className="page-container relative z-10 flex min-h-[512px] flex-col items-center justify-start gap-6 pb-16 pt-24 text-center sm:min-h-[680px] sm:items-start sm:justify-center sm:pt-28 sm:pb-20 sm:text-left lg:min-h-[720px] lg:pb-24">

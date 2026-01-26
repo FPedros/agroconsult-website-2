@@ -234,7 +234,6 @@ a {
 }
 
 .hero-directors-image {
-  transform: translateY(calc(var(--hero-image-base-shift, 0px) + var(--hero-image-shift, 0px))) scaleX(-1);
   will-change: transform;
   opacity: var(--hero-image-opacity, 1);
   transition: opacity 200ms ease;
