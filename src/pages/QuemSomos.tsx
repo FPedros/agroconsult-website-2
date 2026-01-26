@@ -199,7 +199,27 @@ export default function QuemSomos() {
           </div>
         </div>
       </section>
+      <section className="section-padding relative z-10 pt-0 pb-16 sm:pb-20">
+        <div className="page-container space-y-8 sm:space-y-10">
+          <p className="type-h2 text-center text-transparent bg-gradient-to-r from-emerald-200 via-brand-green to-emerald-200 bg-clip-text uppercase tracking-[0.2em] font-black">
+            Time da Agroconsult
+          </p>
+          <div className="relative aspect-video overflow-hidden rounded-3xl bg-white/10 shadow-xl ring-1 ring-white/20 backdrop-blur">
+            <video
+              className="absolute inset-0 h-full w-full object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              aria-label="Vídeo da equipe Agroconsult"
+            >
+              <source src="/video/video-equipe.mp4" type="video/mp4" />
+              <source src="/video/video-equipe.MOV" type="video/quicktime" />
+            </video>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
-
