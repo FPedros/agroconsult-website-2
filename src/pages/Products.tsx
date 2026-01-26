@@ -26,10 +26,12 @@ const anchorItems = [
 const sectionOrder = anchorItems.map((item) => item.id);
 
 const whyItems = [
-  "Imparcialidade",
-  "Fontes distintas + validação cruzada",
-  "Metodologia clara (hipóteses -> premissas -> cenários -> recomendações)",
-  "Entregas adaptadas ao contexto do cliente"
+  "Dados",
+  "Análise",
+  "Estratégia",
+  "Personalização",
+  "Relacionamento",
+  "Imparcialidade"
 ];
 
 const consultoriaCards: ProductCardData[] = [
@@ -851,9 +853,9 @@ export default function Products() {
         <div className="page-container relative flex flex-col gap-6 pt-8 pb-16 md:py-16 lg:flex-row lg:items-center lg:pt-12 lg:pb-20">
           <div className="space-y-4">
             <p className="type-label text-white/80">Produtos</p>
-            <h1 className="type-h1">Soluções Agroconsult</h1>
+            <h1 className="type-h1">Conheça as soluções da Agroconsult</h1>
             <p className="type-body max-w-3xl text-white/85">
-              Inteligência e entregas para decisões estratégicas no agro - do dado ao projeto sob medida.
+              Inteligência e entregas para decisões estratégicas no agronegócio, do dado primário aos projetos sob medida.
             </p>
             <div className="flex flex-wrap gap-2">
               {whyItems.map((item) => (
@@ -952,6 +954,4 @@ export default function Products() {
     </div>
   );
 }
-
-
 

@@ -605,11 +605,6 @@ function ProductsOverview() {
         "Estudos setoriais e análise de mercado de acordo com a necessidade de cada cliente, que vão desde tendências e projeções de longo prazo até elaboração de plano de negócios e análise de viabilidade de novos negócios."
     },
     {
-      title: "Agrovalora",
-      description:
-        "Plataforma digital de avaliações de forma rápida e precisa de fazendas de pequeno a médio porte."
-    },
-    {
       title: "Treinamentos",
       description:
         "Capacite sua equipe para viver e entender o dia a dia do agronegócio no Brasil e no mundo."
