@@ -826,7 +826,7 @@ function ClientsSection() {
           </p>
         </div>
 
-        <div className="relative left-1/2 w-screen -translate-x-1/2 space-y-3 px-3 sm:px-6 lg:px-10">
+        <div className="relative left-1/2 w-screen -translate-x-1/2 space-y-3 px-3 sm:px-6 lg:px-10 box-border max-w-[100vw]">
           {nonEmptyLines.map((line, idxLine) => {
             const doubled = [...line, ...line];
             const direction = idxLine % 2 === 0 ? "marquee-left" : "marquee-right";
@@ -1039,7 +1039,7 @@ export default function Home() {
   const revealRef = useRevealOnScroll<HTMLDivElement>();
 
   return (
-    <div ref={revealRef} className="relative z-0 bg-white/60">
+    <div ref={revealRef} className="relative z-0 bg-white/60 overflow-x-hidden sm:overflow-x-visible">
       <Hero />
       <div className="relative z-10">
         <Expertise />
