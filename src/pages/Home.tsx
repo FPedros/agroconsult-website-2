@@ -200,7 +200,7 @@ function Hero() {
       id="hero"
       ref={heroRef}
       data-reveal="section"
-      className="hero-parallax relative flex min-h-[640px] flex-col items-start justify-center overflow-hidden isolate text-white sm:min-h-[680px] lg:min-h-[720px]"
+      className="hero-parallax relative flex min-h-[512px] flex-col items-start justify-center overflow-hidden isolate text-white sm:min-h-[680px] lg:min-h-[720px]"
     >
       <div className="hero-parallax-gradient absolute inset-0 bg-brand-gradient" aria-hidden="true" />
       <div className="absolute inset-0 bg-brand-radial opacity-60" aria-hidden="true" />
@@ -214,11 +214,11 @@ function Hero() {
         style={{ "--hero-image-base-shift": "clamp(32px, 6vw, 96px)" } as CSSProperties}
       />
 
-      <div className="page-container relative z-10 flex min-h-[640px] flex-col items-start justify-center gap-6 pb-16 pt-24 text-left sm:min-h-[680px] sm:pt-28 sm:pb-20 lg:min-h-[720px] lg:pb-24">
+      <div className="page-container relative z-10 flex min-h-[512px] flex-col items-center justify-start gap-6 pb-16 pt-24 text-center sm:min-h-[680px] sm:items-start sm:justify-center sm:pt-28 sm:pb-20 sm:text-left lg:min-h-[720px] lg:pb-24">
         <div
           data-reveal="card"
           style={{ "--reveal-delay": "120ms" } as CSSProperties}
-          className="w-full max-w-2xl"
+          className="mx-auto w-full max-w-2xl sm:mx-0"
         >
           <h1 className="type-h1 whitespace-normal font-black text-white">
             Estratégia para quem{" "}
@@ -231,13 +231,13 @@ function Hero() {
               Transformamos dados em inteligência estratégica para apoiar decisões seguras no agronegócio brasileiro e global.
             </p>
             <div className="flex flex-wrap items-center gap-3">
-              <div className={tagClass}>
+              <div className={`${tagClass} hidden sm:inline-flex`}>
                 <Layers size={16} />
                 Estratégia sob medida
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="hidden flex-wrap items-center gap-3 sm:flex">
               <Link
                 to="/produtos"
                 className="btn-primary"
@@ -452,7 +452,7 @@ function ProductsPreview() {
   } as CSSProperties;
 
   return (
-    <section className="bg-brand-gradient pt-6 sm:pt-0" data-reveal="section">
+    <section className="bg-brand-gradient pb-12 pt-6 sm:pb-0 sm:pt-0" data-reveal="section">
       <div className={`${styles.sectionContainer} space-y-8`}>
         <div className="grid gap-8 text-white lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-4">
@@ -466,7 +466,7 @@ function ProductsPreview() {
                 relacionamento e tomar decisões com agilidade, com dados confiáveis e análises recorrentes.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-x-2 gap-y-1 sm:flex sm:flex-wrap sm:items-center sm:gap-3">
+            <div className="hidden flex-wrap items-center gap-3 sm:flex">
               {platforms.map((item, idx) => {
                 const isHovered = hoveredPlatform === idx;
                 return (
@@ -543,6 +543,36 @@ function ProductsPreview() {
                 </div>
               </div>
             </div>
+            <div className="mt-6 grid grid-cols-2 gap-x-2 gap-y-1 sm:hidden">
+              {platforms.map((item, idx) => {
+                const isHovered = hoveredPlatform === idx;
+                return (
+                  <div
+                    key={item.label}
+                    data-reveal="card"
+                    style={{ "--reveal-delay": `${idx * 120}ms` } as CSSProperties}
+                    className="w-full sm:w-auto"
+                  >
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="type-label flex w-full items-center justify-center text-center whitespace-nowrap rounded-3xl bg-white/12 px-3 py-2 text-white/85 shadow-xl ring-1 ring-white/20 backdrop-blur transition duration-300 sm:w-auto sm:px-3.5 sm:py-2.5"
+                      style={{
+                        transform: isHovered ? "translateY(-8px) scale(1.02)" : "translateY(0) scale(1)",
+                        boxShadow: isHovered ? "0 24px 70px rgba(0,0,0,0.28)" : undefined
+                      }}
+                      onMouseEnter={() => setHoveredPlatform(idx)}
+                      onMouseLeave={() => setHoveredPlatform(null)}
+                      onFocus={() => setHoveredPlatform(idx)}
+                      onBlur={() => setHoveredPlatform(null)}
+                    >
+                      {item.label}
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
 
@@ -610,7 +640,7 @@ function ProductsOverview() {
             <p className="type-body max-w-xl text-white/85">
               Da leitura de safra à estratégia, com dados primários coletados diretamente no campo e por sensoriamento remoto.
             </p>
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="hidden flex-wrap items-center gap-3 sm:flex">
               <Link to="/produtos" className="btn-primary" {...productsHover}>
                 Ver pagina de produtos
                 <ArrowRight size={16} />
@@ -643,6 +673,12 @@ function ProductsOverview() {
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3 pl-8 sm:hidden">
+              <Link to="/produtos" className="btn-primary" {...productsHover}>
+                Ver pagina de produtos
+                <ArrowRight size={16} />
+              </Link>
             </div>
           </div>
         </div>
@@ -693,7 +729,7 @@ function RallySection() {
                 </div>
               ))}
             </div>
-            <div className="flex flex-wrap gap-3">
+            <div className="hidden flex-wrap gap-3 sm:flex">
               <a
                 href="https://www.rallydasafra.com.br/"
                 target="_blank"
@@ -743,6 +779,21 @@ function RallySection() {
                   </div>
                 );
               })}
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3 sm:hidden">
+              <a
+                href="https://www.rallydasafra.com.br/"
+                target="_blank"
+                rel="noreferrer"
+                className="btn-primary"
+                {...rallyHover}
+              >
+                Conhecer a expedição
+                <ArrowRight size={16} />
+              </a>
+              <Link to="/produtos" className="btn-secondary">
+                Ver soluções Agroconsult
+              </Link>
             </div>
           </div>
         </div>
@@ -1002,4 +1053,3 @@ export default function Home() {
     </div>
   );
 }
-
