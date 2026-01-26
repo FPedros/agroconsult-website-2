@@ -600,11 +600,6 @@ function ProductsOverview() {
         "Plataforma composta por um conjunto de dashboards que trazem históricos de dados sobre o mercado agrícola e condições das safras."
     },
     {
-      title: "CRR",
-      description:
-        "Informações que envolvem a parte financeira do produtor. Incluímos análise de custos de produção, relação de troca e rentabilidade."
-    },
-    {
       title: "Projetos customizados",
       description:
         "Estudos setoriais e análise de mercado de acordo com a necessidade de cada cliente, que vão desde tendências e projeções de longo prazo até elaboração de plano de negócios e análise de viabilidade de novos negócios."
@@ -613,11 +608,6 @@ function ProductsOverview() {
       title: "Agrovalora",
       description:
         "Plataforma digital de avaliações de forma rápida e precisa de fazendas de pequeno a médio porte."
-    },
-    {
-      title: "Agroterra",
-      description:
-        "Levantamento de preços de terra para diferentes classes de uso de solo em todos os 5.568 municípios do Brasil."
     },
     {
       title: "Treinamentos",
@@ -664,9 +654,8 @@ function ProductsOverview() {
                   <span className="absolute left-2 top-2 flex h-3 w-3 items-center justify-center rounded-full bg-white/85 shadow-[0_0_0_6px_rgba(255,255,255,0.08)] transition group-hover:shadow-[0_0_0_10px_rgba(255,255,255,0.18)]">
                     <span className="h-1.5 w-1.5 rounded-full bg-white/80 transition group-hover:h-2 group-hover:w-2 group-hover:bg-gradient-to-r group-hover:from-brand-green group-hover:via-emerald-200 group-hover:to-emerald-100" />
                   </span>
-                  <div className="grid gap-2 md:grid-cols-[220px_1fr] md:items-baseline">
+                  <div className="grid gap-2 pl-6 md:grid-cols-[220px_1fr] md:items-baseline">
                     <div className="flex items-baseline gap-3 text-white/85">
-                      <span className="text-xs font-bold text-white/45">{String(idx + 1).padStart(2, "0")}</span>
                       <h3 className="type-body font-semibold text-white">{item.title}</h3>
                     </div>
                     <p className="type-small text-white/75">{item.description}</p>
