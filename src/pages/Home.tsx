@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties } from "react";
+﻿import { useEffect, useState, type CSSProperties } from "react";
 import { ArrowRight, BarChart3, ChevronDown, Database, Facebook, Instagram, Layers, Linkedin, TrendingUp, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePrimaryGradientHover } from "../hooks/usePrimaryGradientHover";
@@ -91,6 +91,39 @@ const rallySlides = [
   "/carousel%20rally/_MS_0212.webp",
   "/carousel%20rally/_MS_0415.webp",
   "/carousel%20rally/IMG_8809.webp"
+];
+
+const talksSpeakers = [
+  {
+    name: "André Pessôa",
+    role: "Fundador e CEO da Agroconsult.",
+    photo: "/authors/andre-pessoa.jpg"
+  },
+  {
+    name: "André Debastiani",
+    role: "Sócio-diretor da Agroconsult e coordenador geral do Rally da Safra.",
+    photo: "/authors/andre-debastiani.jpg"
+  },
+  {
+    name: "Cleber Vieira",
+    role: "Sócio-diretor da Agroconsult.",
+    photo: "/authors/cleber-vieira.jpg"
+  },
+  {
+    name: "Débora Simões",
+    role: "Sócia-diretora da Agroconsult.",
+    photo: "/authors/debora-simoes.jpg"
+  },
+  {
+    name: "Adriano Lo Turco",
+    role: "S�cio da Agroconsult e especialista em mercado de gr�os.",
+    photo: "/authors/adriano-lo-turco.jpg"
+  },
+  {
+    name: "Heloisa Melo",
+    role: "S�cia da Agroconsult e especialista em mercado de algod�o e caf�.",
+    photo: "/authors/heloisa-melo.jpg"
+  }
 ];
 
 const XIcon = () => (
@@ -224,84 +257,78 @@ function Hero() {
   );
 }
 
-function Pillars() {
+function TalksSection() {
   const talksHover = usePrimaryGradientHover();
-  const talkTags = ["Condições e resultados da safra", "Perspectivas de mercado", "Cenário econômico e financeiro"];
-  const talkImages = [
-    "/palestras/palestra-1.webp",
-    "/palestras/palestra-2.webp",
-    "/palestras/palestra-3.webp",
-    "/palestras/palestra-4.webp",
-    "/palestras/palestra-5.webp",
-    "/palestras/palestra-6.webp"
-  ];
-  const slideStep = 4;
-  const slideDuration = talkImages.length * slideStep;
-
-  const scrollToContact = () => {
-    const target = document.getElementById("contato-form") || document.getElementById("contato");
-    if (target) target.scrollIntoView({ behavior: "smooth" });
-  };
+  const columnA = [...talksSpeakers, ...talksSpeakers];
+  const columnB = [...talksSpeakers, ...talksSpeakers].reverse();
 
   return (
-    <section className="section-padding bg-white mb-14 md:mb-16 lg:mb-24" data-reveal="section">
+    <section className="section-padding bg-white" data-reveal="section">
       <div className={styles.sectionContainer}>
-        <div className="relative min-h-[520px] overflow-hidden rounded-[32px] bg-brand-navy text-white shadow-panel md:min-h-[620px]">
-          <div className="absolute inset-0">
-            {talkImages.map((src, idx) => (
-              <img
-                key={src}
-                src={src}
-                alt=""
-                aria-hidden="true"
-                className="palestras-slide absolute inset-0 h-full w-full object-cover"
-                style={{ animationDelay: `${idx * slideStep}s`, animationDuration: `${slideDuration}s` }}
-                loading={idx === 0 ? "eager" : "lazy"}
-                decoding="async"
-              />
-            ))}
+        <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div className="space-y-4">
+            <p className="eyebrow type-label text-brand-gray">Palestras</p>
+            <h2 className="type-h2 text-brand-navy">Conteúdo que orienta decisões no agronegócio</h2>
+            <p className={`${styles.body} max-w-xl text-slate-700`}>
+              Talks customizados com especialistas da Agroconsult para conselhos, lideranças e times estratégicos.
+              Conteúdo baseado em dados primários, leitura de mercado e inteligência de safra para apoiar decisões e acelerar resultados.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Link to="/#contato-form" className="btn-primary" {...talksHover}>
+                Agendar palestra
+                <ArrowRight size={16} />
+              </Link>
+            </div>
           </div>
-          <div
-            className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,135,71,0.45),_transparent_60%)]"
-            aria-hidden
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/90 via-brand-navy/60 to-brand-navy/90" aria-hidden />
 
-          <div className="relative z-10 flex min-h-[520px] items-center justify-center px-6 py-14 md:min-h-[620px] md:px-10 md:py-16 lg:py-20">
-            <div className="max-w-4xl space-y-6 text-center">
-              <p className="eyebrow type-label text-white/80">Palestras Agroconsult</p>
-              <h2 className="type-h1 text-white drop-shadow-[0_0_32px_rgba(120,255,210,0.75)]">
-                Conteúdo que orienta decisões no agronegócio
-              </h2>
-              <div className="space-y-3">
-                <p className="type-body-lg text-white/90">
-                  Apresentações executivas, painéis, treinamentos e workshops desenvolvidos para conselhos, lideranças,
-                  times estratégicos, clientes e parceiros, com foco em leitura de mercado, inteligência de safra e
-                  direcionamento para a tomada de decisão.
-                </p>
-                <p className="type-body text-white/80">
-                  Dados proprietários, análises exclusivas e a experiência de quem está no campo e no mercado para
-                  antecipar cenários, reduzir riscos e acelerar resultados.
-                </p>
-              </div>
-              <div className="hidden grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center">
-                {talkTags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="type-label w-full whitespace-nowrap rounded-full bg-white/15 px-2 py-2 text-center text-white backdrop-blur sm:w-auto sm:px-3"
-                  >
-                    {tag}
-                  </span>
+          <div className="speakers-overlap">
+            <div
+              className="speakers-marquee"
+              style={{ "--speakers-scroll-duration": "36s" } as CSSProperties}
+              role="region"
+              aria-label="Palestrantes Agroconsult"
+            >
+              <div className="speakers-column speakers-scroll-up">
+                {columnA.map((speaker, idx) => (
+                  <div className="speaker-card" key={`speaker-a-${speaker.name}-${idx}`}>
+                    <div className="speaker-photo">
+                      <img
+                        src={speaker.photo}
+                        alt={speaker.name}
+                        loading="lazy"
+                        decoding="async"
+                        width={120}
+                        height={120}
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <p className="type-body font-semibold text-brand-navy">{speaker.name}</p>
+                      <p className="type-small text-slate-600">{speaker.role}</p>
+                    </div>
+                  </div>
                 ))}
               </div>
-              <div className="flex flex-wrap justify-center gap-3">
-                <Link to="/palestras" className="btn-primary" {...talksHover}>
-                  Nossos palestrantes -&gt;
-                </Link>
-              <button type="button" onClick={scrollToContact} className="btn-ghost">
-                Agendar palestra
-              </button>
-            </div>
+
+              <div className="speakers-column speakers-scroll-down hidden sm:flex">
+                {columnB.map((speaker, idx) => (
+                  <div className="speaker-card" key={`speaker-b-${speaker.name}-${idx}`}>
+                    <div className="speaker-photo">
+                      <img
+                        src={speaker.photo}
+                        alt={speaker.name}
+                        loading="lazy"
+                        decoding="async"
+                        width={120}
+                        height={120}
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <p className="type-body font-semibold text-brand-navy">{speaker.name}</p>
+                      <p className="type-small text-slate-600">{speaker.role}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -339,20 +366,25 @@ function Expertise() {
   ];
 
   return (
-    <section id="expertise" className="section-padding bg-white" data-reveal="section">
-      <div className={styles.sectionContainer}>
+    <section id="expertise" className="section-padding relative overflow-hidden bg-brand-gradient text-white" data-reveal="section">
+      <div className="pointer-events-none absolute inset-0 bg-brand-radial opacity-60" aria-hidden="true" />
+      <div className={`${styles.sectionContainer} relative z-10`}>
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div className="space-y-4">
-            <p className={styles.eyebrow}>INTELIGÊNCIA APLICADA AO AGRO</p>
-            <h2 className="type-h2 text-brand-navy">
+            <p className={`${styles.eyebrow} text-white/80`}>
+              INTELIG�SNCIA APLICADA AO AGRO
+            </p>
+            <h2 className="type-h2 text-white">
               Conhecimento que gera <br />
-              <span className="text-brand-green">confiança e resultado</span>
+              <span className="inline-block bg-gradient-to-r from-emerald-200 via-brand-green to-emerald-200 bg-clip-text text-transparent">
+                confiança e resultado
+              </span>
             </h2>
-            <p className={`${styles.body} max-w-3xl`}>
+            <p className={`${styles.body} max-w-3xl text-white/85`}>
               A Agroconsult combina 25 anos de know-how, tecnologia própria e um relacionamento construído no campo e no
               mercado para entregar inteligência aplicada à tomada de decisão.
             </p>
-            <p className={`${styles.body} max-w-3xl`}>
+            <p className={`${styles.body} max-w-3xl text-white/85`}>
               Nossas análises são referência para empresas, investidores e líderes do agronegócio no Brasil e no mundo.
             </p>
             <div className="brand-underline" />
@@ -966,8 +998,9 @@ export default function Home() {
   return (
     <div ref={revealRef} className="relative z-0 bg-white/60 overflow-x-hidden sm:overflow-x-visible">
       <Hero />
-      <div className="relative z-10">
+      <div className="relative z-10 home-content-scale">
         <Expertise />
+        <TalksSection />
         <ProductsPreview />
         <RallySection />
         <ProductsOverview />
@@ -977,3 +1010,6 @@ export default function Home() {
     </div>
   );
 }
+
+
+
