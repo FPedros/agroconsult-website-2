@@ -263,10 +263,10 @@ function TalksSection() {
   const columnB = [...talksSpeakers, ...talksSpeakers].reverse();
 
   return (
-    <section className="section-padding bg-white" data-reveal="section">
+    <section className="section-padding section-no-overlap bg-white" data-reveal="section">
       <div className={styles.sectionContainer}>
         <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div className="space-y-4">
+          <div className="relative -top-10 md:-top-12 lg:-top-14 flex h-full flex-col justify-center space-y-4">
             <p className="eyebrow type-label text-brand-gray">Palestras</p>
             <h2 className="type-h2 text-brand-navy">Conteúdo que orienta decisões no agronegócio</h2>
             <p className={`${styles.body} max-w-xl text-slate-700`}>
@@ -301,7 +301,7 @@ function TalksSection() {
                         height={120}
                       />
                     </div>
-                    <div className="space-y-1">
+                    <div className="space-y-1 text-center">
                       <p className="type-body font-semibold text-brand-navy">{speaker.name}</p>
                       <p className="type-small text-slate-600">{speaker.role}</p>
                     </div>
@@ -322,7 +322,7 @@ function TalksSection() {
                         height={120}
                       />
                     </div>
-                    <div className="space-y-1">
+                    <div className="space-y-1 text-center">
                       <p className="type-body font-semibold text-brand-navy">{speaker.name}</p>
                       <p className="type-small text-slate-600">{speaker.role}</p>
                     </div>
@@ -338,6 +338,8 @@ function TalksSection() {
 }
 
 function Expertise() {
+  const underlineStyle = { backgroundImage: "linear-gradient(90deg, #1f2b57, #2fc56f)" };
+  const [hoveredMetric, setHoveredMetric] = useState<number | null>(null);
   const metrics = [
     {
       value: "25+",
@@ -370,7 +372,7 @@ function Expertise() {
       <div className="pointer-events-none absolute inset-0 bg-brand-radial opacity-60" aria-hidden="true" />
       <div className={`${styles.sectionContainer} relative z-10`}>
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-          <div className="space-y-4">
+          <div className="flex h-full flex-col justify-center space-y-4">
             <p className={`${styles.eyebrow} text-white/80`}>
               INTELIG�SNCIA APLICADA AO AGRO
             </p>
@@ -387,24 +389,42 @@ function Expertise() {
             <p className={`${styles.body} max-w-3xl text-white/85`}>
               Nossas análises são referência para empresas, investidores e líderes do agronegócio no Brasil e no mundo.
             </p>
-            <div className="brand-underline" />
+            <div className="brand-underline-wrap">
+              <span className="brand-underline brand-underline-glow" style={underlineStyle} />
+            </div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            {metrics.map((item, idx) => (
+          <div className="grid h-full content-center gap-4 pb-[106px] md:grid-cols-2 md:pb-0">
+            {metrics.map((item, idx) => {
+              const isHovered = hoveredMetric === idx;
+              return (
               <div
                 key={item.label}
                 data-reveal="card"
                 style={{ "--reveal-delay": `${idx * 120}ms` } as CSSProperties}
               >
-                <div className="group space-y-2 rounded-2xl bg-slate-50 p-5 text-left shadow-sm ring-1 ring-slate-100 transition duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:bg-brand-gradient hover:shadow-[0_24px_70px_rgba(0,0,0,0.28)] hover:ring-white/20">
-                  <div className="mb-2 text-brand-green transition group-hover:text-white">{item.icon}</div>
-                  <p className="text-2xl font-bold text-brand-navy transition group-hover:text-white">{item.value}</p>
-                  <p className="text-sm font-semibold text-brand-navy transition group-hover:text-white/90">{item.label}</p>
-                  <p className="text-sm text-slate-700 transition group-hover:text-white/85">{item.detail}</p>
+                <div
+                  className="group flex min-h-[220px] flex-col justify-center gap-2 rounded-3xl bg-white/12 p-6 text-left shadow-xl ring-1 ring-white/20 backdrop-blur transition duration-300"
+                  style={{
+                    transform: isHovered ? "translateY(-8px) scale(1.02)" : "translateY(0) scale(1)",
+                    boxShadow: isHovered ? "0 24px 70px rgba(0,0,0,0.28)" : undefined
+                  }}
+                  onMouseEnter={() => setHoveredMetric(idx)}
+                  onMouseLeave={() => setHoveredMetric(null)}
+                  onFocus={() => setHoveredMetric(idx)}
+                  onBlur={() => setHoveredMetric(null)}
+                  tabIndex={0}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="text-emerald-200 transition group-hover:text-white">{item.icon}</span>
+                    <p className="text-2xl font-bold text-white transition">{item.value}</p>
+                  </div>
+                  <p className="text-sm font-semibold text-white/90 transition">{item.label}</p>
+                  <p className="text-sm text-white/75 transition">{item.detail}</p>
                 </div>
               </div>
-            ))}
+            );
+            })}
           </div>
         </div>
       </div>
@@ -413,16 +433,11 @@ function Expertise() {
 }
 
 function ProductsPreview() {
-  const [hoveredPlatform, setHoveredPlatform] = useState<number | null>(null);
+  const productsPreviewHover = usePrimaryGradientHover();
   const images = [
     { webp: "/produtos/1.webp", jpeg: "/produtos/1.jpeg" },
     { webp: "/produtos/2.webp", jpeg: "/produtos/2.jpeg" },
     { webp: "/produtos/3.webp", jpeg: "/produtos/3.jpeg" }
-  ];
-  const platforms = [
-    { label: "Agrovalora", href: "https://terra-inteligente.vercel.app/" },
-    { label: "BD Online", href: "https://bd.agroconsult.com.br/" },
-    { label: "Agricontent", href: "https://rallydasafra.rds.land/agricontent" }
   ];
 
   const tiles = [...images, ...images, ...images, ...images];
@@ -445,45 +460,20 @@ function ProductsPreview() {
       <div className={`${styles.sectionContainer} space-y-8`}>
         <div className="grid gap-8 text-white lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-4">
-            <p className="eyebrow type-label text-white/80">PRODUTOS POR ASSINATURA</p>
+            <p className="eyebrow type-label text-white/80">PRODUTOS AGROCONSULT</p>
             <h2 className="type-h2 text-white">
-              Um portfólio completo para decisões rápidas e seguras
+              Inteligência aplicada em toda a jornada de decisão do agro
             </h2>
             <div className="space-y-3 text-white/85">
               <p className="type-body max-w-3xl">
-                Plataformas desenvolvidas para quem precisa acompanhar mercados, antecipar movimentos, gerar
-                relacionamento e tomar decisões com agilidade, com dados confiáveis e análises recorrentes.
+                Da leitura de safra à estratégia, com dados primários coletados diretamente no campo e por sensoriamento remoto.
               </p>
             </div>
             <div className="hidden flex-wrap items-center gap-3 sm:flex">
-              {platforms.map((item, idx) => {
-                const isHovered = hoveredPlatform === idx;
-                return (
-                  <div
-                    key={item.label}
-                    data-reveal="card"
-                    style={{ "--reveal-delay": `${idx * 120}ms` } as CSSProperties}
-                    className="w-full sm:w-auto"
-                  >
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="type-label flex w-full items-center justify-center text-center whitespace-nowrap rounded-3xl bg-white/12 px-3 py-2 text-white/85 shadow-xl ring-1 ring-white/20 backdrop-blur transition duration-300 sm:w-auto sm:px-3.5 sm:py-2.5"
-                      style={{
-                        transform: isHovered ? "translateY(-8px) scale(1.02)" : "translateY(0) scale(1)",
-                        boxShadow: isHovered ? "0 24px 70px rgba(0,0,0,0.28)" : undefined
-                      }}
-                      onMouseEnter={() => setHoveredPlatform(idx)}
-                      onMouseLeave={() => setHoveredPlatform(null)}
-                      onFocus={() => setHoveredPlatform(idx)}
-                      onBlur={() => setHoveredPlatform(null)}
-                    >
-                      {item.label}
-                    </a>
-                  </div>
-                );
-              })}
+              <Link to="/produtos" className="btn-primary" {...productsPreviewHover}>
+                Ver pagina de produtos
+                <ArrowRight size={16} />
+              </Link>
             </div>
           </div>
 
@@ -532,35 +522,11 @@ function ProductsPreview() {
                 </div>
               </div>
             </div>
-            <div className="mt-6 grid grid-cols-2 gap-x-2 gap-y-1 sm:hidden">
-              {platforms.map((item, idx) => {
-                const isHovered = hoveredPlatform === idx;
-                return (
-                  <div
-                    key={item.label}
-                    data-reveal="card"
-                    style={{ "--reveal-delay": `${idx * 120}ms` } as CSSProperties}
-                    className="w-full sm:w-auto"
-                  >
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="type-label flex w-full items-center justify-center text-center whitespace-nowrap rounded-3xl bg-white/12 px-3 py-2 text-white/85 shadow-xl ring-1 ring-white/20 backdrop-blur transition duration-300 sm:w-auto sm:px-3.5 sm:py-2.5"
-                      style={{
-                        transform: isHovered ? "translateY(-8px) scale(1.02)" : "translateY(0) scale(1)",
-                        boxShadow: isHovered ? "0 24px 70px rgba(0,0,0,0.28)" : undefined
-                      }}
-                      onMouseEnter={() => setHoveredPlatform(idx)}
-                      onMouseLeave={() => setHoveredPlatform(null)}
-                      onFocus={() => setHoveredPlatform(idx)}
-                      onBlur={() => setHoveredPlatform(null)}
-                    >
-                      {item.label}
-                    </a>
-                  </div>
-                );
-              })}
+            <div className="mt-6 flex flex-wrap gap-3 sm:hidden">
+              <Link to="/produtos" className="btn-primary" {...productsPreviewHover}>
+                Ver pagina de produtos
+                <ArrowRight size={16} />
+              </Link>
             </div>
           </div>
         </div>
