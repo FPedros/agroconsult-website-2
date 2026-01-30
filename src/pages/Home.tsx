@@ -152,26 +152,26 @@ function Hero() {
     <section
       id="hero"
       data-reveal="section"
-      className="hero-parallax relative flex min-h-[512px] flex-col items-start justify-center overflow-visible isolate text-white touch-pan-y sm:min-h-[680px] sm:overflow-hidden lg:min-h-[720px]"
+      className="hero-parallax relative flex min-h-screen max-h-screen flex-col items-start justify-center overflow-visible isolate text-white touch-pan-y sm:overflow-hidden"
     >
       <div className="hero-parallax-gradient pointer-events-none absolute inset-0 bg-brand-gradient" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 bg-brand-radial opacity-60" aria-hidden="true" />
       <img
-        src="/images/Diretoria_Novo.webp"
+        src="/images/selo branco.png"
         alt=""
         aria-hidden="true"
         loading="eager"
         decoding="async"
-        className="hero-directors-image pointer-events-none absolute bottom-0 right-0 z-0 h-[68%] w-[100%] max-w-[600px] object-contain object-bottom opacity-95 sm:h-[74%] sm:w-[78%] sm:max-w-[720px] lg:h-[86%] lg:w-[62%] lg:max-w-[980px] lg:object-right"
+        className="hero-directors-image pointer-events-none absolute inset-x-0 top-0 z-0 h-screen w-screen max-h-screen max-w-screen object-contain object-top opacity-95"
         style={
           {
-            "--hero-image-base-shift": "clamp(16px, 3vw, 56px)",
+            "--hero-image-base-shift": "0px",
             transform: "translateY(calc(var(--hero-image-base-shift, 0px) + var(--hero-image-shift, 0px)))"
           } as CSSProperties
         }
       />
 
-      <div className="page-container relative z-10 flex min-h-[512px] flex-col items-center justify-start gap-6 pb-16 pt-24 text-center sm:min-h-[680px] sm:items-start sm:justify-center sm:pt-28 sm:pb-20 sm:text-left lg:min-h-[720px] lg:pb-24">
+      <div className="hero-content page-container relative z-10 flex min-h-screen max-h-screen flex-col items-center justify-center gap-6 py-16 text-center sm:py-20 lg:py-24">
         <div
           data-reveal="card"
           style={{ "--reveal-delay": "120ms" } as CSSProperties}
@@ -184,17 +184,17 @@ function Hero() {
             </span>
           </h1>
           <div className="space-y-4 lg:space-y-6">
-            <p className="type-body max-w-xl text-white/85">
+            <p className="type-body max-w-xl text-white/95">
               Transformamos dados em inteligência estratégica para apoiar decisões seguras no agronegócio brasileiro e global.
             </p>
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center justify-center gap-3">
               <div className={`${tagClass} hidden sm:inline-flex`}>
                 <Layers size={16} />
                 Estratégia sob medida
               </div>
             </div>
 
-            <div className="hidden flex-wrap items-center gap-3 sm:flex">
+            <div className="hidden flex-wrap items-center justify-center gap-3 sm:flex">
               <Link
                 to="/produtos"
                 className="btn-primary"
@@ -968,7 +968,6 @@ export default function Home() {
       <Hero />
       <div className="relative z-10">
         <Expertise />
-        <Pillars />
         <ProductsPreview />
         <RallySection />
         <ProductsOverview />
@@ -978,4 +977,3 @@ export default function Home() {
     </div>
   );
 }
-

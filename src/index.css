@@ -237,6 +237,16 @@ a {
   will-change: transform;
   opacity: var(--hero-image-opacity, 1);
   transition: opacity 200ms ease;
+  filter: brightness(0.82) saturate(0.9) contrast(1.05);
+}
+
+.hero-content h1,
+.hero-content h1 span,
+.hero-content p,
+.hero-content .type-label,
+.hero-content .type-body,
+.hero-content .type-body-lg {
+  text-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
 }
 
 @media (pointer: coarse) {
@@ -247,7 +257,7 @@ a {
 
 @media (max-width: 640px) {
   .hero-directors-image {
-    --hero-image-base-shift: clamp(16px, 3vw, 48px) !important;
+    --hero-image-base-shift: 0px !important;
   }
 }
 
